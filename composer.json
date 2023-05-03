@@ -1,0 +1,25 @@
+{
+    "name": "usuario/granatourz-daw",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Usuario\\GranatourzDaw\\": "src/",
+            "Controllers\\" :  "./Controllers",
+            "Models\\" : "./Models",
+            "Lib\\" :  "./Lib",
+            "Services\\": "./Services",
+            "Repositories\\": "./Repositories",
+            "Utils\\": "./Utils"
+        }
+    },
+    "authors": [
+        {
+            "name": "Alejandro",
+            "email": "99648035+amartingonz@users.noreply.github.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "vlucas/phpdotenv": "^5.5"
+    }
+}
