@@ -14,9 +14,9 @@
     require_once '../views/layout/header.php';
 
     // // INDEX
-    Router::add('GET','/',function(){
-        (new ProductoController()) -> listar_productos();
-    });
+    // Router::add('GET','/',function(){
+    //     (new ProductoController()) -> listar_productos();
+    // });
 
     // REGISTRO
     Router::add('GET','usuarios_registrar',function(){require '../views/usuarios/registro.php';});
@@ -35,48 +35,48 @@
     Router::add('POST','cerrar_sesion',function(){
         (new UsuarioController()) -> cerrar_sesion();});
 
-    // LISTAR X CATEGORIAS/ID
-    Router::add('GET','listarXcategorias/:id',function(int $id){
-         (new ProductoController()) -> listarXcategorias($id);
-    });
+    // // LISTAR X CATEGORIAS/ID
+    // Router::add('GET','listarXcategorias/:id',function(int $id){
+    //      (new ProductoController()) -> listarXcategorias($id);
+    // });
 
     // AÑADIR AL CARRITO
     
-    Router::add('POST','comprobarPedido',function(){
-        (new PedidoController()) -> comprobarPedido();
-    });
+//     Router::add('POST','comprobarPedido',function(){
+//         (new PedidoController()) -> comprobarPedido();
+//     });
 
 
-    Router::add('GET','anadir_carrito',function(){
-        (new CarritoController()) -> anadir_carrito();
-    });
+//     Router::add('GET','anadir_carrito',function(){
+//         (new CarritoController()) -> anadir_carrito();
+//     });
     
-   Router::add('POST','anadir_carrito',function(){
-    (new CarritoController()) -> anadir_carrito();
-    });
+//    Router::add('POST','anadir_carrito',function(){
+//     (new CarritoController()) -> anadir_carrito();
+//     });
 
-    Router::add('GET','borrar_elementos',function(){
-        require '../views/productos/carrito.php';
-    });
+//     Router::add('GET','borrar_elementos',function(){
+//         require '../views/productos/carrito.php';
+//     });
 
-    Router::add('POST','borrar_elementos',function(){
-        (new CarritoController()) -> borrar_elementos();
-    });
+//     Router::add('POST','borrar_elementos',function(){
+//         (new CarritoController()) -> borrar_elementos();
+//     });
 
     // PEDIDOS
     
-    Router::add('GET','consultar_pedidos',function(){
-        (new PedidoController()) -> consultar_pedidos();
-    });
+    // Router::add('GET','consultar_pedidos',function(){
+    //     (new PedidoController()) -> consultar_pedidos();
+    // });
 
     
-    Router::add('GET','comprobarPedido',function(){
-        (new PedidoController()) -> comprobarPedido();
-    });
+    // Router::add('GET','comprobarPedido',function(){
+    //     (new PedidoController()) -> comprobarPedido();
+    // });
 
-    Router::add('POST','crear_pedido',function(){
-        (new PedidoController()) -> crear_pedido();
-    });
+    // Router::add('POST','crear_pedido',function(){
+    //     (new PedidoController()) -> crear_pedido();
+    // });
 
     // CATEGORIAS
 
@@ -91,26 +91,26 @@
     // PRODUCTOS
     
 
-    Router::add('GET','crear_producto',function(){
-        (new ProductoController()) -> crear_producto();
-    });
-    Router::add('POST','crear_producto',function(){
-        (new ProductoController()) -> crear_producto();
-    });
+    // Router::add('GET','crear_producto',function(){
+    //     (new ProductoController()) -> crear_producto();
+    // });
+    // Router::add('POST','crear_producto',function(){
+    //     (new ProductoController()) -> crear_producto();
+    // });
 
-    Router::add('GET','editar_producto',function(){
-        (new ProductoController()) -> editar_producto();
-    });
-    Router::add('POST','editar_producto',function(){
-        (new ProductoController()) -> editar_producto();
-    });
+    // Router::add('GET','editar_producto',function(){
+    //     (new ProductoController()) -> editar_producto();
+    // });
+    // Router::add('POST','editar_producto',function(){
+    //     (new ProductoController()) -> editar_producto();
+    // });
 
-    Router::add('GET','eliminar_producto',function(){
-        (new ProductoController()) -> borrar_producto();
-    });
-    Router::add('POST','eliminar_producto',function(){
-        (new ProductoController()) -> borrar_producto();
-    });
+    // Router::add('GET','eliminar_producto',function(){
+    //     (new ProductoController()) -> borrar_producto();
+    // });
+    // Router::add('POST','eliminar_producto',function(){
+    //     (new ProductoController()) -> borrar_producto();
+    // });
 
 
     // EDITAR DATOS
@@ -127,8 +127,9 @@
 
 
 
-    
+
     Router::dispatch();
     require_once '../views/layout/footer.php';
+
 ?>
 

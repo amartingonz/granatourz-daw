@@ -9,22 +9,16 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
-        <link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" href="../css/style.css">
+        <!-- <link rel="stylesheet" href="css/header.css"> -->
+        <!-- <link rel="stylesheet" href="../css/header.css"> -->
 
     </head>
     <body>
-        
-    
+       
 
-           <h1>GranaTourz</h1>
-           <?php
-                if(!isset($_SESSION['carrito'])){
-                    $_SESSION['carrito'] = [];
-                }
-        ?>
         
         <nav class="menu">
+        <h1>GranaTourz</h1>
             <ul>
             <li>
                     <a href="<?= $_ENV['BASE_URL']?>">Inicio</a> 
@@ -36,9 +30,6 @@
                 <li>
                     <a href="<?= $_ENV['BASE_URL']?>usuarios_loguear">Login</a>
                 </li>
-                <li>
-                    <a href="<?= $_ENV['BASE_URL']?>anadir_carrito">Ver carrito</a>
-                </li>
             <?php }?>
             </ul>
         </nav>
@@ -46,8 +37,6 @@
         <?php if(isset($_SESSION['admin'])):?>
         <nav class="menu"> 
             <ul>
-                <li><a href="<?= $_ENV['BASE_URL']?>anadir_carrito">Ver carrito</a></li>
-                <li><a href="<?= $_ENV['BASE_URL']?>consultar_pedidos">Ver pedidos</a></li>
                 <li><a href="<?= $_ENV['BASE_URL']?>crear_categoria">Crear Categorias</a></li>
                 <li><a href="<?= $_ENV['BASE_URL']?>crear_producto">Crear Productos</a></li>
                 <li><a href="<?= $_ENV['BASE_URL']?>editar_producto">Editar Productos</a></li>

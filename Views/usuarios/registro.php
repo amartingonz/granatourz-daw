@@ -5,18 +5,29 @@
 
 <form action="<?= $_ENV['BASE_URL']?>usuarios_registrar" method="post">
 
+    <label for="dni">Dni</label>
+    <input type="text" name="data[dni]">
+    <span><?php 
+    /*
+        if(isset($_SESSION['errores'])){
+            if(isset($_SESSION['errores']['dni'])){
+                echo $_SESSION['errores']['dni'];
+            }
+        }
+    */
+    ?></span>
+    <br>
     <label for="nombre">Nombre</label>
     <input type="text" name="data[nombre]"  pattern="[a-zA-Z]+" title="No se permiten caracteres raros ni etiquetas">
     <span><?php if(isset($_SESSION['errores'])){
         if(isset($_SESSION['errores']['nombre'])){
             echo $_SESSION['errores']['nombre'];
         }
-
     }
     ?></span>
     <br>
     <label for="apellidos">Apellidos</label>
-    <input type="text" name="data[apellidos]"  pattern="[a-zA-Z]+" title="No se permiten caracteres raros ni etiquetas">
+    <input type="text" name="data[apellidos]">
     <span><?php if(isset($_SESSION['errores'])){
         if(isset($_SESSION['errores']['apellidos'])){
             echo $_SESSION['errores']['apellidos'];
@@ -32,6 +43,19 @@
             echo $_SESSION['errores']['email'];
         }
     } ?></span>
+    <br>
+    <label for="telefono">Teléfono</label>
+    <input type="tel" name="data[telefono]">
+    <span><?php 
+    /* 
+    if(isset($_SESSION['errores'])){
+       
+        if(isset($_SESSION['errores']['telefono'])){
+            echo $_SESSION['errores']['telefono'];
+        }
+    } 
+    */
+    ?></span>
     <br>
     <label for="password">Contraseña</label>
     <input type="password" name="data[password]" >

@@ -40,6 +40,11 @@
 
     } ?></span>
     <br>
+    <label for="telefono">Teléfono</label>
+    <br>
+    <input type="tel" name="data[telefono]">
+    <span>
+    <br>
     <label for="password">Contraseña</label>
     <br>
     <input type="password" name="data[password]">

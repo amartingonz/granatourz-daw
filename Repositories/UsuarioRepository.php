@@ -15,16 +15,20 @@
 
         public function save(array $usuario){
             // PARA INSERTAR DATOS EN LA BASE DE DATOS
-            $sql = ("INSERT INTO usuarios(nombre,apellidos,email,password,rol) values(:nombre,:apellidos,:email,:password,:rol)");
+            $sql = ("INSERT INTO usuarios(dni,nombre,apellidos,email,telefono,password,rol) values(:dni,:nombre,:apellidos,:email,:telefono,:password,:rol)");
+            $dni = $usuario['dni'];
             $nombre = $usuario['nombre'];
             $apellidos = $usuario['apellidos'];
             $email = $usuario['email'];
+            $telefono = $usuario['telefono'];
             $password = password_hash($usuario['password'],PASSWORD_BCRYPT,['cost' => 4]);// para cifrar la contraseña // cost es las veces que se cifra
-            $rol = 'usuario';
+            $rol = 'admin';
             $consult = $this -> conexion -> prepara($sql);
+            $consult -> bindParam(':dni',$dni,PDO::PARAM_STR);
             $consult -> bindParam(':nombre',$nombre,PDO::PARAM_STR);
             $consult -> bindParam(':apellidos',$apellidos,PDO::PARAM_STR);
             $consult -> bindParam(':email',$email,PDO::PARAM_STR);
+            $consult -> bindParam(':telefono',$telefono,PDO::PARAM_STR);
             $consult -> bindParam(':password',$password,PDO::PARAM_STR);
             $consult -> bindParam(':rol',$rol,PDO::PARAM_STR);
             try{
@@ -61,7 +65,7 @@
                 $consult-> execute();
                 $datos = $consult -> fetchAll();
                 if(count($datos) != 0){
-                    $datos_encontrados = array($datos[0]['id'],$datos[0]['nombre'],$datos[0]['apellidos'],$datos[0]['email'],$datos[0]['password'],$datos[0]['rol']);
+                    $datos_encontrados = array($datos[0]['id_usuario'],$datos[0]['dni'],$datos[0]['nombre'],$datos[0]['apellidos'],$datos[0]['email'],$datos[0]['telefono'],$datos[0]['password'],$datos[0]['rol']);
                     return $datos_encontrados;
                 }else{
                     return [];
@@ -74,7 +78,7 @@
 
         public function editar_datos(array $usuario):void{
             // Funcion para editar los datos de usuario
-            $sql = ("UPDATE usuarios SET nombre=:nombre,apellidos=:apellidos,email=:email,password=:password  WHERE id = :id");
+            $sql = ("UPDATE usuarios SET nombre=:nombre,apellidos=:apellidos,email=:email,telefono=:telefono,password=:password  WHERE id_usuario = :id");
             $password = password_hash($usuario['password'],PASSWORD_BCRYPT,['cost' => 4]);// para cifrar la contraseña // cost es las veces que se cifra
             $fecha = date("Y-m-d");
             $consult = $this -> conexion -> prepara($sql);
@@ -82,6 +86,7 @@
             $consult -> bindParam(':nombre',$usuario['nombre'],PDO::PARAM_STR);
             $consult -> bindParam(':apellidos',$usuario['apellidos'],PDO::PARAM_STR);
             $consult -> bindParam(':email',$usuario['email'],PDO::PARAM_STR);
+            $consult -> bindParam(':telefono',$usuario['telefono'],PDO::PARAM_STR);
             $consult -> bindParam(':password',$password,PDO::PARAM_STR);
             
             try{
