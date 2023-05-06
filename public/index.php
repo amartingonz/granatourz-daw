@@ -6,7 +6,7 @@
     use Controllers\CategoriaController;
     use Controllers\CarritoController;
     use Controllers\PedidoController;
-    use Controllers\ProductoController;
+    use Controllers\ActividadController;
     use Controllers\UsuarioController;
     use Lib\Router;
     $dotenv = Dotenv::createImmutable(__DIR__);
@@ -88,15 +88,15 @@
     (new CategoriaController()) -> crear_categoria();
     });
 
-    // PRODUCTOS
+    // ACTIVIDADES
     
 
-    // Router::add('GET','crear_producto',function(){
-    //     (new ProductoController()) -> crear_producto();
-    // });
-    // Router::add('POST','crear_producto',function(){
-    //     (new ProductoController()) -> crear_producto();
-    // });
+    Router::add('GET','crear_actividad',function(){
+        (new ActividadController()) -> crear_actividad();
+    });
+    Router::add('POST','crear_actividad',function(){
+        (new ActividadController()) -> crear_actividad();
+    });
 
     // Router::add('GET','editar_producto',function(){
     //     (new ProductoController()) -> editar_producto();

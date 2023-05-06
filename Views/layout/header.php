@@ -38,9 +38,9 @@
         <nav class="menu"> 
             <ul>
                 <li><a href="<?= $_ENV['BASE_URL']?>crear_categoria">Crear Categorias</a></li>
-                <li><a href="<?= $_ENV['BASE_URL']?>crear_producto">Agregar Actividad</a></li>
-                <li><a href="<?= $_ENV['BASE_URL']?>editar_producto">Editar Actividad</a></li>
-                <li><a href="<?= $_ENV['BASE_URL']?>eliminar_producto">Eliminar Actividad</a></li>
+                <li><a href="<?= $_ENV['BASE_URL']?>crear_actividad">Agregar Actividad</a></li>
+                <li><a href="<?= $_ENV['BASE_URL']?>editar_actividad">Editar Actividad</a></li>
+                <li><a href="<?= $_ENV['BASE_URL']?>eliminar_actividad">Eliminar Actividad</a></li>
                 <li><a href="<?= $_ENV['BASE_URL']?>eliminar_producto">Sancionar Usuario</a></li>
                 <li><a href="<?= $_ENV['BASE_URL']?>eliminar_producto">Editar Comentario</a></li>
                 <li><a href="<?= $_ENV['BASE_URL']?>editar_datos">Editar Datos</a></li>

@@ -1,5 +1,5 @@
 <h2>Crear Actividad</h2>
-<form action="<?= $_ENV['BASE_URL']?>crear_actividad" method="post">
+<form action="<?= $_ENV['BASE_URL']?>crear_actividad" method="post" enctype="multipart/form-data">
     <label for="categoria">Categoria</label>
     <br>
     <select name="data[categoria]">
@@ -13,25 +13,28 @@
     <br>
     <input type="text" name="data[nombre]" id="nombre">
     <br>
-    <label for="fecha">Fecha</label>
-    <br>
-    <input type="date" name="data[fecha]" id="fecha">
-    <br>
     <label for="duracion">Duración:</label>
     <br>
-    <input type="text" name="data[duracion]" id="duracion">
+    <input type="number" name="data[duracion]" id="duracion">
+    <br>
+    <textarea name="data[descripcion]" id="" cols="30" rows="10">Descripción</textarea>
     <br>
     <label for="localizacion">Localización:</label>
-    <br>
     <input type="text" name="data[localizacion]" id="localizacion">
+    <br>
+    <label for="hora">Hora:</label>
+    <br>
+    <input type="time" name="data[hora]" id="hora">
+    <br>
+    <label for="fecha">Fecha:</label>
+    <br>
+    <input type="date" name="data[fecha]" id="fecha">
     <br>
     <label for="capacidad">Capacidad:</label>
     <br>
     <input type="number" name="data[capacidad]" id="capacidad">
     <br>
-    <textarea name="data[descripcion]" id="" cols="30" rows="10">Descripción</textarea>
-    <br>
-    <label for="imagen">Imagen</label>
+    <label for="url">Imagen</label>
     <br>
     <input type="file" name="data[url]" id="url">
     <br>

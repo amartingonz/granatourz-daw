@@ -93,7 +93,7 @@ class Utils{
 
     }
 
-    public function validar_crearProductos($array):?array{
+    public function validar_crearActividad($array):?array{
             
         $errores = array();
             if(!validarRequerido($array['nombre']) && !validar_texto($array['nombre'])){
@@ -127,7 +127,7 @@ class Utils{
             return $errores;
     }
    
-    public function sinErrorescrearProductos($errores){
+    public function sinErrorescrearActividad($errores){
         return(($errores['nombre'] == "")&&($errores['descripcion'] == ""));
 
     }

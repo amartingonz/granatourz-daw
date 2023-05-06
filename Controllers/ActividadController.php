@@ -1,15 +1,15 @@
 <?php
     namespace Controllers;
     use Lib\Pages;
-    use Models\Actividades;
+    use Models\Actividad;
     use Services\CategoriaService;
     use Services\ActividadService;
     use Utils\Utils;
 
 
     
-    class ProductoController{
-        private ActividadService $Actividad;
+    class ActividadController{
+        private ActividadService $service;
         private Pages $pages;
         private CategoriaController $categoria;
         private Utils $utils;
@@ -30,9 +30,9 @@
             // CREAR LUEGO LA FUNCION PARA BORRARLA.
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $id = $_POST['id'];
-                $this -> service -> borrar_productos($id);
-                $productos = $this -> service -> getAll();
-                $this -> pages -> render('productos/eliminar_productos', ["productos" => $productos]);
+                $this -> service -> borrar_actividad($id);
+                $actividades = $this -> service -> getAll();
+                $this -> pages -> render('productos/eliminar_productos', ["actividades" => $actividades]);
                 header('Location:'.$_ENV['BASE_URL']);
 
             }else{
@@ -48,8 +48,11 @@
             // Funcion encargada de crear los productos, he usado metodos de la clase utils para validar los datos.
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $datos = $_POST['data'];
+                // var_dump($datos);
+                // die();
                 $nombre = $_POST['data']['nombre'];
                 $archivo = $_FILES['data']['name'];
+                
                 
                 $errores = $this -> utils -> validar_crearActividad($datos);
                 $existe = $this -> service -> comprobarActividad($nombre);
@@ -68,9 +71,9 @@
                             */
                                 //Si la imagen es correcta en tamaño y tipo
                                 //Se intenta subir al servidor
-                                if (move_uploaded_file($temp['imagen'], 'images/'.$archivo['imagen'])) {
+                                if (move_uploaded_file($temp['url'], 'images/'.$archivo['url'])) {
                                     //Cambiamos los permisos del archivo a 777 para poder modificarlo posteriormente
-                                chmod('images/'.$archivo['imagen'], 0777);
+                                chmod('images/'.$archivo['url'], 0777);
                                     //Mostramos el mensaje de que se ha subido co éxito
                                 echo '<div><b>Se ha subido correctamente la imagen.</b></div>';
                                     //Mostramos la imagen subida
@@ -87,13 +90,13 @@
                     }
                 }else{
                     $categorias = $this -> categoria -> listar_categorias();
-                    $this -> pages -> render('productos/crear_actividad', ["categorias" => $categorias]);
+                    $this -> pages -> render('actividades/crear_actividad', ["categorias" => $categorias]);
                     $_SESSION['errores'] = $errores;
-                    $this -> pages -> render('productos/crear_actividad');
+                    $this -> pages -> render('actividades/crear_actividad');
                 }
             }else{
                 $categorias = $this -> categoria -> listar_categorias();
-                $this -> pages -> render('productos/crear_actividad', ["categorias" => $categorias]);
+                $this -> pages -> render('actividades/crear_actividad', ["categorias" => $categorias]);
             }
         }
 
@@ -130,16 +133,16 @@
                                    //Si no se ha podido subir la imagen, mostramos un mensaje de error
                                 echo '<div><b>Ocurrió algún error al subir el fichero. No pudo guardarse.</b></div>';
                             }
-                        $this -> service -> editar_producto($_POST['data']);
-                        $this -> pages -> render('layout/mensaje', ["mensaje" => "Producto insertado con exito"]);
+                        $this -> service -> editar_actividad($_POST['data']);
+                        $this -> pages -> render('layout/mensaje', ["mensaje" => "Actividad creada con exito"]);
                     }else{
-                        $this -> pages -> render('layout/mensaje', ["mensaje" => "Producto ya existente"]);
+                        $this -> pages -> render('layout/mensaje', ["mensaje" => "Actividad ya existente"]);
                     }
             }else{
                 $categorias = $this -> categoria -> listar_categorias();
-                $productos = $this -> service -> getAll();
+                $actividades = $this -> service -> getAll();
 
-                $this -> pages -> render('productos/editar_productos', ["categorias" => $categorias,"productos" => $productos]);
+                $this -> pages -> render('productos/editar_productos', ["categorias" => $categorias,"actividades" => $actividades]);
             }
         }
 
