@@ -1,3 +1,4 @@
+
 <h2>Crear Actividad</h2>
 <form action="<?= $_ENV['BASE_URL']?>crear_actividad" method="post" enctype="multipart/form-data">
     <label for="categoria">Categoria</label>

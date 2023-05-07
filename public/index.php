@@ -81,6 +81,10 @@
     // CATEGORIAS
 
     Router::add('GET','crear_categoria',function(){
+        if(!isset($_SESSION['admin'])){
+            header('Location: ' . $_ENV['BASE_URL']. 'usuarios_loguear');
+            exit;
+        }
         require '../views/categorias/crear_categoria.php';
     });
 
@@ -92,6 +96,11 @@
     
 
     Router::add('GET','crear_actividad',function(){
+        // He añadido este if dentro de la función para controlar las rutas es decir no se puedan meter sin estar logueados.
+        if(!isset($_SESSION['admin'])){
+            header('Location: ' . $_ENV['BASE_URL']. 'usuarios_loguear');
+            exit;
+        }
         (new ActividadController()) -> crear_actividad();
     });
     Router::add('POST','crear_actividad',function(){
