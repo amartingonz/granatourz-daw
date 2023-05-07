@@ -18,7 +18,9 @@
     <br>
     <input type="number" name="data[duracion]" id="duracion">
     <br>
-    <textarea name="data[descripcion]" id="" cols="30" rows="10">Descripción</textarea>
+    <label for="descripcion">Descripcion</label>
+    <br>
+    <textarea name="data[descripcion]" id="descripcion" cols="30" rows="10">Descripción</textarea>
     <br>
     <label for="localizacion">Localización:</label>
     <input type="text" name="data[localizacion]" id="localizacion">

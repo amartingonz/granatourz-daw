@@ -107,12 +107,16 @@
         (new ActividadController()) -> crear_actividad();
     });
 
-    // Router::add('GET','editar_producto',function(){
-    //     (new ProductoController()) -> editar_producto();
-    // });
-    // Router::add('POST','editar_producto',function(){
-    //     (new ProductoController()) -> editar_producto();
-    // });
+    Router::add('GET','editar_actividad',function(){
+        if(!isset($_SESSION['admin'])){
+            header('Location: ' . $_ENV['BASE_URL']. 'usuarios_loguear');
+            exit;
+        }
+        (new ActividadController()) -> editar_actividad();
+    });
+    Router::add('POST','editar_actividad',function(){
+        (new ActividadController()) -> editar_actividad();
+    });
 
     // Router::add('GET','eliminar_producto',function(){
     //     (new ProductoController()) -> borrar_producto();

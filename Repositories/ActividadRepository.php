@@ -59,7 +59,7 @@
             // $fecha = date("Y-m-d");
             $archivo = $_FILES['data']['name'];
 
-            
+
             $consult = $this -> conexion -> prepara($sql);
 
             $consult -> bindParam(':id_actividad',$data['id_actividad'],PDO::PARAM_INT);
@@ -87,14 +87,14 @@
 
         public function getAll():? array{
             //Consulta para extraer todos los campos de productos
-            $this -> conexion -> consulta('SELECT * FROM productos');
+            $this -> conexion -> consulta('SELECT * FROM actividades');
             return $this -> conexion -> extraer_todos();
         }
 
         public function comprobarActividad($producto):bool{
             // Funcion que comprueba si un producto existe
             $result = false;
-            $cons = $this->conexion->prepara("SELECT * FROM productos WHERE nombre = :nombre");
+            $cons = $this->conexion->prepara("SELECT * FROM actividades WHERE nombre = :nombre");
             $cons->bindParam(':nombre', $producto);
             try{
                 $cons->execute();
@@ -108,14 +108,14 @@
         }
 
         public function buscarActividad($cod):?array{
-            $sql = ("SELECT * FROM productos WHERE id = $cod");
+            $sql = ("SELECT * FROM actividades WHERE id_categoria = $cod");
             $this -> conexion -> consulta($sql);
             return $this -> conexion -> extraer_todos();
         }
         
         public function listarXcategorias($data):? array{
             //Consulta para extraer todos los campos de productos por categorias
-            $sql = ("SELECT * FROM productos WHERE categoria_id = $data");
+            $sql = ("SELECT * FROM actividades WHERE id_categoria = $data");
             $this -> conexion -> consulta($sql);
             return $this -> conexion -> extraer_todos();
         }
@@ -132,7 +132,7 @@
         }
 
         public function sacarNombre($data){
-            $sql = ("SELECT nombre FROM productos WHERE id = $data");
+            $sql = ("SELECT nombre FROM actividades WHERE id_actividad = $data");
             $this -> conexion -> consulta($sql);
             return $this -> conexion -> extraer_todos();
         }

@@ -18,10 +18,10 @@
         ?>
     </select>
     <br>
-    <label for="nombre">Nombre</label>
-    <select name="data[id]">
+    <label for="nombre">Nombre de actividad:</label>
+    <select name="data[id_actividad]">
         <?php foreach($actividades as $actividad) {
-                    echo "<option value=".$actividad['id'].">".$actividad['nombre']."</option>";
+                    echo "<option value=".$actividad['id_actividad'].">".$actividad['nombre']."</option>";
             }
         ?>
     </select>
@@ -34,17 +34,31 @@
     <br>
     <label for="descripcion">Descripcion</label>
     <br>
-    <textarea type="text" name="data[descripcion]" pattern="[a-zA-Z]+" title="No se permiten caracteres raros ni etiquetas"></textarea>
+    <textarea name="data[descripcion]" id="descripcion" cols="30" rows="10"></textarea>
     <span><?php if(isset($_SESSION['errores'])){
         if(isset($_SESSION['errores']['descripcion'])){
             echo $_SESSION['errores']['descripcion'];
         }
     } ?></span>
+     <br>
+    <label for="localizacion">Localización:</label>
+    <input type="text" name="data[localizacion]" id="localizacion">
     <br>
-    
-    <label for="imagen">Imagen</label>
+    <label for="hora">Hora:</label>
     <br>
-    <input type="file" name="data[imagen]" required>
+    <input type="time" name="data[hora]" id="hora">
+    <br>
+    <label for="fecha">Fecha:</label>
+    <br>
+    <input type="date" name="data[fecha]" id="fecha">
+    <br>
+    <label for="capacidad">Capacidad:</label>
+    <br>
+    <input type="number" name="data[capacidad]" id="capacidad">
+    <br>
+    <label for="url">Imagen</label>
+    <br>
+    <input type="file" name="data[url]" id="url">
     <br>
     <input type="submit" value="Crear">
 </form>

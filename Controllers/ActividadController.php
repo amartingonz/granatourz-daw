@@ -100,14 +100,14 @@
             }
         }
 
-        public function editar_producto(){
+        public function editar_actividad(){
             if(!file_exists('images')){
                 mkdir('images');
             }
             // Funcion encargada de crear los productos, he usado metodos de la clase utils para validar los datos.
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $datos = $_POST['data'];
-                $id = $_POST['data']['id'];
+                $id = $_POST['data']['id_actividad'];
                 $nombre = $this -> service -> sacarNombre($id);
                 $archivo = $_FILES['data']['name'];
                         if (isset($archivo) && $archivo != "") {
@@ -122,9 +122,9 @@
                             */
                                 //Si la imagen es correcta en tamaño y tipo
                                 //Se intenta subir al servidor
-                                if (move_uploaded_file($temp['imagen'], 'images/'.$archivo['imagen'])) {
+                                if (move_uploaded_file($temp['url'], 'images/'.$archivo['url'])) {
                                     //Cambiamos los permisos del archivo a 777 para poder modificarlo posteriormente
-                                chmod('images/'.$archivo['imagen'], 0777);
+                                chmod('images/'.$archivo['url'], 0777);
                                     //Mostramos el mensaje de que se ha subido co éxito
                                 echo '<div><b>Se ha subido correctamente la imagen.</b></div>';
                                     //Mostramos la imagen subida
@@ -141,8 +141,7 @@
             }else{
                 $categorias = $this -> categoria -> listar_categorias();
                 $actividades = $this -> service -> getAll();
-
-                $this -> pages -> render('productos/editar_productos', ["categorias" => $categorias,"actividades" => $actividades]);
+                $this -> pages -> render('actividades/editar_actividad', ["categorias" => $categorias,"actividades" => $actividades]);
             }
         }
 
@@ -150,8 +149,8 @@
         public function listar_productos(){
             // Funcion encargada de listar los productos de la base de datos
             $_SESSION['categorias'] = $this -> categoria -> listar_categorias();
-            $productos = $this-> service -> getAll();
-            $this -> pages -> render('productos/listar_productos', ["productos" => $productos]);
+            $actividades = $this-> service -> getAll();
+            $this -> pages -> render('actividades/editar_actividad', ["productos" => $actividades]);
 
         }
 
@@ -160,8 +159,8 @@
             // Esta funcion sirve para listar los productos por categorias es decir una vez iniciada la sesion, si pinchas en una
             // categoria te muestra los productos de dicha categoria.
                 // $id = $_GET['categoria'];
-                $productos = $this -> service -> listarXcategorias($id);
-                $this -> pages -> render('productos/listarXcategorias', ["productos" => $productos]); 
+                $actividades = $this -> service -> listarXcategorias($id);
+                $this -> pages -> render('actividades/listarXcategorias', ["actividades" => $actividades]); 
                 
         }
 
