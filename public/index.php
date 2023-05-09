@@ -13,6 +13,7 @@
     $dotenv->safeLoad();
     require_once '../views/layout/header.php';
 
+
     // // INDEX
     // Router::add('GET','/',function(){
     //     (new ProductoController()) -> listar_productos();
@@ -29,11 +30,12 @@
         (new UsuarioController()) -> login();});
 
     // CERRAR SESION
+    // Router::add('GET','cerrar_sesion',function(){
+    //     require '../views/usuarios/cerrar_sesion.php';}
+    // );
     Router::add('GET','cerrar_sesion',function(){
-        require '../views/usuarios/cerrar_sesion.php';}
-    );
-    Router::add('POST','cerrar_sesion',function(){
         (new UsuarioController()) -> cerrar_sesion();});
+  
 
     // // LISTAR X CATEGORIAS/ID
     // Router::add('GET','listarXcategorias/:id',function(int $id){

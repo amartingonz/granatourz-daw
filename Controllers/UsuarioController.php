@@ -28,14 +28,17 @@
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $email = $_POST['data']['email'];
                 $datos = $_POST['data'];
+                $dni = $_POST['data']['dni'];
                 $errores = $this -> utils -> validar_registro($datos);
                 $existe = $this -> service -> comprobarEmail($email);
+                $existeDni = $this -> service -> comprobarDni($dni);
+
                 if($this -> utils -> sinErroresRegistro($errores)){
-                    if(!$existe){
+                    if(!$existe && !$existeDni){
                         $this -> service -> save($_POST['data']);
-                        $this-> pages-> render("layout/mensaje", ["mensaje" => "Usuario registrado"]);
+                        $this-> pages-> render("usuarios/login");
                     }else{
-                        $this-> pages-> render("layout/mensaje", ["mensaje" => "El email ya existe"]);
+                        $this-> pages-> render("layout/mensaje", ["mensaje" => "El email o dni ya existe"]);
                     }
                 }else{
                     $_SESSION['errores'] = $errores;

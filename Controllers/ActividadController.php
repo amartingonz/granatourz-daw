@@ -150,7 +150,7 @@
             // Funcion encargada de listar los productos de la base de datos
             $_SESSION['categorias'] = $this -> categoria -> listar_categorias();
             $actividades = $this-> service -> getAll();
-            $this -> pages -> render('actividades/editar_actividad', ["productos" => $actividades]);
+            $this -> pages -> render('actividades/editar_actividad', ["actividades" => $actividades]);
 
         }
 

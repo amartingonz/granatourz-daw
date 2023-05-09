@@ -14,6 +14,11 @@
                 return $this -> repository -> comprobarEmail($email);
             }
 
+            public function comprobarDni(string $dni){
+                //Funcion para llamar al metodo del repositorio para saber si existe el dni en la Base de Datos
+                return $this -> repository -> comprobarDni($dni);
+            }
+
             public function save(array $usuario) : void {
                 //Funcion para guardar que usa el metodo del repositorio, donde se le pasa un array de datos.
                 $this -> repository -> save($usuario);

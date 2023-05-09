@@ -1,61 +1,84 @@
 <link rel="stylesheet" href="./css/style.css">
+
 <?php
-    if(isset($_SESSION['admin'])){
-            $datos = $_SESSION['id_admin'];
-        }else{
-            $datos = $_SESSION['id_usuario'];
-    }
+if(isset($_SESSION['admin'])){
+    $datos = $_SESSION['id_admin'];
+}else{
+    $datos = $_SESSION['id_usuario'];
+}
 ?>
-<br>
-<h2>Editar Datos de Usuario</h2>
-<form action="<?= $_ENV['BASE_URL']?>editar_datos" method="post">
 
-    <input type="hidden" name="data[id_usuario]" value="<?= $datos ?>" pattern="[a-zA-Z]+" title="No se permiten caracteres raros ni etiquetas">
-    <label for="nombre">Nombre</label>
-    <br>
-    <input type="nombre" name="data[nombre]" >
-    <span><?php if(isset($_SESSION['errores'])){
-        if(isset($_SESSION['errores']['nombre'])){
-            echo $_SESSION['errores']['nombre'];
-        }
-    } ?></span>
-    <br>
-    <label for="apellidos">Apellidos</label>
-    <br>
-    <input type="apellidos" name="data[apellidos]" pattern="[a-zA-Z]+" title="No se permiten caracteres raros ni etiquetas">
-    <span><?php if(isset($_SESSION['errores'])){
-        if(isset($_SESSION['errores']['apellidos'])){
-            echo $_SESSION['errores']['apellidos'];
-        }
+<div class="container-fluid p-5">
+    <div class="row justify-content-center">
+        <div class="col-sm-6 col-md-4 p-5">
+            <h2 class="text-center mt-3">Editar Datos de Usuario</h2>
+            <form action="<?= $_ENV['BASE_URL']?>editar_datos" method="post" class="needs-validation mt-4" novalidate>
+                <input type="hidden" name="data[id_usuario]" value="<?= $datos ?>" pattern="[a-zA-Z]+" title="No se permiten caracteres raros ni etiquetas">
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="nombre" class="form-control" name="data[nombre]" required>
+                    <span class="text-danger">
+                        <?php if(isset($_SESSION['errores'])){
+                            if(isset($_SESSION['errores']['nombre'])){
+                                echo $_SESSION['errores']['nombre'];
+                            }
+                        } ?>
+                    </span>
+                </div>
 
-    } ?></span>
-    <br>
-    <label for="email">Correo</label>
-    <br>
-    <input type="email" name="data[email]">
-    <span><?php if(isset($_SESSION['errores'])){
-        if(isset($_SESSION['errores']['email'])){
-            echo $_SESSION['errores']['email'];
-        }
+                <div class="form-group">
+                    <label for="apellidos">Apellidos:</label>
+                    <input type="apellidos" class="form-control" name="data[apellidos]" pattern="[a-zA-Z]+" title="No se permiten caracteres raros ni etiquetas" required>
+                    <span class="text-danger">
+                        <?php if(isset($_SESSION['errores'])){
+                            if(isset($_SESSION['errores']['apellidos'])){
+                                echo $_SESSION['errores']['apellidos'];
+                            }
+                        } ?>
+                    </span>
+                </div>
 
-    } ?></span>
-    <br>
-    <label for="telefono">Teléfono</label>
-    <br>
-    <input type="tel" name="data[telefono]">
-    <span>
-    <br>
-    <label for="password">Contraseña</label>
-    <br>
-    <input type="password" name="data[password]">
-    <span><?php if(isset($_SESSION['errores'])){
-        if(isset($_SESSION['errores']['password'])){
-            echo $_SESSION['errores']['password'];
-        }
+                <div class="form-group">
+                    <label for="email">Correo:</label>
+                    <input type="email" class="form-control" name="data[email]" required>
+                    <span class="text-danger">
+                        <?php if(isset($_SESSION['errores'])){
+                            if(isset($_SESSION['errores']['email'])){
+                                echo $_SESSION['errores']['email'];
+                            }
+                        } ?>
+                    </span>
+                </div>
 
-    } ?></span>
-    <br>
-    <br>
-    <input type="submit" value="Enviar">
+                <div class="form-group">
+                    <label for="telefono">Teléfono:</label>
+                    <input type="tel" class="form-control" name="data[telefono]" required>
+                    <span class="text-danger">
+                        <?php if(isset($_SESSION['errores'])){
+                            if(isset($_SESSION['errores']['telefono'])){
+                                echo $_SESSION['errores']['telefono'];
+                            }
+                        } ?>
+                    </span>
+                </div>
 
-</form>
+                <div class="form-group">
+                    <label for="password">Contraseña:</label>
+                    <input type="password" class="form-control" name="data[password]" required>
+                    <span class="text-danger">
+                        <?php if(isset($_SESSION['errores'])){
+                            if(isset($_SESSION['errores']['password'])){
+                                echo $_SESSION['errores']['password'];
+                            }
+                        } ?>
+                    </span>
+                </div>
+
+                <div class="text-center p-3">
+                    <button type="submit" class="btn btn-primary">Actualizar</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

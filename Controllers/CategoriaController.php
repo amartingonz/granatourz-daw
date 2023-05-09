@@ -28,9 +28,8 @@
                         $this -> service -> crear_categoria($_POST['nombre']);
                         $categorias = $this -> listar_categorias();
                         $_SESSION['categorias'] = $categorias;
-                        $this -> pages -> render('categorias/crear_categoria');
+                        header("Location:".$_ENV['BASE_URL']);
                         $this -> pages -> render('layout/mensaje', ["mensaje" => "Categoria creada con éxito"]);
-                        header("Location:".$_ENV['BASE_URL']);  
                     }else{
                         $this-> pages-> render("layout/mensaje", ["mensaje" => "La categoria ya existe"]);
                     }
