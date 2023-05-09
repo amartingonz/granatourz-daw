@@ -107,64 +107,19 @@
             return $result;
         }
 
-        public function editarActividad($data){
-            //Funcion para editar actividades pasandole el array recogido del formulario
-            $sql = ("UPDATE actividades SET nombre=:nombre,duracion=:duracion,descripcion=:descripcion,localizacion=:localizacion,hora=:hora,fecha=:fecha,capacidad=:capacidad,url=:url WHERE id_actividad=:id_actividad;");
-            // $fecha = date("Y-m-d");
-            $archivo = $_FILES['data']['name'];
-            $consult = $this -> conexion -> prepara($sql);
-
-            $consult -> bindParam(':id_actividad',$data['id_actividad'],PDO::PARAM_INT);
-            $consult -> bindParam(':nombre',$data['nombre'],PDO::PARAM_STR);
-            $consult -> bindParam(':duracion',$data['duracion'],PDO::PARAM_STR);
-            $consult -> bindParam(':descripcion',$data['descripcion'],PDO::PARAM_STR);
-            $consult -> bindParam(':localizacion',$data['localizacion'],PDO::PARAM_STR);
-            $consult -> bindParam(':hora',$data['hora'],PDO::PARAM_STR);
-            $consult -> bindParam(':fecha',$data['fecha'],PDO::PARAM_STR);
-            $consult -> bindParam(':capacidad',$data['capacidad'],PDO::PARAM_STR);
-            $consult -> bindParam(':url',$archivo['url'],PDO::PARAM_STR);
-
-            try{
-                $consult -> execute();
-                // return true;
-                
-            }catch(PDOException $err){
-                echo "Error".$err -> getMessage();
-                // return false;
-            }
-
-
-
-
-        }
-
-
         public function buscarActividad($cod):?array{
             $sql = ("SELECT * FROM actividades WHERE id_categoria = $cod");
             $this -> conexion -> consulta($sql);
             return $this -> conexion -> extraer_todos();
         }
         
-        // public function listarXcategorias($data):? array{
-        //     //Consulta para extraer todos los campos de productos por categorias
-        //     $sql = ("SELECT * FROM actividades WHERE id_categoria = $data");
-        //     $this -> conexion -> consulta($sql);
-        //     return $this -> conexion -> extraer_todos();
-        // }
-
-        public function listarXcategorias($data): ?array {
-            try {
-                $sql = "SELECT * FROM actividades WHERE id_categoria = :id_categoria";
-                $stmt = $this->conexion->prepara($sql);
-                $stmt->bindParam(':id_categoria', $data);
-                $stmt->execute();
-                return $stmt->fetchAll(PDO::FETCH_ASSOC);
-            } catch (PDOException $e) {
-                echo "Error al listar actividades por categoría: " . $e->getMessage();
-                return null;
-            }
+        public function listarXcategorias($data):? array{
+            //Consulta para extraer todos los campos de productos por categorias
+            $sql = ("SELECT * FROM actividades WHERE id_categoria = $data");
+            $this -> conexion -> consulta($sql);
+            return $this -> conexion -> extraer_todos();
         }
-        
+
 
         public function extraer_todos():?array{
             // Devuelve un array, llama al metodo extraer todos de la base de datos
@@ -176,43 +131,11 @@
             return $productos;
         }
 
-        // public function sacarNombre($data){
-        //     $sql = ("SELECT nombre FROM actividades WHERE id_actividad = $data");
-        //     $this -> conexion -> consulta($sql);
-        //     return $this -> conexion -> extraer_todos();
-        // }
-
         public function sacarNombre($data){
-            try {
-                $stmt = $this->conexion->prepara("SELECT nombre FROM actividades WHERE id_actividad = :id_actividad");
-                $stmt->bindParam(":id_actividad", $data, PDO::PARAM_INT);
-                $stmt->execute();
-                return $stmt->fetchAll(PDO::FETCH_ASSOC);
-            } catch (PDOException $e) {
-                // Manejo de la excepción
-                echo "Error al ejecutar la consulta: " . $e->getMessage();
-                return null;
-            }
+            $sql = ("SELECT nombre FROM actividades WHERE id_actividad = $data");
+            $this -> conexion -> consulta($sql);
+            return $this -> conexion -> extraer_todos();
         }
-        
-
-        public function comprobarNombreActividad($nombre): bool{
-            try {
-                $sql = "SELECT COUNT(*) FROM actividades WHERE nombre = :nombre";
-                $stmt = $this->conexion->prepara($sql);
-                $stmt->bindParam(':nombre', $nombre, PDO::PARAM_STR);
-                $stmt->execute();
-                return $stmt->fetchColumn() > 0;
-            } catch (PDOException $e) {
-                // Manejar excepciones aquí
-                error_log($e->getMessage());
-                return false;
-            }
-        }
-
-        
-
-
 
         public function filasAfectadas(){
             return $this -> conexion -> filasAfectadas();

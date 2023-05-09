@@ -23,6 +23,11 @@
                 $this -> repository -> editar_actividad($data);
             }
 
+            public function editarActividad(array $data):void{
+                // Funcion para editar la actividad que usa el metodo del repositorio editarActividad (version 2 con 3 vistas)
+                $this -> repository -> editarActividad($data);
+            }
+
             public function comprobarActividad(string $actividad){
                 //Funcion para llamar al metodo del repositorio para saber si existe la actividad en la Base de Datos
                 return $this -> repository -> comprobarActividad($actividad);
@@ -41,6 +46,10 @@
 
             public function sacarNombre($id):?array{
                 return $this -> repository -> sacarNombre($id);
+            }
+
+            public function comprobarNombreActividad($nombre){
+                return $this -> repository -> comprobarNombreActividad($nombre);
             }
 
             public function borrar_actividad($id):void{

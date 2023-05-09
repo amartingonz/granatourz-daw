@@ -23,6 +23,9 @@
                 return $this -> repository -> comprobarCategoria($categoria);
             }
 
+            public function buscarIdCategoria($nombre){
+                return $this -> repository -> buscarIdCategoria($nombre);
+            }
         }
     
 

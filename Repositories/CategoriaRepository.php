@@ -47,6 +47,20 @@
             return $result;
         }
         
+
+        public function buscarIdCategoria($nombre){
+            try {
+                $sql = "SELECT id_categoria FROM categorias WHERE nombre = :nombre";
+                $stmt = $this->conexion->prepara($sql);
+                $stmt->bindParam(':nombre', $nombre);
+                $stmt->execute();
+                return $stmt->fetchColumn(); // devuelve el primer valor de la primera fila
+            } catch (PDOException $e) {
+                echo "Error al buscar ID de categoría: " . $e->getMessage();
+            }
+        }
+        
+
         public static function obtenerCategorias(){
             $categoria=new CategoriaRepository();
             $categoria->conexion->consulta("SELECT * FROM categorias ORDER BY id_categoria");

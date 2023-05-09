@@ -64,19 +64,20 @@
       <?php endif;?>
 
       <?php if(isset($_SESSION['usuario'])):?>
-        <li class="nav-item">
-          <a class="nav-link" href="<?= $_ENV['BASE_URL']?>anadir_carrito">Ver carrito</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<?= $_ENV['BASE_URL']?>consultar_pedidos">Ver pedidos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<?= $_ENV['BASE_URL']?>editar_datos">Editar Datos</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="usuarioDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Usuario
+          </a>
+          <div class="dropdown-menu" aria-labelledby="usuarioDropdown">
+            <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>anadir_carrito">Ver carrito</a>
+            <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>consultar_pedidos">Ver pedidos</a>
+            <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>editar_datos">Editar Datos</a>
+          </div>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="<?= $_ENV['BASE_URL']?>cerrar_sesion">Cerrar Sesion</a>
         </li>
-      <?php endif;?>
+        <?php endif;?>
     </ul>
   </div>
 </nav>

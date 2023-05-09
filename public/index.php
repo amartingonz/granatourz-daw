@@ -114,10 +114,19 @@
             header('Location: ' . $_ENV['BASE_URL']. 'usuarios_loguear');
             exit;
         }
-        (new ActividadController()) -> editar_actividad();
+        (new ActividadController()) -> editar_actividad2();
     });
+
     Router::add('POST','editar_actividad',function(){
-        (new ActividadController()) -> editar_actividad();
+        (new ActividadController()) -> editar_actividad2();
+    });
+
+    Router::add('POST','editar_actividad2',function(){
+        (new ActividadController()) -> editar_actividad2();
+    });
+
+    Router::add('POST','editar_actividad3',function(){
+        (new ActividadController()) -> editar_actividad2();
     });
 
     // Router::add('GET','eliminar_producto',function(){
