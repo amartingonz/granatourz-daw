@@ -8,6 +8,7 @@ class Actividad{
     function __construct(
         private int $id_actividad,
         private string $id_categoria,
+        private string $id_usuario,
         private string $nombre,
         private string $duracion,
         private string $descripcion,
@@ -23,6 +24,7 @@ class Actividad{
                 return new Actividad(
                     $data['id_actividad'] ?? '',
                     $data['id_categoria'] ?? '',
+                    $data['id_usuario'] ?? '',
                     $data['nombre'] ?? '',
                     $data['duracion'] ?? '',
                     $data['nombre'] ?? '',

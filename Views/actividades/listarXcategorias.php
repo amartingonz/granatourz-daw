@@ -1,36 +1,35 @@
-<link rel="stylesheet" href="./css/style.css">
+<!-- LISTAR ACTIVIDADES POR CATEGORIAS -->
 
-<h2>Productos</h2>
-<table>
-    <tr>
-            <td>Categoria_ID</td>
-            <td>Nombre</td>
-            <td>Descripcion</td>
-            <td>Precio</td>
-            <td>Stock</td>
-            <td>Imagen</td>
-    <tr>
-    <?php if(isset($productos)){?>
-    <?php foreach($productos as $producto):?>
-                <?php if($producto['stock'] != 0):?>
-                    <td><?= $producto['categoria_id']?></td>
-                    <td><?= $producto['nombre']?></td>
-                    <td><?= $producto['descripcion']?></td>
-                    <td><?= $producto['precio']?>€</td>
-                    <td><?= $producto['stock']?></td>
-                    <td><img src="<?= "../images/".$producto['imagen']?>" width="100px"></td>
-                    <td>
-                        <form action="<?= $_ENV['BASE_URL']?>anadir_carrito" method="post">
-                            <input type="hidden" name="stock" value="<?= $producto['stock']?>">
-                            <input type="number" name="unidades" min="1" value="1" max="<?= $producto['stock']?>">
-                            <input type="hidden" name="cod" value="<?= $producto['id'] ?>">
-                            <input type="submit" value="Añadir">
-                        </form>
-                    </td>
-                </tr>
-                <?php endif;?>
-    <?php endforeach; ?>
-    <?php }?>
-</table>
-<hr>
-<br>
+<div class="container mt-3">
+  <div class="row row-cols-1 row-cols-md-2 g-4 m-5">
+    <?php if(isset($actividades)):?>
+      <?php foreach($actividades as $actividad):?>
+        <?php if($actividad['capacidad'] != 0):?>
+          <div class="col mb-4">
+            <div class="card h-100">
+              <img src="<?="../images/".$actividad['url']?>" class="card-img-top" alt="Actividad">
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title"><?= $actividad['nombre']?></h5>
+                <p class="card-text flex-grow-1"><?= $actividad['descripcion']?></p>
+                <ul class="list-group list-group-flush text-center">
+                  <li class="list-group-item"><strong>Duración:</strong> <?= $actividad['duracion']?></li>
+                  <li class="list-group-item"><strong>Localización:</strong> <?= $actividad['localizacion']?></li>
+                  <li class="list-group-item"><strong>Hora:</strong> <?= $actividad['hora']?></li>
+                  <li class="list-group-item"><strong>Fecha:</strong> <?= $actividad['fecha']?></li>
+                  <li class="list-group-item"><strong>Capacidad:</strong> <?= $actividad['capacidad']?></li>
+                  <li class="list-group-item">
+                    <form action="realizar_reserva" method="post">
+                      <input type="hidden" name="capacidad" value="<?= $actividad['capacidad']?>">
+                      <input type="hidden" name="cod" value="<?= $actividad['id_actividad'] ?>">
+                      <button type="submit" class="btn btn-primary">Reservar</button>
+                    </form>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        <?php endif;?>
+      <?php endforeach; ?>
+    <?php endif;?>
+  </div>
+</div>

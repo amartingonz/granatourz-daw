@@ -1,12 +1,25 @@
 <!-- FORMULARIO PARA CREAR ACTIVIDAD -->
 
+<?php 
+
+    if(isset($_SESSION['admin'])){
+        $id = $_SESSION['id_admin'];
+    }
+    if(isset($_SESSION['organizador'])){
+        $id = $_SESSION['id_organizador'];
+    }
+?>
+
+
+
+
 <div class="container-fluid p-5">
     <div class="row justify-content-center">
         <div class="col-sm-6 col-md-4 p-5">
             <h2 class="text-center mt-3">Crear Actividad</h2>
             <form action="<?= $_ENV['BASE_URL']?>crear_actividad" method="post" enctype="multipart/form-data" class="needs-validation mt-4" novalidate>
-
-                <div class="form-group">
+            <input type="hidden" name="data[id_usuario]" value="<?= $id ?>">
+            <div class="form-group">
                     <label for="categoria">Categoría:</label>
                     <select name="data[categoria]" class="form-control">
                         <?php foreach($categorias as $categoria) {
@@ -93,11 +106,11 @@
                 </div>
                 <div class="form-group">
                 <label for="imagen">Imagen:</label>
-                <input type="file" name="imagen" id="imagen" class="form-control-file">
+                <input type="file" name="data[url]" id="url" class="form-control-file">
                 <span class="text-danger">
                     <?php if(isset($_SESSION['errores'])){
-                        if(isset($_SESSION['errores']['imagen'])){
-                            echo $_SESSION['errores']['imagen'];
+                        if(isset($_SESSION['errores']['url'])){
+                            echo $_SESSION['errores']['url'];
                         }
                     } ?>
                 </span>

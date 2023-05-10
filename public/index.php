@@ -14,10 +14,10 @@
     require_once '../views/layout/header.php';
 
 
-    // // INDEX
-    // Router::add('GET','/',function(){
-    //     (new ProductoController()) -> listar_productos();
-    // });
+    // INDEX
+    Router::add('GET','/',function(){
+        (new ActividadController()) -> listar_actividades();
+    });
 
     // REGISTRO
     Router::add('GET','usuarios_registrar',function(){require '../views/usuarios/registro.php';});
@@ -37,10 +37,10 @@
         (new UsuarioController()) -> cerrar_sesion();});
   
 
-    // // LISTAR X CATEGORIAS/ID
-    // Router::add('GET','listarXcategorias/:id',function(int $id){
-    //      (new ProductoController()) -> listarXcategorias($id);
-    // });
+    // LISTAR X CATEGORIAS/ID
+    Router::add('GET','listarXcategorias/:id',function(int $id){
+         (new ActividadController()) -> listarXcategorias($id);
+    });
 
     // AÑADIR AL CARRITO
     

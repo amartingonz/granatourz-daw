@@ -18,7 +18,17 @@
             } ?>
           </span>
         </div>
-        
+        <div class="form-group">
+                    <label for="duracion">Duración (en minutos):</label>
+                    <input type="number" name="data[duracion]" id="duracion" class="form-control" required>
+                    <span class="text-danger">
+                        <?php if(isset($_SESSION['errores'])){
+                            if(isset($_SESSION['errores']['duracion'])){
+                                echo $_SESSION['errores']['duracion'];
+                            }
+                        } ?>
+                    </span>
+                </div>
         
         <div class="form-group">
           <label for="descripcion">Descripción:</label>

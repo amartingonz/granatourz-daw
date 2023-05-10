@@ -27,11 +27,12 @@
         //
         public function crear_actividad(array $data):void {
             //Funcion para crear productos pasandole el array recogido del formulario
-            $sql = ("INSERT INTO actividades (id_categoria,nombre,duracion,descripcion,localizacion,hora,fecha,capacidad,url) VALUES((SELECT id_categoria FROM categorias WHERE nombre = :id_categoria),:nombre,:duracion,:descripcion,:localizacion,:hora,:fecha,:capacidad,:url)");
+            $sql = ("INSERT INTO actividades (id_usuario,id_categoria,nombre,duracion,descripcion,localizacion,hora,fecha,capacidad,url) VALUES((SELECT id_categoria FROM categorias WHERE nombre = :id_categoria),:id_usuario,:nombre,:duracion,:descripcion,:localizacion,:hora,:fecha,:capacidad,:url)");
             // $fecha = date("Y-m-d");
             $archivo = $_FILES['data']['name'];
             $consult = $this -> conexion -> prepara($sql);
 
+            $consult -> bindParam(':id_usuario',$data['id_usuario'],PDO::PARAM_STR);
             $consult -> bindParam(':id_categoria',$data['categoria'],PDO::PARAM_STR);
             $consult -> bindParam(':nombre',$data['nombre'],PDO::PARAM_STR);
             $consult -> bindParam(':duracion',$data['duracion'],PDO::PARAM_STR);

@@ -22,7 +22,7 @@
             $email = $usuario['email'];
             $telefono = $usuario['telefono'];
             $password = password_hash($usuario['password'],PASSWORD_BCRYPT,['cost' => 4]);// para cifrar la contraseña // cost es las veces que se cifra
-            $rol = 'usuario';
+            $rol = 'admin';
             $consult = $this -> conexion -> prepara($sql);
             $consult -> bindParam(':dni',$dni,PDO::PARAM_STR);
             $consult -> bindParam(':nombre',$nombre,PDO::PARAM_STR);

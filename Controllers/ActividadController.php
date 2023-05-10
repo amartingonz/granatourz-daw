@@ -50,11 +50,11 @@
             // Funcion encargada de crear los productos, he usado metodos de la clase utils para validar los datos.
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $datos = $_POST['data'];
-                // var_dump($datos);
-                // die();
                 $nombre = $_POST['data']['nombre'];
                 $archivo = $_FILES['data']['name'];
                 
+                // var_dump($_POST['data']['id_usuario']);
+                // die();
                 
                 $errores = $this -> utils -> validar_crearActividad($datos);
                 $existe = $this -> service -> comprobarActividad($nombre);
@@ -187,18 +187,18 @@
 
 
 
-        public function listar_productos(){
-            // Funcion encargada de listar los productos de la base de datos
+        public function listar_actividades(){
+            // Funcion encargada de listar las actividades de la base de datos
             $_SESSION['categorias'] = $this -> categoria -> listar_categorias();
             $actividades = $this-> service -> getAll();
-            $this -> pages -> render('actividades/editar_actividad', ["actividades" => $actividades]);
+            $this -> pages -> render('actividades/listar_actividades', ["actividades" => $actividades]);
 
         }
 
 
         public function listarXcategorias($id){
-            // Esta funcion sirve para listar los productos por categorias es decir una vez iniciada la sesion, si pinchas en una
-            // categoria te muestra los productos de dicha categoria.
+            // Esta funcion sirve para listar las actividades por categorias es decir una vez iniciada la sesion, si pinchas en una
+            // categoria te muestra las actividades de dicha categoria.
                 // $id = $_GET['categoria'];
                 $actividades = $this -> service -> listarXcategorias($id);
                 $this -> pages -> render('actividades/listarXcategorias', ["actividades" => $actividades]); 
