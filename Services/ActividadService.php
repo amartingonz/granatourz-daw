@@ -53,7 +53,7 @@
             }
 
             public function borrar_actividad($id):void{
-                // Funcion para borrar productos que usa el metodo del repositorio borrar_productos
+                // Funcion para actualizar las actividades es decir las oculta poniendo la capacidad a 0.
                 $this -> repository -> borrar_Actividad($id) ;
             }
         }

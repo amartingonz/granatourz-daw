@@ -29,17 +29,13 @@
 
 
         public function borrar_producto(){
-            // CREAR LUEGO LA FUNCION PARA BORRARLA.
+            // FUNCIÓN QUE LLAMA AL SERVICIO PARA ACTUALIZAR LA ACTIVIDAD A 0 DE CAPACIDAD ES DECIR SE ANULA.
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
-                $id = $_POST['id'];
+                $id = $_POST['id_actividad'];
                 $this -> service -> borrar_actividad($id);
-                $actividades = $this -> service -> getAll();
-                $this -> pages -> render('productos/eliminar_productos', ["actividades" => $actividades]);
                 header('Location:'.$_ENV['BASE_URL']);
-
             }else{
-                $productos = $this -> service -> getAll();
-                $this -> pages -> render('productos/eliminar_productos', ["productos" => $productos]);
+                header('Location:'.$_ENV['BASE_URL']);
             }
         }
 

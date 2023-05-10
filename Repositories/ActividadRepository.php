@@ -13,9 +13,9 @@
         }
 
         public function borrar_actividad($id):bool{
-            $sql = ("UPDATE actividades SET stock = 0 WHERE id=:id");
+            $sql = ("UPDATE actividades SET capacidad = 0 WHERE id_actividad=:id_actividad");
             $consult = $this -> conexion -> prepara($sql);
-            $consult -> bindParam(':id',$id,PDO::PARAM_INT);
+            $consult -> bindParam(':id_actividad',$id,PDO::PARAM_INT);
             try{
                 $consult->execute();
                 return true;

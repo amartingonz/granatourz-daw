@@ -129,12 +129,9 @@
         (new ActividadController()) -> editar_actividad2();
     });
 
-    // Router::add('GET','eliminar_producto',function(){
-    //     (new ProductoController()) -> borrar_producto();
-    // });
-    // Router::add('POST','eliminar_producto',function(){
-    //     (new ProductoController()) -> borrar_producto();
-    // });
+    Router::add('POST','eliminar_actividad',function(){
+        (new ActividadController()) -> borrar_producto();
+    });
 
 
     // EDITAR DATOS

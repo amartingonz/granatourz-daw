@@ -24,6 +24,14 @@
                       <button type="submit" class="btn btn-primary">Reservar</button>
                     </form>
                   </li>
+                  <?php if(isset($_SESSION['admin'])):?>
+                  <li class="list-group-item">
+                    <form action="eliminar_actividad" method="post">
+                      <input type="hidden" name="id_actividad" value="<?= $actividad['id_actividad'] ?>">
+                      <button type="submit" class="btn btn-primary bg-danger">Eliminar</button>
+                    </form>
+                  </li>
+                  <?php endif;?>
                 </ul>
               </div>
             </div>

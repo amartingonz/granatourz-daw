@@ -13,14 +13,16 @@
         <title>Document</title>
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="../css/bootstrap.min.css">
+        <!-- <link rel="stylesheet" href="css/footer.css">
+        <link rel="stylesheet" href="../css/footer.css"> -->
 
         <script src="js/bootstrap.min.js" defer></script>
         <script src="../js/bootstrap.min.js" defer></script>
         <script src="jquery-3.6.3.min.js" defer></script>
         <script src="../js/jquery-3.6.3.min.js" defer></script>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous" defer></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous" defer></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous" defer></script>
 
     </head>
     <body>    
@@ -52,9 +54,8 @@
             <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>crear_categoria">Crear Categorias</a>
             <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>crear_actividad">Agregar Actividad</a>
             <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>editar_actividad">Editar Actividad</a>
-            <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>eliminar_actividad">Eliminar Actividad</a>
-            <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>eliminar_producto">Sancionar Usuario</a>
-            <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>eliminar_producto">Editar Comentario</a>
+            <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>sancionar_usuario">Sancionar Usuario</a>
+            <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>editar_comentario">Editar Comentario</a>
             <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>editar_datos">Editar Datos</a>
           </div>
         </li>
