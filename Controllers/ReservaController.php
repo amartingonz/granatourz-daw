@@ -48,37 +48,24 @@ class ReservaController{
 //     }
 
 
-//     public function crear_pedido(){
-//         // Funcion que crea el pedido, y la linea de pedido, además se envia el email si se ha introducido correctamente todo.
-//         if($_SERVER['REQUEST_METHOD'] == 'POST'){
-//             $datos = $_POST['data'];
+    public function realizar_reserva(){
+        // Funcion que crea el pedido, y la linea de pedido, además se envia el email si se ha introducido correctamente todo.
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $datos = $_POST['data'];
+            
+            $plazas = $this -> servicep -> obtenerCapacidad($_POST['data']['id_actividad']);
+            if($plazas > 0 && $this -> service -> comprobar_reserva($datos)){
+                $this -> service -> realizar_reserva($datos);
+            }else{
+                    $this -> pages -> render('layout/mensaje',["mensaje" => "No hay plazas disponibles."]);
 
-//             $errores = $this -> utils -> validar_crearPedido($datos);
-//             if($this -> utils -> sinErrorescrearPedido($errores)){
-//                 $this -> service -> crear_pedido($datos);
-//                 $id = $this -> service -> ultimoPedidoInsertado();
-//                 $ultima_id = $id['MAX(id)'];
-//                 if(!$this->service->crear_lineaPedido($ultima_id,$_SESSION['carrito'])){
-//                     $this -> pages -> render('layout/mensaje',["mensaje" => "Pedido realizado con éxito."]);
-//                     $id = $this -> service -> ultimoPedidoInsertado();
-//                     $ultima_id = $id['MAX(id)'];
-//                     $email = $_SESSION['email'];
-//                     $precio_total = $_SESSION['total'];
-//                     header("Location:".$_ENV['BASE_URL']);
-//                     $productos = $this -> servicep -> getAll();
-//                     $this -> enviar_email($email,$precio_total,$ultima_id,$datos,$productos);
-//                     $this -> pages -> render('layout/mensaje',["mensaje" => "Pedido realizado con éxito"]);
-//                     $_SESSION['carrito'] = [];
-//                 }else{
-//                     $this -> pages -> render('layout/mensaje',["mensaje" => "No se ha podido realizar el pedido."]);
-//                 }}else{
-//                 $_SESSION['errores'] = $errores;
-//                 $this -> pages -> render('pedidos/crear_pedido');
-//         }
-// }
+            }
 
-// }}
+
+
 }
+    }}
+
 
 
 ?>

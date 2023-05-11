@@ -27,7 +27,7 @@
         //
         public function crear_actividad(array $data):void {
             //Funcion para crear productos pasandole el array recogido del formulario
-            $sql = ("INSERT INTO actividades (id_usuario,id_categoria,nombre,duracion,descripcion,localizacion,hora,fecha,capacidad,url) VALUES((SELECT id_categoria FROM categorias WHERE nombre = :id_categoria),:id_usuario,:nombre,:duracion,:descripcion,:localizacion,:hora,:fecha,:capacidad,:url)");
+            $sql = ("INSERT INTO actividades (id_usuario,id_categoria,nombre,duracion,descripcion,localizacion,hora,fecha,capacidad,url) VALUES(:id_usuario,(SELECT id_categoria FROM categorias WHERE nombre = :id_categoria),:nombre,:duracion,:descripcion,:localizacion,:hora,:fecha,:capacidad,:url)");
             // $fecha = date("Y-m-d");
             $archivo = $_FILES['data']['name'];
             $consult = $this -> conexion -> prepara($sql);
@@ -211,6 +211,20 @@
             }
         }
 
+        public function obtenerCapacidad($id) {
+            // FUNCION PARA OBTENER LA CAPACIDAD DISPONIBLES DE LA ACTIVIDAD
+            $sql = "SELECT capacidad FROM actividades WHERE id_actividad = :id_actividad";
+            $consult = $this->conexion->prepara($sql);
+            $consult->bindParam(':id_actividad', $id, PDO::PARAM_INT);
+            try {
+                $consult->execute();
+                $resultado = $consult->fetch(PDO::FETCH_ASSOC);
+                return $resultado['capacidad'];
+            } catch(PDOException $err) {
+                echo "Error" . $err->getMessage();
+                return false;
+            }
+        }
         
 
 

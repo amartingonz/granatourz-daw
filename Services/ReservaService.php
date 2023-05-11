@@ -9,9 +9,13 @@
                 $this->repository = new ReservaRepository();
             }
 
-            public function crear_pedido(array $data):void{
-                // funcion que llama al metodo del repositorio crear_pedido
-                $this -> repository -> crear_pedido($data);
+            public function comprobar_reserva($data){
+                $this -> repository -> comprobar_reserva($data);
+            }
+
+            public function realizar_reserva(array $data){
+                //funcion que llama al metodo del repositorio realizar_reserva
+                $this -> repository -> realizar_reserva($data);
             }
         
             public function ultimoPedidoInsertado(){
@@ -19,11 +23,6 @@
                 return $this -> repository -> ultimoPedidoInsertado();
             }
            
-            public function crear_lineaPedido($pedido_id,$carrito){
-                // funcion que llama al metodo del repositorio crear_lineadepedido
-                $this -> repository -> crear_lineaPedido($pedido_id,$carrito);
-            }
-
             public function consultar_pedidos($id):?array{
                 // funcion que llama al metodo del repositorio consultar_pedidos
                 return $this -> repository -> consultar_pedidos($id);

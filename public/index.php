@@ -5,7 +5,7 @@
     use Dotenv\Dotenv;
     use Controllers\CategoriaController;
     use Controllers\CarritoController;
-    use Controllers\PedidoController;
+    use Controllers\ReservaController;
     use Controllers\ActividadController;
     use Controllers\UsuarioController;
     use Lib\Router;
@@ -30,9 +30,7 @@
         (new UsuarioController()) -> login();});
 
     // CERRAR SESION
-    // Router::add('GET','cerrar_sesion',function(){
-    //     require '../views/usuarios/cerrar_sesion.php';}
-    // );
+
     Router::add('GET','cerrar_sesion',function(){
         (new UsuarioController()) -> cerrar_sesion();});
   
@@ -76,9 +74,11 @@
     //     (new PedidoController()) -> comprobarPedido();
     // });
 
-    // Router::add('POST','crear_pedido',function(){
-    //     (new PedidoController()) -> crear_pedido();
-    // });
+
+    // RESERVAS
+    Router::add('POST','realizar_reserva',function(){
+        (new ReservaController()) -> realizar_reserva();
+    });
 
     // CATEGORIAS
 

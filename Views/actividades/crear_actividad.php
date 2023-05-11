@@ -116,7 +116,7 @@
                 </span>
             </div>
 
-            <div class="form-group">
+            <div class="form-group text-center">
                 <button type="submit" class="btn btn-primary btn-block mt-4">Crear actividad</button>
             </div>
 

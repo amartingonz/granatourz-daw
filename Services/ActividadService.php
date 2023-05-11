@@ -51,7 +51,9 @@
             public function comprobarNombreActividad($nombre){
                 return $this -> repository -> comprobarNombreActividad($nombre);
             }
-
+            public function obtenerCapacidad($id){
+                return $this -> repository -> obtenerCapacidad($id);
+            }
             public function borrar_actividad($id):void{
                 // Funcion para actualizar las actividades es decir las oculta poniendo la capacidad a 0.
                 $this -> repository -> borrar_Actividad($id) ;

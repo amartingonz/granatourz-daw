@@ -48,10 +48,7 @@
                 $datos = $_POST['data'];
                 $nombre = $_POST['data']['nombre'];
                 $archivo = $_FILES['data']['name'];
-                
-                // var_dump($_POST['data']['id_usuario']);
-                // die();
-                
+                  
                 $errores = $this -> utils -> validar_crearActividad($datos);
                 $existe = $this -> service -> comprobarActividad($nombre);
 

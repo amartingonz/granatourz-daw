@@ -70,7 +70,7 @@
             Usuario
           </a>
           <div class="dropdown-menu" aria-labelledby="usuarioDropdown">
-            <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>anadir_carrito">Ver carrito</a>
+            <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>ver_reservas">Ver reservas</a>
             <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>consultar_pedidos">Ver pedidos</a>
             <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>editar_datos">Editar Datos</a>
           </div>
