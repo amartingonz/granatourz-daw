@@ -12,6 +12,23 @@
             $this-> conexion = new BaseDatos();
         }
 
+        public function ver_actividad($id_actividad){
+            try {
+                $sql = "SELECT * FROM actividades WHERE id_actividad=:id_actividad";
+                $stmt = $this->conexion->prepara($sql);
+                $stmt->bindParam(':id_actividad', $id_actividad, PDO::PARAM_INT);
+                $stmt->execute();
+        
+                $actividad = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+                return $actividad;
+            } catch(PDOException $e) {
+                echo "Error: " . $e->getMessage();
+                return false;
+            }
+        }
+        
+
         public function borrar_actividad($id):bool{
             $sql = ("UPDATE actividades SET capacidad = 0 WHERE id_actividad=:id_actividad");
             $consult = $this -> conexion -> prepara($sql);

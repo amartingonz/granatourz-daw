@@ -27,6 +27,16 @@
             header('Location:'.$_ENV['BASE_URL']);
         }
 
+        public function ver_actividad(){
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                $id = $_POST['id_actividad'];
+                $actividad = $this -> service -> ver_actividad($id);
+                $this -> pages -> render('actividades/ver_actividad', ["actividad" => $actividad]);
+
+            }else{
+
+            }
+        }
 
         public function borrar_producto(){
             // FUNCIÓN QUE LLAMA AL SERVICIO PARA ACTUALIZAR LA ACTIVIDAD A 0 DE CAPACIDAD ES DECIR SE ANULA.
@@ -198,10 +208,6 @@
                 
         }
 
-
-    
-
-        
     }
 
 

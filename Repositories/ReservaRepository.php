@@ -13,19 +13,60 @@
         }
 
 
-        public function comprobar_reserva($data){
+        // public function comprobar_reserva($data){
+        //     // COMPRUEBA SI UN USUARIO TIENE YA UNA RESERVA EN ESA ACTIVIDAD
+        //     $sql = "SELECT COUNT(*) AS num_reservas FROM reservas WHERE id_usuario = :id_usuario AND id_actividad = :id_actividad";
+        //     $consulta = $this -> conexion -> prepara($sql);
+        //     $consulta -> bindParam(':id_usuario', $data['id_usuario'], PDO::PARAM_INT);
+        //     $consulta -> bindParam(':id_actividad', $data['id_actividad'], PDO::PARAM_STR);
+        //     $consulta -> execute();
+        //     $resultado = $consulta -> fetch(PDO::FETCH_ASSOC);
+        //     $num_reservas = $resultado['num_reservas'];
+        //     if ($num_reservas > 0) {
+        //         return true; // Si el usuario tiene al menos una reserva para la actividad especificada, devuelve true
+        //     } else {
+        //         return false; // Si el usuario no tiene ninguna reserva para la actividad especificada, devuelve false
+        //     }
+        // }
+        
+
+        public function comprobar_fecha_reserva($data){
+            try {
+                $sql = "SELECT fecha_reserva FROM reservas WHERE id_usuario = :id_usuario AND id_actividad = :id_actividad";
+                $stmt = $this->conexion->prepara($sql);
+                $stmt->bindParam(':id_usuario', $data['id_usuario'], PDO::PARAM_INT);
+                $stmt->bindParam(':id_actividad', $data['id_actividad'], PDO::PARAM_INT);
+                $stmt->execute();
+                $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+                if ($resultado && isset($resultado['fecha_reserva'])) {
+                    $fecha_reserva = $resultado['fecha_reserva'];
+                    return $fecha_reserva;
+                } else {
+                    return false;
+                }
+            } catch(PDOException $e) {
+                echo "Error: " . $e->getMessage();
+                return false;
+            }
+        }
+        
+        
+
+
+        public function comprobar_reserva($id_usuario,$id_actividad,$fecha_reserva){
             // COMPRUEBA SI UN USUARIO TIENE YA UNA RESERVA EN ESA ACTIVIDAD
-            $sql = "SELECT COUNT(*) AS num_reservas FROM reservas WHERE id_usuario = :id_usuario AND id_actividad = :id_actividad";
-            $consulta = $this -> conexion -> prepara($sql);
-            $consulta -> bindParam(':id_usuario', $data['id_usuario'], PDO::PARAM_INT);
-            $consulta -> bindParam(':id_actividad', $data['id_actividad'], PDO::PARAM_STR);
-            $consulta -> execute();
-            $resultado = $consulta -> fetch(PDO::FETCH_ASSOC);
+            $sql = "SELECT COUNT(*) AS num_reservas FROM reservas WHERE id_usuario = :id_usuario AND id_actividad = :id_actividad AND fecha_reserva = :fecha_reserva";
+            $consulta = $this->conexion->prepara($sql);
+            $consulta->bindParam(':id_usuario', $id_usuario, PDO::PARAM_INT);
+            $consulta->bindParam(':id_actividad', $id_actividad, PDO::PARAM_INT);
+            $consulta->bindParam(':fecha_reserva', $fecha_reserva, PDO::PARAM_STR);
+            $consulta->execute();
+            $resultado = $consulta->fetch(PDO::FETCH_ASSOC);
             $num_reservas = $resultado['num_reservas'];
             if ($num_reservas > 0) {
-                return true; // Si el usuario tiene al menos una reserva para la actividad especificada, devuelve true
+                return true; // Si el usuario tiene al menos una reserva para la actividad y fecha especificadas, devuelve true
             } else {
-                return false; // Si el usuario no tiene ninguna reserva para la actividad especificada, devuelve false
+                return false; // Si el usuario no tiene ninguna reserva para la actividad y fecha especificadas, devuelve false
             }
         }
         
@@ -63,13 +104,24 @@
             return $this -> conexion -> extraer_registro();
         }
 
-
-    public function consultar_pedidos($id):?array{
-            //Consulta para extraer todos los campos de pedidos por id de usuario
-            $sql = ("SELECT * FROM pedidos WHERE usuario_id = $id" );
-            $this -> conexion -> consulta($sql);
-            return $this -> conexion -> extraer_todos();
+        public function obtener_reservas_usuario_conectado($id_usuario) {
+            try {
+                $sql = "SELECT r.id_reserva, a.nombre,a.duracion,a.descripcion,a.localizacion,a.hora,a.fecha,a.capacidad,a.url, r.fecha_reserva
+                        FROM reservas r
+                        JOIN actividades a ON r.id_actividad = a.id_actividad
+                        WHERE r.id_usuario = :id_usuario";
+                $stmt = $this->conexion->prepara($sql);
+                $stmt->bindParam(":id_usuario", $id_usuario, PDO::PARAM_INT);
+                $stmt->execute();
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            } catch (PDOException $e) {
+                // Manejo de excepciones
+                echo "Error al ejecutar la consulta: " . $e->getMessage();
+                return null;
+            }
         }
-    
+        
+        
+        
 
 }

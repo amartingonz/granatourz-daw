@@ -63,11 +63,11 @@
 //         (new CarritoController()) -> borrar_elementos();
 //     });
 
-    // PEDIDOS
+    // RESERVAS
     
-    // Router::add('GET','consultar_pedidos',function(){
-    //     (new PedidoController()) -> consultar_pedidos();
-    // });
+    Router::add('GET','consultar_reservas',function(){
+        (new ReservaController()) -> consultar_reservas();
+    });
 
     
     // Router::add('GET','comprobarPedido',function(){

@@ -31,9 +31,8 @@
                   <li class="list-group-item"><strong>Fecha:</strong> <?= $actividad['fecha']?></li>
                   <li class="list-group-item"><strong>Capacidad:</strong> <?= $actividad['capacidad']?></li>
                   <li class="list-group-item">
-                    <form action="realizar_reserva" method="post">
-                      <input type="hidden" name="capacidad" value="<?= $actividad['capacidad']?>">
-                      <input type="hidden" name="cod" value="<?= $actividad['id_actividad'] ?>">
+                    <form action="ver_actividad" method="post">
+                      <input type="hidden" name="id_actividad" value="<?= $actividad['id_actividad'] ?>">
                       <button type="submit" class="btn btn-primary">Ver más</button>
                     </form>
                   </li>
@@ -49,6 +48,7 @@
                   <li class="list-group-item">
                     <form action="realizar_reserva" method="post">
                       <input type="hidden" name="data[id_actividad]" value="<?= $actividad['id_actividad'] ?>">
+                      <input type="hidden" name="data[fecha]" value="<?= $actividad['fecha'] ?>">
                       <input type="hidden" name="data[id_usuario]" value="<?= $id ?>">
                       <button type="submit" class="btn btn-primary btn-success">Reservar</button>
                     </form>

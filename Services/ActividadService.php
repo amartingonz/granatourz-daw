@@ -13,6 +13,10 @@
                 // Funcion para crear actividad que usa el metodo del repositorio crear_actividad, se le pasa un array de datos
                 $this -> repository -> crear_actividad($data);
             }
+
+            public function ver_actividad($id_actividad){
+                return $this -> repository -> ver_actividad($id_actividad);
+            }
             
             public function getAll(): ?array{
                 return $this-> repository -> getAll();
@@ -51,6 +55,7 @@
             public function comprobarNombreActividad($nombre){
                 return $this -> repository -> comprobarNombreActividad($nombre);
             }
+            
             public function obtenerCapacidad($id){
                 return $this -> repository -> obtenerCapacidad($id);
             }
