@@ -23,19 +23,7 @@ class ReservaController{
     }
 
 
-    // public function comprobarPedido(){
-    //     // Funcion para comprobar que el usuario ha iniciado sesion.
-    //     if(isset($_SESSION['usuario']) || isset($_SESSION['admin'])){
-    //         if(count($_SESSION['carrito']) == 0){
-    //             $this -> pages -> render('layout/mensaje',["mensaje" => "Debes tener productos para poder realizar el pedido"]);
-    //         }else{
-    //             $this -> pages -> render('pedidos/crear_pedido');
-    //         }
-    //     }else{
-    //         $this -> pages -> render('layout/mensaje',["mensaje" => "Debes iniciar sesión para poder procesar tu pedido."]);
-    //     }
-    // }
-
+    
     // public function enviar_email($email,$precio_total,$n_pedido,$datos,$productos){
     //     // Funcion que lleva al render de enviar email pasandole los parametros para rellenarlos con los datos que se piden
     //     $this -> pages -> render('principal/enviar_email',["email" => $email,"precio_total" => $precio_total, "n_pedido" => $n_pedido, "datos" => $datos, "productos" => $productos]);
@@ -43,8 +31,12 @@ class ReservaController{
 
     public function consultar_reservas(){
         // Funcion que llama al servicio para consutar las actividades de cada usuario pasandole la sesion del usuario actual, y con el render muestra la vista con las actividades
-        $reservas = $this -> service -> consultar_reservas($_SESSION['id']);
-        $this -> pages -> render('reservas/mis_reservas',['reservas' => $reservas]);
+        if (isset($_SESSION['id'])) {
+            $reservas = $this->service->consultar_reservas($_SESSION['id']);
+            $this -> pages -> render('reservas/mis_reservas',['reservas' => $reservas]);
+        }else{
+            $this -> pages -> render('layout/mensaje',["mensaje" => "No hay actividades reservadas."]);
+        }
     }
 
 

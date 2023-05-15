@@ -13,6 +13,10 @@
                 return $this -> repository -> crear_comentario($data);
             }
 
+            public function eliminar_comentario($id_comentario){
+                return $this -> repository -> eliminar_comentario($id_comentario);
+            }
+
             public function getAll(): ?array{
                 return $this-> repository -> getAll();
             }

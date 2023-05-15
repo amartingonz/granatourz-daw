@@ -1,6 +1,8 @@
 <?php
     namespace Repositories;
-    use Lib\BaseDatos;
+
+use Exception;
+use Lib\BaseDatos;
     use Models\Comentario;
     use PDO;
     use PDOException;
@@ -45,6 +47,22 @@
             }
         }
 
+        public function eliminar_comentario($id_comentario){
+            try {
+                $sql = "DELETE FROM comentarios WHERE id_comentario = :id_comentario";
+                $stmt = $this->conexion->prepara($sql);
+                $stmt->bindParam(':id_comentario', $id_comentario, PDO::PARAM_INT);
+                $stmt->execute();
+
+                // Retornar true o false según el resultado de la eliminación
+                return $stmt->rowCount() > 0;
+                
+            } catch (PDOException $e) {
+                // Manejar la excepción capturada
+                // Puedes mostrar un mensaje de error o lanzar una nueva excepción, por ejemplo:
+                throw new Exception('Error al eliminar el comentario: ' . $e->getMessage());
+            }
+        }
         
         
         public function getAll():? array{

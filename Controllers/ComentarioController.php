@@ -55,6 +55,13 @@
             }
         }
         
+        public function eliminar_comentario(){
+            // Funcion para eliminar los comentarios
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                $id_comentario = $_POST['id_comentario'];
+                $this -> service -> eliminar_comentario($id_comentario);
+            }
+        }
 
         public function listar_comentarios():?array{
             // Funcion para listar comentarios.

@@ -69,13 +69,7 @@
         (new ReservaController()) -> consultar_reservas();
     });
 
-    
-    // Router::add('GET','comprobarPedido',function(){
-    //     (new PedidoController()) -> comprobarPedido();
-    // });
 
-
-    // RESERVAS
     Router::add('POST','realizar_reserva',function(){
         (new ReservaController()) -> realizar_reserva();
     });
@@ -157,7 +151,9 @@
         (new ComentarioController()) -> crear_comentario();
     });
 
-
+    Router::add('POST','eliminar_comentario',function(){
+        (new ComentarioController()) -> eliminar_comentario();
+    });
 
 
     Router::dispatch();

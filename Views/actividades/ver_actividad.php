@@ -100,10 +100,16 @@
                         <p class="card-text">Texto: <?php echo $comentario->getTexto(); ?></p>
                         <?php if (isset($id) && $comentario->getId_usuario() === $id) { ?>
                           <form action="eliminar_comentario" method="post">
-                              <input type="hidden" name="id_comentario" value="<?php echo $comentario->getId(); ?>">
+                              <input type="hidden" name="id_comentario" value="<?php echo $comentario->getId_comentario(); ?>">
                               <button type="submit" class="btn btn-danger">Eliminar Comentario</button>
                           </form>
                         <?php };?>
+                        <?php if(isset($_SESSION['admin'])):?>
+                          <form action="eliminar_comentario" method="post">
+                              <input type="hidden" name="id_comentario" value="<?php echo $comentario->getId_comentario(); ?>">
+                              <button type="submit" class="btn btn-danger">Eliminar Comentario</button>
+                          </form>
+                        <?php endif;?>
                     </div>
                 </div>
             </div>
