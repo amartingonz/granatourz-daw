@@ -30,11 +30,10 @@
         public function ver_actividad(){
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $id = $_POST['id_actividad'];
-                $actividad = $this -> service -> ver_actividad($id);
-                $this -> pages -> render('actividades/ver_actividad', ["actividad" => $actividad]);
-
+                $actividades = $this -> service -> ver_actividad($id);
+                $this -> pages -> render('actividades/ver_actividad', ["actividades" => $actividades]);
             }else{
-
+                $this -> pages -> render('actividades/ver_actividad');
             }
         }
 

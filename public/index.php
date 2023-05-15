@@ -4,7 +4,7 @@
     
     use Dotenv\Dotenv;
     use Controllers\CategoriaController;
-    use Controllers\CarritoController;
+    use Controllers\ComentarioController;
     use Controllers\ReservaController;
     use Controllers\ActividadController;
     use Controllers\UsuarioController;
@@ -133,6 +133,10 @@
         (new ActividadController()) -> borrar_producto();
     });
 
+    Router::add('POST','ver_actividad', function(){
+        (new ActividadController()) -> ver_actividad();
+    });
+
 
     // EDITAR DATOS
 
@@ -145,6 +149,13 @@
         (new UsuarioController()) -> editar_datos();
     });
 
+
+    // COMENTARIOS
+
+
+    Router::add('POST','crear_comentario',function(){
+        (new ComentarioController()) -> crear_comentario();
+    });
 
 
 

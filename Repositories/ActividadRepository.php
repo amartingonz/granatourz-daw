@@ -19,7 +19,7 @@
                 $stmt->bindParam(':id_actividad', $id_actividad, PDO::PARAM_INT);
                 $stmt->execute();
         
-                $actividad = $stmt->fetch(PDO::FETCH_ASSOC);
+                $actividad = $stmt->fetchAll(PDO::FETCH_ASSOC);
         
                 return $actividad;
             } catch(PDOException $e) {

@@ -116,7 +116,21 @@
         }
 
 
-
+        public static function obtenerUsuarioPorId($id) {
+            $usuario = new UsuarioRepository();
+            $consulta = "SELECT nombre FROM usuarios WHERE id_usuario = :id_usuario";
+            $statement = $usuario->conexion->prepara($consulta);
+            $statement->bindValue(':id_usuario', $id, PDO::PARAM_INT);
+            $statement->execute();
+        
+            if ($fila = $statement->fetch(PDO::FETCH_ASSOC)) {
+                $nombreUsuario = $fila['nombre'];
+                return $nombreUsuario;
+            }
+        
+            return null; // Si no se encontró ningún usuario con el ID especificado, puedes retornar null o manejarlo según tus necesidades
+        }
+        
 
 
 
