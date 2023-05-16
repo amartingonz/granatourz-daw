@@ -11,5 +11,9 @@
     <label for="texto">Comentario:</label>
     <textarea class="form-control" name="data[texto]" id="texto" rows="5"></textarea>
   </div>
+  <div class="form-group">
+    <label for="valoracion">Valoración:</label>
+    <textarea class="form-control" name="data[texto]" id="texto" rows="5"></textarea>
+  </div>
   <button type="submit" class="btn btn-primary btn-success">Enviar</button>
 </form>

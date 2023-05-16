@@ -20,7 +20,7 @@ use Lib\BaseDatos;
             $fecha = date("Y-m-d");
 
             try {
-                $sql = "INSERT INTO comentarios (id_usuario, id_actividad, url, fecha, texto) VALUES (:id_usuario, :id_actividad, :url, :fecha, :texto)";
+                $sql = "INSERT INTO comentarios (id_usuario, id_actividad, url, fecha, texto, valoracion) VALUES (:id_usuario, :id_actividad, :url, :fecha, :texto, :valoracion)";
         
                 // Preparar la consulta
                 $stmt = $this->conexion->prepara($sql);
@@ -31,6 +31,8 @@ use Lib\BaseDatos;
                 $stmt->bindParam(':url', $archivo['url']);
                 $stmt->bindParam(':fecha', $fecha);
                 $stmt->bindParam(':texto', $data['texto']);
+                $stmt->bindParam(':valoracion', $data['valoracion']);
+
         
                 // Ejecutar la consulta
                 if ($stmt->execute()) {

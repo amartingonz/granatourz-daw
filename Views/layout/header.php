@@ -36,7 +36,7 @@
 
   <div class="collapse navbar-collapse" id="navbarContent">
     <ul class="navbar-nav mr-auto">
-      <?php if(!isset($_SESSION['usuario']) && !isset($_SESSION['admin'])){?>
+      <?php if(!isset($_SESSION['usuario']) && !isset($_SESSION['admin'])  && !isset($_SESSION['organizador'])){?>
         <li class="nav-item">
           <a class="nav-link" href="<?= $_ENV['BASE_URL']?>usuarios_registrar">Registrar</a>
         </li>
@@ -63,6 +63,24 @@
           <a class="nav-link" href="<?= $_ENV['BASE_URL']?>cerrar_sesion">Cerrar Sesion</a>
         </li>
       <?php endif;?>
+
+      <?php if(isset($_SESSION['organizador'])): ?>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="organizadorDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Organizador
+          </a>
+          <div class="dropdown-menu" aria-labelledby="organizadorDropdown">
+            <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>crear_actividad">Agregar Actividad</a>
+            <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>editar_actividad">Editar Actividad</a>
+            <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>editar_comentario">Ver listado</a>
+            <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>editar_datos">Editar Datos</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<?= $_ENV['BASE_URL']?>cerrar_sesion">Cerrar Sesión</a>
+        </li>
+      <?php endif; ?>
+
 
       <?php if(isset($_SESSION['usuario'])):?>
         <li class="nav-item dropdown">

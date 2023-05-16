@@ -2,7 +2,13 @@
 
 <?php
 if(isset($_SESSION['admin'])){
+
     $datos = $_SESSION['id_admin'];
+
+}elseif(isset($_SESSION['organizador'])){
+
+    $datos = $_SESSION['id_organizador'];
+    
 }else{
     $datos = $_SESSION['id_usuario'];
 }

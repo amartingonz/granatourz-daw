@@ -75,6 +75,10 @@
               <p class="card-text"><strong>Comentario:</strong></p>
               <textarea class="form-control" name="data[texto]" id="texto" rows="5"></textarea>
             </div>
+            <div class="form-group">
+              <p class="card-text"><strong>Valoración:</strong></p>
+              <input type="number" name="data[valoracion]" id="valoracion">
+            </div>
             <button type="submit" class="btn btn-warning btn-success m-3">Enviar</button>
           </form>
         </div>
@@ -98,6 +102,7 @@
                         <p class="card-text">Actividad: <?php echo $comentario->getId_actividad(); ?></p>
                         <p class="card-text">Fecha: <?php echo $comentario->getFecha(); ?></p>
                         <p class="card-text">Texto: <?php echo $comentario->getTexto(); ?></p>
+                        <p class="card-text">Valoración: <?php echo $comentario->getValoracion(); ?>/10</p>
                         <?php if (isset($id) && $comentario->getId_usuario() === $id) { ?>
                           <form action="eliminar_comentario" method="post">
                               <input type="hidden" name="id_comentario" value="<?php echo $comentario->getId_comentario(); ?>">

@@ -79,6 +79,15 @@
           </span>
         </div>
 
+        <div class="form-group">
+          <label for="rol">Rol:</label>
+          <br>
+          <select name="data[rol]" id="rol">
+            <option value="usuario">usuario</option>
+            <option value="organizador">organizador</option>
+          </select>
+        </div>
+
         <div class="text-center p-3">
           <button type="submit" class="btn btn-primary">Registrar</button>
         </div>

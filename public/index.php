@@ -93,7 +93,7 @@
 
     Router::add('GET','crear_actividad',function(){
         // He añadido este if dentro de la función para controlar las rutas es decir no se puedan meter sin estar logueados.
-        if(!isset($_SESSION['admin'])){
+        if (!isset($_SESSION['organizador']) && !isset($_SESSION['admin'])) {
             header('Location: ' . $_ENV['BASE_URL']. 'usuarios_loguear');
             exit;
         }
@@ -104,7 +104,7 @@
     });
 
     Router::add('GET','editar_actividad',function(){
-        if(!isset($_SESSION['admin'])){
+        if (!isset($_SESSION['organizador']) && !isset($_SESSION['admin'])) {
             header('Location: ' . $_ENV['BASE_URL']. 'usuarios_loguear');
             exit;
         }

@@ -13,6 +13,8 @@ class Comentario{
         private string $url,
         private string $fecha,
         private string $texto,
+        private string $valoracion,
+
 
 
     )
@@ -26,6 +28,7 @@ class Comentario{
                     $data['url'] ?? '',
                     $data['fecha'] ?? '',
                     $data['texto'] ?? '',
+                    $data['valoracion'] ?? '',
                 );
             }
 
@@ -145,6 +148,26 @@ class Comentario{
         public function setTexto($texto)
         {
                 $this->texto = $texto;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of valoracion
+         */ 
+        public function getValoracion()
+        {
+                return $this->valoracion;
+        }
+
+        /**
+         * Set the value of valoracion
+         *
+         * @return  self
+         */ 
+        public function setValoracion($valoracion)
+        {
+                $this->valoracion = $valoracion;
 
                 return $this;
         }

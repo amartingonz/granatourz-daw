@@ -68,16 +68,16 @@
                         if($rol == 'admin'){
                             $_SESSION['admin'] = $nuevo_usuario;
                             $_SESSION['id_admin'] = $nuevo_usuario -> getId();
+                        }elseif($rol == 'organizador'){
+                            $_SESSION['organizador'] = $nuevo_usuario;
+                            $_SESSION['id_organizador'] = $nuevo_usuario -> getId(); 
                         }else{
                             $_SESSION['usuario'] = $nuevo_usuario;
                             $_SESSION['id_usuario'] = $nuevo_usuario -> getId(); 
                         }
-                        // $_SESSION['categorias'] = $this -> categoria -> listar_categorias();
-                        
                         $this -> pages -> render('layout/mensaje',["mensaje" => "Has iniciado sesion"]);
                         header("Location:".$_ENV['BASE_URL']);
 
-                        // header("Location:".$_ENV['BASE_URL']);
                     }else{
                         $this -> pages -> render('layout/mensaje',["mensaje" => "Error al iniciar sesion"]);
                 }
@@ -118,6 +118,11 @@
 
             if(isset($_SESSION['admin'])){
                 unset($_SESSION['admin']);
+                session_destroy();
+            }
+
+            if(isset($_SESSION['organizador'])){
+                unset($_SESSION['organizador']);
                 session_destroy();
             }
             header("Location:".$_ENV['BASE_URL']);
