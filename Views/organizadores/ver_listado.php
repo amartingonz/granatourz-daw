@@ -19,7 +19,7 @@
 
 ?>
 
-<div class="container mt-5">
+<div class="container mt-5 p-5">
   <div class="row justify-content-center">
     <?php if(isset($actividades)):?>
       <?php foreach($actividades as $actividad):?>
@@ -41,18 +41,15 @@
                     <button type="submit" class="btn btn-danger">Eliminar</button>
                   </form>
                 <?php endif;?>
-                <?php if(isset($_SESSION['usuario'])):?>
-                  <form action="realizar_reserva" method="post">
+                <form action="listado_asistentes" method="post">
                     <input type="hidden" name="data[id_actividad]" value="<?= $actividad['id_actividad'] ?>">
-                    <input type="hidden" name="data[fecha]" value="<?= $actividad['fecha'] ?>">
                     <input type="hidden" name="data[id_usuario]" value="<?= $id ?>">
-                    <button type="submit" class="btn btn-success">Reservar</button>
+                    <button type="submit" class="btn btn-success">Ver lista</button>
                   </form>
                 <?php endif;?>
               </div>
             </div>
           </div>
-        <?php endif;?>
       <?php endforeach; ?>
     <?php endif;?>
   </div>

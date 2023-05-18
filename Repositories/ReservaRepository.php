@@ -97,6 +97,34 @@
                 $this -> conexion -> commit();
             }
 
+        public function cancelar_reserva($data){
+            // Función para cancelar una reserva según la id_usuario
+            $sql = "DELETE FROM reservas WHERE id_usuario = :id_usuario";
+            $consult = $this->conexion->prepara($sql);
+            $consult->bindParam(':id_usuario', $data['id_usuario'], PDO::PARAM_INT);
+                
+            $this->conexion->iniciar_transaccion();
+            $result = $consult->execute();
+            if (!$result) {
+                $this->conexion->rollback();
+                return false;
+            }
+                
+            $sql = "UPDATE actividades SET capacidad = capacidad + 1 WHERE id_actividad = :id_actividad";
+            $consult = $this->conexion->prepara($sql);
+            $consult->bindParam(':id_actividad', $data['id_actividad'], PDO::PARAM_STR);
+                
+            $result = $consult->execute();
+            if (!$result) {
+                $this->conexion->rollback();
+                return false;
+            }
+                
+            $this->conexion->commit();
+            return true;
+        }
+            
+
         public function ultimoPedidoInsertado(){
             //Funcion para sacar el ultimo pedido insertado
             $sql = ("SELECT MAX(id) FROM pedidos");
@@ -121,7 +149,44 @@
             }
         }
         
+        public function sacarListadoAsistentes($id_actividad){
+            // Función que realiza una consulta a la base de datos para obtener los datos de los asistentes a una actividad específica, y devuelve los resultados obtenidos en forma de un array asociativo que contiene la información de cada asistente (incluyendo su DNI, nombre, apellidos, email y teléfono).
+            try {
+                $sql = "SELECT r.*, u.dni, u.nombre, u.apellidos, u.email, u.telefono FROM reservas r INNER JOIN usuarios u ON r.id_usuario = u.id_usuario WHERE r.id_actividad = :id_actividad";
+                $stmt = $this->conexion->prepara($sql);
+                $stmt->bindParam(':id_actividad', $id_actividad);
+            
+                $stmt->execute();
+                $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                
+                return $resultados;
+            } catch (PDOException $e) {
+                // Manejo de excepciones en caso de error
+                echo "Error: " . $e->getMessage();
+                return array(); // Devuelve un array vacío en caso de error
+            }
+        }
         
+
+        public function comprobarReservas($id_actividad){
+            // Funcion para comprobar que hay reservas para dicha actividad pasandole la id de la actividad
+            try {
+                $sql = "SELECT COUNT(*) as total_reservas FROM reservas WHERE id_actividad = :id_actividad";
+                $stmt = $this->conexion->prepara($sql);
+                $stmt->bindParam(':id_actividad', $id_actividad);
+            
+                $stmt->execute();
+                $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+                
+                $totalReservas = $resultado['total_reservas'];
+                
+                return $totalReservas > 0;
+            } catch (PDOException $e) {
+                // Manejo de excepciones en caso de error
+                echo "Error: " . $e->getMessage();
+                return false;
+            }
+        }
         
 
 }

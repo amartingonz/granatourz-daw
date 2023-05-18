@@ -57,6 +57,31 @@ class ReservaController{
 
             }}
     }
+
+    public function cancelar_reserva(){
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $datos = $_POST['data'];
+            $this -> service -> cancelar_reserva($datos);
+            $this -> pages -> render('layout/mensaje',["mensaje" => "Se ha anulado la reserva correctamente"]);
+        }
+    }
+
+    public function sacarListadoAsistentes(){
+        // Función para sacar el listado de asistentes de cada actividad
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $id_actividad = $_POST['data']['id_actividad'];
+            $reservas = $this->service->comprobarReservas($id_actividad);
+            if ($reservas) {
+                $listado = $this->service->sacarListadoAsistentes($id_actividad);
+                $this->pages->render('organizadores/ver_inscritos', ['listado' => $listado]);
+                exit; // Detener la ejecución después de renderizar la página
+            } else {
+                $this->pages->render('layout/mensaje', ["mensaje" => "No hay usuarios inscritos."]);
+                header("Location: " . $_ENV['BASE_URL']);
+                exit; // Detener la ejecución después de redirigir
+            }
+        }
+    }
 }
 
 

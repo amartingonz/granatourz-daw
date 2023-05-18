@@ -61,7 +61,7 @@
         
                     $email = $nuevo_usuario -> getEmail();
                     $rol = $nuevo_usuario -> getRol();
-                    // $_SESSION['id'] = $nuevo_usuario -> getId();
+                    $_SESSION['id'] = $nuevo_usuario -> getId();
                     $_SESSION['nombre'] = $nuevo_usuario -> getNombre();
                     $_SESSION['email'] = $email;
                     if(password_verify($_POST['data']['password'],$nuevo_usuario -> getPassword())){

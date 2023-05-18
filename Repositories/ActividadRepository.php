@@ -262,6 +262,8 @@
         }
 
 
+
+
         public function filasAfectadas(){
             return $this -> conexion -> filasAfectadas();
         }

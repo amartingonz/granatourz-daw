@@ -74,6 +74,21 @@
         (new ReservaController()) -> realizar_reserva();
     });
 
+    Router::add('POST','listado_asistentes',function(){
+        if (!isset($_SESSION['organizador']) && !isset($_SESSION['admin'])) {
+            header('Location: ' . $_ENV['BASE_URL']. 'usuarios_loguear');
+            exit;
+        }
+        (new ReservaController()) -> sacarListadoAsistentes();
+    });
+
+    Router::add('POST','anular_reserva',function(){
+        if (!isset($_SESSION['organizador']) && !isset($_SESSION['admin'])) {
+            header('Location: ' . $_ENV['BASE_URL']. 'usuarios_loguear');
+            exit;
+        }
+        (new ReservaController()) -> cancelar_reserva();
+    });
     // CATEGORIAS
 
     Router::add('GET','crear_categoria',function(){
