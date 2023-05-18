@@ -131,6 +131,13 @@
         (new ActividadController()) -> ver_actividad();
     });
 
+    Router::add('GET','ver_listado',function(){
+        if (!isset($_SESSION['organizador']) && !isset($_SESSION['admin'])) {
+            header('Location: ' . $_ENV['BASE_URL']. 'usuarios_loguear');
+            exit;
+        }
+        (new ActividadController()) -> sacarListadoAsistentes();
+    });
 
     // EDITAR DATOS
 

@@ -186,6 +186,14 @@
         }
 
 
+        public function sacarListadoAsistentes(){
+            // Función para sacar el listado de asistentes
+            
+            $id_usuario = $_SESSION['id_organizador'];
+            $actividades = $this -> service -> sacarListadoActividades($id_usuario);            
+            $this -> pages -> render('organizadores/ver_listado', ["actividades" => $actividades]);
+            
+        }
 
 
 

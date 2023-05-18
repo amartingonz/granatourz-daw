@@ -27,7 +27,7 @@
     </head>
     <body>    
    <header>
-   <nav class="navbar navbar-expand-md navbar-dark bg-primary">
+   <nav class="navbar navbar-expand-md navbar-dark bg-primary p-4">
   <a class="navbar-brand" href="<?= $_ENV['BASE_URL']?>">GranaTourz</a>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
@@ -72,7 +72,7 @@
           <div class="dropdown-menu" aria-labelledby="organizadorDropdown">
             <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>crear_actividad">Agregar Actividad</a>
             <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>editar_actividad">Editar Actividad</a>
-            <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>editar_comentario">Ver listado</a>
+            <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>ver_listado">Ver listado</a>
             <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>editar_datos">Editar Datos</a>
           </div>
         </li>

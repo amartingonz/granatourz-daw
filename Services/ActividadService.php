@@ -18,6 +18,10 @@
                 return $this -> repository -> ver_actividad($id_actividad);
             }
             
+            public function sacarListadoActividades($id_usuario){
+                return $this -> repository -> sacarListadoActividades($id_usuario);
+            }
+
             public function getAll(): ?array{
                 return $this-> repository -> getAll();
             }

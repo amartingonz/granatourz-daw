@@ -245,6 +245,22 @@
         
 
 
+        public function sacarListadoActividades($id_usuario){
+            try {
+                $sql = "SELECT * FROM actividades WHERE id_usuario=:id_usuario";
+                $stmt = $this->conexion->prepara($sql);
+                $stmt->bindParam(':id_usuario', $id_usuario, PDO::PARAM_INT);
+                $stmt->execute();
+        
+                $actividad = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+                return $actividad;
+            } catch(PDOException $e) {
+                echo "Error: " . $e->getMessage();
+                return false;
+            }
+        }
+
 
         public function filasAfectadas(){
             return $this -> conexion -> filasAfectadas();
