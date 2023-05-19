@@ -74,11 +74,11 @@ class ReservaController{
             if ($reservas) {
                 $listado = $this->service->sacarListadoAsistentes($id_actividad);
                 $this->pages->render('organizadores/ver_inscritos', ['listado' => $listado]);
-                exit; // Detener la ejecución después de renderizar la página
+               
             } else {
                 $this->pages->render('layout/mensaje', ["mensaje" => "No hay usuarios inscritos."]);
                 header("Location: " . $_ENV['BASE_URL']);
-                exit; // Detener la ejecución después de redirigir
+                
             }
         }
     }

@@ -1,3 +1,5 @@
+<div class="main-content flex-grow-1">
+
 <?php
     session_start();
     require_once __DIR__.'../../vendor/autoload.php';
@@ -177,9 +179,9 @@
         (new ComentarioController()) -> eliminar_comentario();
     });
 
-
     Router::dispatch();
-    require_once '../views/layout/footer.php';
-
 ?>
-
+</div>
+<?php
+    require_once '../views/layout/footer.php';
+?>

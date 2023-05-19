@@ -102,7 +102,7 @@
 </nav>
 
     </header>
-    <body>
+    <body class="d-flex flex-column min-vh-100">
     <?php $categorias=CategoriaRepository::obtenerCategorias();?>
     <nav class="categorias">
     <div class="container">

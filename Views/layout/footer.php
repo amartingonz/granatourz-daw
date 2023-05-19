@@ -1,5 +1,5 @@
-  <link rel="stylesheet" href="css/footer.css">
-  <link rel="stylesheet" href="../css/footer.css">
+  <!-- <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="../css/footer.css"> -->
    <!-- Pie de página -->
 <footer class="bg-primary text-light py-1">
   <div class="container">
