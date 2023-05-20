@@ -13,6 +13,8 @@
             private string $telefono,
             private string $password,
             private string $rol,
+            private int $confirmado,
+            private string $token
         )
         {}
             /**
@@ -136,6 +138,47 @@
 
                         return $this;
             }
+
+            
+            /**
+             * Get the value of token
+             */ 
+            public function getToken()
+            {
+                        return $this->token;
+            }
+
+            /**
+             * Set the value of token
+             *
+             * @return  self
+             */ 
+            public function setToken($token)
+            {
+                        $this->token = $token;
+
+                        return $this;
+            }
+
+            /**
+             * Get the value of confirmado
+             */ 
+            public function getConfirmado()
+            {
+                        return $this->confirmado;
+            }
+
+            /**
+             * Set the value of confirmado
+             *
+             * @return  self
+             */ 
+            public function setConfirmado($confirmado)
+            {
+                        $this->confirmado = $confirmado;
+
+                        return $this;
+            }
             public static function fromArray(array $data):Usuarios{
                 return new Usuarios(
                     $data['id_usuario'] ?? '',
@@ -147,8 +190,11 @@
                     $data['password'] ?? '',
                     $data['fecha'] ?? '',
                     $data['rol'] ?? '',
+                    $data['confirmado'] ?? '',
+                    $data['token'] ?? '',
                 );
             }
 
       
+
     }

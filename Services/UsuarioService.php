@@ -33,6 +33,27 @@
                 //Funcion para editar datos que usa el metodo del repositorio, donde se le pasa un array de datos.
                 $this -> repository -> editar_datos($usuario);
             }
+
+            public function max_id($email){
+                // Devuelve el id del ultimo email insertado
+                return $this -> repository -> max_id($email);
+            }
+
+            public function guardarToken($id,$token):bool{
+                return $this -> repository -> guardarToken($id,$token);
+            }
+
+            public function confirmarEmail($token):bool{
+                return $this -> repository -> confirmarEmail($token);
+            }
+
+            public function borrar_token($token):bool{
+                return $this -> repository -> borrar_token($token);
+            }
+
+            public function verificarConfirmacion($email) {
+                return $this -> repository -> verificarConfirmacion($email);
+            }
         }
 
     

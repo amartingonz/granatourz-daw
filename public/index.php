@@ -26,6 +26,13 @@
     Router::add('POST','usuarios_registrar',function(){
         (new UsuarioController()) -> registrar();});
 
+
+    // Confirmar mediante el metodo get el correo
+    Router::add('GET', 'confirmar-cuenta/:id', function(string $token){
+        (new UsuarioController())->confirmar_email($token);
+    });
+
+    
     // LOGIN
     Router::add('GET','usuarios_loguear',function(){require '../views/usuarios/login.php';});
     Router::add('POST','usuarios_loguear',function(){

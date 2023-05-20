@@ -4,14 +4,12 @@
     use Models\Usuarios;
     use Services\UsuarioService;
     use Utils\Utils;
-    use Lib\Email;
 
     class UsuarioController{
         private UsuarioService $service;
         private Pages $pages;
         private CategoriaController $categoria;
         private Utils $utils;
-
         public function __construct(){
             $this -> pages = new Pages();
             $this -> service = new UsuarioService();
@@ -38,12 +36,6 @@
                 if($this -> utils -> sinErroresRegistro($errores)){
                     if(!$existe && !$existeDni){
                         $this -> service -> save($_POST['data']);
-                        $id = $this -> service -> max_id($email);
-                        // GENERAR TOKEN (CÓDIGO ALEATORIO)
-                        $code = preg_replace('/[^a-zA-Z0-9]/', '', uniqid());
-                        $this -> service -> guardarToken($id,$code);
-                        $email_obj = new Email($email,$code);
-                        $email_obj -> enviarConfirmacion();
                         $this-> pages-> render("usuarios/login");
                     }else{
                         $this-> pages-> render("layout/mensaje", ["mensaje" => "El email o dni ya existe"]);
@@ -58,16 +50,6 @@
         }
 
     
-        public function confirmar_email($token){
-            // Funcion para confirmar el usuario al registrar mediante correo
-            $tokens = $this -> service -> confirmarEmail($token);
-            $this -> service -> borrar_token($token);
-            if(!empty($tokens)){
-                $this -> pages -> render('layout/mensaje',["mensaje" => "Confirmado con éxito"]);
-            }else{
-                $this -> pages -> render('layout/mensaje',["mensaje" => "Error al confirmar tu cuenta"]);
-            }
-        }
       
         public function login():void{
             //Funcion encargada de verificar el login es decir que el email que se le pasa y las contraseñas sean los de la base de datos.
@@ -75,7 +57,7 @@
                 $datos = $this -> service -> login($_POST['data']);
                 if($datos != []){
 
-                    $nuevo_usuario = new Usuarios($datos[0],$datos[1],$datos[2],$datos[3],$datos[4],$datos[5],$datos[6],$datos[7],$datos[8],$datos[9]);
+                    $nuevo_usuario = new Usuarios($datos[0],$datos[1],$datos[2],$datos[3],$datos[4],$datos[5],$datos[6],$datos[7]);
         
                     $email = $nuevo_usuario -> getEmail();
                     $rol = $nuevo_usuario -> getRol();
@@ -83,22 +65,19 @@
                     $_SESSION['nombre'] = $nuevo_usuario -> getNombre();
                     $_SESSION['email'] = $email;
                     if(password_verify($_POST['data']['password'],$nuevo_usuario -> getPassword())){
-                        if($this -> service -> verificarConfirmacion($email)){
-                            if($rol == 'admin'){
-                                $_SESSION['admin'] = $nuevo_usuario;
-                                $_SESSION['id_admin'] = $nuevo_usuario -> getId();
-                            }elseif($rol == 'organizador'){
-                                $_SESSION['organizador'] = $nuevo_usuario;
-                                $_SESSION['id_organizador'] = $nuevo_usuario -> getId(); 
-                            }else{
-                                $_SESSION['usuario'] = $nuevo_usuario;
-                                $_SESSION['id_usuario'] = $nuevo_usuario -> getId(); 
-                            }
-                            $this -> pages -> render('layout/mensaje',["mensaje" => "Has iniciado sesion"]);
-                            header("Location:".$_ENV['BASE_URL']);
+                        if($rol == 'admin'){
+                            $_SESSION['admin'] = $nuevo_usuario;
+                            $_SESSION['id_admin'] = $nuevo_usuario -> getId();
+                        }elseif($rol == 'organizador'){
+                            $_SESSION['organizador'] = $nuevo_usuario;
+                            $_SESSION['id_organizador'] = $nuevo_usuario -> getId(); 
                         }else{
-                            $this->pages->render('layout/mensaje', ['mensaje' => 'Debes confirmar tu cuenta antes de iniciar sesión']);
+                            $_SESSION['usuario'] = $nuevo_usuario;
+                            $_SESSION['id_usuario'] = $nuevo_usuario -> getId(); 
                         }
+                        $this -> pages -> render('layout/mensaje',["mensaje" => "Has iniciado sesion"]);
+                        header("Location:".$_ENV['BASE_URL']);
+
                     }else{
                         $this -> pages -> render('layout/mensaje',["mensaje" => "Error al iniciar sesion"]);
                 }
