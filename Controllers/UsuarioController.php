@@ -3,20 +3,17 @@
     use Lib\Pages;
     use Models\Usuarios;
     use Services\UsuarioService;
-    use Utils\Utils;
     use Lib\Email;
 
     class UsuarioController{
         private UsuarioService $service;
         private Pages $pages;
         private CategoriaController $categoria;
-        private Utils $utils;
 
         public function __construct(){
             $this -> pages = new Pages();
             $this -> service = new UsuarioService();
             $this -> categoria = new CategoriaController();
-            $this -> utils = new Utils();
         }
         
         public function inicio(){
@@ -25,38 +22,31 @@
         }
 
 
-        public function registrar():void{
-            //Funcion encargada de registrar usuarios he usado metodos de la clase utils para validar
-            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        public function registrar(): void{
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $email = $_POST['data']['email'];
                 $datos = $_POST['data'];
                 $dni = $_POST['data']['dni'];
-                $errores = $this -> utils -> validar_registro($datos);
-                $existe = $this -> service -> comprobarEmail($email);
-                $existeDni = $this -> service -> comprobarDni($dni);
-
-                if($this -> utils -> sinErroresRegistro($errores)){
-                    if(!$existe && !$existeDni){
-                        $this -> service -> save($_POST['data']);
-                        $id = $this -> service -> max_id($email);
-                        // GENERAR TOKEN (CÓDIGO ALEATORIO)
-                        $code = preg_replace('/[^a-zA-Z0-9]/', '', uniqid());
-                        $this -> service -> guardarToken($id,$code);
-                        $email_obj = new Email($email,$code);
-                        $email_obj -> enviarConfirmacion();
-                        $this-> pages-> render("usuarios/login");
-                    }else{
-                        $this-> pages-> render("layout/mensaje", ["mensaje" => "El email o dni ya existe"]);
-                    }
-                }else{
-                    $_SESSION['errores'] = $errores;
-                    $this -> pages -> render('usuarios/registro');
+                $existe = $this->service->comprobarEmail($email);
+                $existeDni = $this->service->comprobarDni($dni);
+        
+                if (!$existe && !$existeDni) {
+                    $this->service->save($_POST['data']);
+                    $id = $this->service->max_id($email);
+                    // GENERAR TOKEN (CÓDIGO ALEATORIO)
+                    $code = preg_replace('/[^a-zA-Z0-9]/', '', uniqid());
+                    $this->service->guardarToken($id, $code);
+                    $email_obj = new Email($email, $code);
+                    $email_obj->enviarConfirmacion();
+                    $this->pages->render("usuarios/login");
+                } else {
+                    $this->pages->render("layout/mensaje", ["mensaje" => "El email o DNI ya existe"]);
                 }
-            }else{
-                $this -> pages -> render('usuarios/registro');
+            } else {
+                $this->pages->render('usuarios/registro');
             }
         }
-
+        
     
         public function confirmar_email($token){
             // Funcion para confirmar el usuario al registrar mediante correo
@@ -69,66 +59,66 @@
             }
         }
       
-        public function login():void{
-            //Funcion encargada de verificar el login es decir que el email que se le pasa y las contraseñas sean los de la base de datos.
-            if($_SERVER['REQUEST_METHOD'] == 'POST'){
-                $datos = $this -> service -> login($_POST['data']);
-                if($datos != []){
-
-                    $nuevo_usuario = new Usuarios($datos[0],$datos[1],$datos[2],$datos[3],$datos[4],$datos[5],$datos[6],$datos[7],$datos[8],$datos[9]);
-        
-                    $email = $nuevo_usuario -> getEmail();
-                    $rol = $nuevo_usuario -> getRol();
-                    $_SESSION['id'] = $nuevo_usuario -> getId();
-                    $_SESSION['nombre'] = $nuevo_usuario -> getNombre();
+        public function login(): void {
+            // Función encargada de verificar el inicio de sesión, es decir, que el email y la contraseña sean los de la base de datos.
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $datos = $this->service->login($_POST['data']);
+                if ($datos != []) {
+                    $nuevo_usuario = new Usuarios($datos[0], $datos[1], $datos[2], $datos[3], $datos[4], $datos[5], $datos[6], $datos[7], $datos[8], $datos[9]);
+                    $email = $nuevo_usuario->getEmail();
+                    $rol = $nuevo_usuario->getRol();
+                    $_SESSION['id'] = $nuevo_usuario->getId();
+                    $_SESSION['nombre'] = $nuevo_usuario->getNombre();
                     $_SESSION['email'] = $email;
-                    if(password_verify($_POST['data']['password'],$nuevo_usuario -> getPassword())){
-                        if($this -> service -> verificarConfirmacion($email)){
-                            if($rol == 'admin'){
+        
+                    if (!$this->service->verificarConfirmacion($email)) {
+                        $this->pages->render('layout/mensaje', ['mensaje' => 'Debes confirmar tu cuenta antes de iniciar sesión']);
+                        return; // Agregar return para evitar que se siga ejecutando el código después de mostrar el mensaje
+                    }
+        
+                    if (!$this->service->verificarSancion($nuevo_usuario->getId())) {
+                        if (password_verify($_POST['data']['password'], $nuevo_usuario->getPassword())) {
+                            if ($rol == 'admin') {
                                 $_SESSION['admin'] = $nuevo_usuario;
-                                $_SESSION['id_admin'] = $nuevo_usuario -> getId();
-                            }elseif($rol == 'organizador'){
+                                $_SESSION['id_admin'] = $nuevo_usuario->getId();
+                            } elseif ($rol == 'organizador') {
                                 $_SESSION['organizador'] = $nuevo_usuario;
-                                $_SESSION['id_organizador'] = $nuevo_usuario -> getId(); 
-                            }else{
+                                $_SESSION['id_organizador'] = $nuevo_usuario->getId();
+                            } else {
                                 $_SESSION['usuario'] = $nuevo_usuario;
-                                $_SESSION['id_usuario'] = $nuevo_usuario -> getId(); 
+                                $_SESSION['id_usuario'] = $nuevo_usuario->getId();
                             }
-                            $this -> pages -> render('layout/mensaje',["mensaje" => "Has iniciado sesion"]);
-                            header("Location:".$_ENV['BASE_URL']);
-                        }else{
-                            $this->pages->render('layout/mensaje', ['mensaje' => 'Debes confirmar tu cuenta antes de iniciar sesión']);
+                            $this->pages->render('layout/mensaje', ["mensaje" => "Has iniciado sesión"]);
+                            header("Location:" . $_ENV['BASE_URL']);
+                            return; // Agregar return para evitar que se siga ejecutando el código después de redireccionar
+                        } else {
+                            $this->pages->render('layout/mensaje', ["mensaje" => "Error al iniciar sesión"]);
                         }
-                    }else{
-                        $this -> pages -> render('layout/mensaje',["mensaje" => "Error al iniciar sesion"]);
+                    } else {
+                        $this->pages->render('layout/mensaje', ["mensaje" => "El usuario tiene una sanción"]);
+                    }
+                } else {
+                    $this->pages->render('layout/mensaje', ["mensaje" => "No hay datos en la base de datos"]);
                 }
-                }else{
-                    $this -> pages -> render('layout/mensaje',["mensaje" => "No hay datos en la base de datos"]);
-                }
-            }else{
-                $this -> pages -> render('usuarios/login');
-
+            } else {
+                $this->pages->render('usuarios/login');
             }
-
         }
+        
+        
 
 
         public function editar_datos(){
-            //Funcion encargada de editar datos de usuarios he usado metodos de la clase utils para validar
-            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            // Función encargada de editar datos.
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $datos = $_POST['data'];
-                $errores = $this -> utils -> validar_registro($datos);
-                if($this -> utils -> sinErroresRegistro($errores)){
-                    $this -> service -> editar_datos($_POST['data']);
-                    $this -> pages -> render('layout/mensaje',["mensaje" => "Has modificado tus datos con éxito"]);
-                }else{
-                    $_SESSION['errores'] = $errores;
-                    $this -> pages -> render('usuarios/editar_datos');
-                }
-            }else{
-                $this -> pages -> render('usuarios/editar_datos');
+                $this->service->editar_datos($_POST['data']);
+                $this->pages->render('layout/mensaje', ["mensaje" => "Has modificado tus datos con éxito"]);
+            } else {
+                $this->pages->render('usuarios/editar_datos');
             }
         }
+        
 
         public function cerrar_sesion(){
             // Funcion encargada de borrar las sesiones de usuarios.

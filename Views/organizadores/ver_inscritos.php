@@ -31,6 +31,7 @@
                 <form action="proponer_sancion" method="POST">
                 <div class="d-flex align-items-center">
                   <input type="hidden" name="data[id_usuario]" value="<?= $lista['id_usuario'] ?>">
+                  <input type="hidden" name="data[id_reserva]" value="<?= $lista['id_reserva'] ?>">
                   <input type="hidden" name="data[id_actividad]" value="<?= $lista['id_actividad'] ?>">
                   <select name="data[motivo]" id="motivo">
                       <option value="comportamiento-inapropiado">Comportamiento inapropiado</option>

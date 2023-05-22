@@ -4,7 +4,6 @@
     use Models\Actividad;
     use Services\CategoriaService;
     use Services\ActividadService;
-    use Utils\Utils;
 
 
     
@@ -13,14 +12,12 @@
         private Pages $pages;
         private CategoriaController $categoria;
         private CategoriaService $catservice;
-        private Utils $utils;
 
         public function __construct(){
             $this -> pages = new Pages();
             $this -> service = new ActividadService();
             $this -> categoria = new CategoriaController();
             $this -> catservice = new CategoriaService();
-            $this -> utils = new Utils();
         }
 
         public function index(){
@@ -48,124 +45,68 @@
             }
         }
 
-        // public function crear_actividad(){
-        //     if(!file_exists('images')){
-        //         mkdir('images');
-        //     }
-        //     // Funcion encargada de crear los productos, he usado metodos de la clase utils para validar los datos.
-        //     if($_SERVER['REQUEST_METHOD'] == 'POST'){
-        //         $datos = $_POST['data'];
-        //         $nombre = $_POST['data']['nombre'];
-        //         $archivo = $_FILES['data']['name'];
-                  
-        //         $errores = $this -> utils -> validar_crearActividad($datos);
-        //         $existe = $this -> service -> comprobarActividad($nombre);
-
-        //         if($this -> utils -> sinErrorescrearActividad($errores)){
-        //             if(!$existe){
-        //                 if (isset($archivo) && $archivo != "") {
-        //                     $tipo = $_FILES['data']['type'];
-        //                     $tamano = $_FILES['data']['size'];
-        //                     $temp = $_FILES['data']['tmp_name'];
-        //                     /*
-        //                     if (!((strpos($tipo['imagen'], "image/gif") || strpos($tipo['imagen'], "image/jpeg") || strpos($tipo['imagen'], "image/jpg") || strpos($tipo['imagen'], "image/png")) && (intval($tamano['imagen']) < 200000000))) {
-        //                         echo '<div><b>Error. La extensión o el tamaño de los archivos no es correcta.<br/>
-        //                         - Se permiten archivos .gif, .jpg, .png. y de 200 kb como máximo.</b></div>';
-        //                      } else {
-        //                     */
-        //                         //Si la imagen es correcta en tamaño y tipo
-        //                         //Se intenta subir al servidor
-        //                         if (move_uploaded_file($temp['url'], 'images/'.$archivo['url'])) {
-        //                             //Cambiamos los permisos del archivo a 777 para poder modificarlo posteriormente
-        //                         chmod('images/'.$archivo['url'], 0777);
-        //                             //Mostramos el mensaje de que se ha subido co éxito
-        //                         echo '<div><b>Se ha subido correctamente la imagen.</b></div>';
-        //                             //Mostramos la imagen subida
-        //                         //echo '<p><img src="../images/'.$archivo['imagen'].'"></p>';
-        //                     }else{
-        //                            //Si no se ha podido subir la imagen, mostramos un mensaje de error
-        //                         echo '<div><b>Ocurrió algún error al subir el fichero. No pudo guardarse.</b></div>';
-        //                     }
-        //                     }
-        //                 $this -> service -> crear_actividad($_POST['data']);
-        //                 $this -> pages -> render('layout/mensaje', ["mensaje" => "Actividad creada con exito"]);
-        //             }else{
-        //                 $this -> pages -> render('layout/mensaje', ["mensaje" => "Actividad ya existente"]);
-        //             }
-        //         }else{
-        //             $categorias = $this -> categoria -> listar_categorias();
-        //             $this -> pages -> render('actividades/crear_actividad', ["categorias" => $categorias]);
-        //             $_SESSION['errores'] = $errores;
-        //             $this -> pages -> render('actividades/crear_actividad');
-        //         }
-        //     }else{
-        //         $categorias = $this -> categoria -> listar_categorias();
-        //         $this -> pages -> render('actividades/crear_actividad', ["categorias" => $categorias]);
-        //     }
-        // }
-
-        public function crear_actividad()
-        {
+       
+        public function crear_actividad(){
             if (!file_exists('images')) {
                 mkdir('images');
             }
-        
-            // Función encargada de crear los productos, he usado métodos de la clase utils para validar los datos.
+
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                $datos = $_POST['data'];
                 $nombre = $_POST['data']['nombre'];
                 $archivo = $_FILES['data']['name']['url'];
-        
-                $errores = $this->utils->validar_crearActividad($datos);
-                $existe = $this->service->comprobarActividad($nombre);
-        
-                if ($this->utils->sinErrorescrearActividad($errores)) {
-                    if (!$existe) {
-                        if (isset($archivo) && $archivo != "") {
-                            $tipo = $_FILES['data']['type']['url'];
-                            $tamano = $_FILES['data']['size']['url'];
-                            $temp = $_FILES['data']['tmp_name']['url'];
-        
-                            $extension = pathinfo($archivo, PATHINFO_EXTENSION);
-                            $formatosPermitidos = ['jpg', 'jpeg', 'png', 'gif'];
-        
-                            if (in_array($extension, $formatosPermitidos) && $tamano < 200000000) {
-                                if (move_uploaded_file($temp, 'images/' . $archivo)) {
-                                    chmod('images/' . $archivo, 0777);
-                                    $mensajeError = '<b>Se ha subido correctamente la imagen.</b>';
-                                    $this->pages->render('layout/mensaje', ["mensaje" => $mensajeError]);
 
+                $existe = $this->service->comprobarActividad($nombre); // Verificar si la actividad ya existe en la base de datos
+
+                if (!$existe) {
+                    if (isset($archivo) && $archivo != "") {
+                        $tipo = $_FILES['data']['type']['url'];
+                        $tamano = $_FILES['data']['size']['url'];
+                        $temp = $_FILES['data']['tmp_name']['url'];
+
+                        $extension = pathinfo($archivo, PATHINFO_EXTENSION);
+                        $formatosPermitidos = ['jpg', 'jpeg', 'png', 'gif'];
+
+                        if (in_array($extension, $formatosPermitidos) && $tamano < 200000000) {
+                            if (move_uploaded_file($temp, 'images/' . $archivo)) {
+                                chmod('images/' . $archivo, 0777);
+                                if (is_uploaded_file('images/' . $archivo)) {
+                                    $mensajeError = '<b>Se ha subido correctamente la imagen.</b>';
+                                    $this->mostrarMensaje($mensajeError);
                                 } else {
                                     $mensajeError = '<b>Ocurrió algún error al subir el fichero. No pudo guardarse.</b>';
-                                    $this->pages->render('layout/mensaje', ["mensaje" => $mensajeError]);
-
+                                    $this->mostrarMensaje($mensajeError);
                                     return; // Detener la ejecución si hay errores al subir la imagen
                                 }
                             } else {
-                                $mensajeError = '<b>Error. La extensión o el tamaño de los archivos no es correcta.<br/>
-                                    - Se permiten archivos .jpg, .jpeg, .png y .gif, y un tamaño máximo de 200 kb.</b>';
-                                $this->pages->render('layout/mensaje', ["mensaje" => $mensajeError]);
-
-                                return; // Detener la ejecución si hay errores de formato o tamaño de la imagen
+                                $mensajeError = '<b>Ocurrió algún error al subir el fichero. No pudo guardarse.</b>';
+                                $this->mostrarMensaje($mensajeError);
+                                return; // Detener la ejecución si hay errores al subir la imagen
                             }
+                        } else {
+                            $mensajeError = '<b>Error. La extensión o el tamaño de los archivos no es correcta.<br/>
+                                - Se permiten archivos .jpg, .jpeg, .png y .gif, y un tamaño máximo de 200 kb.</b>';
+                            $this->mostrarMensaje($mensajeError);
+                            return; // Detener la ejecución si hay errores de formato o tamaño de la imagen
                         }
-        
-                        $this->service->crear_actividad($_POST['data']);
-                        $this->pages->render('layout/mensaje', ["mensaje" => "Actividad creada con éxito"]);
-                    } else {
-                        $this->pages->render('layout/mensaje', ["mensaje" => "Actividad ya existente"]);
                     }
+
+                    $this->service->crear_actividad($_POST['data']); // Crear la actividad en la base de datos
+                    $this->mostrarMensaje("Actividad creada con éxito");
                 } else {
-                    $categorias = $this->categoria->listar_categorias();
-                    $this->pages->render('actividades/crear_actividad', ["categorias" => $categorias]);
-                    $_SESSION['errores'] = $errores;
-                    $this->pages->render('actividades/crear_actividad');
+                    $this->mostrarMensaje("Actividad ya existente");
                 }
             } else {
                 $categorias = $this->categoria->listar_categorias();
                 $this->pages->render('actividades/crear_actividad', ["categorias" => $categorias]);
             }
         }
+
+    private function mostrarMensaje($mensaje)
+    {
+        $this->pages->render('layout/mensaje', ["mensaje" => $mensaje]);
+    }
+
+        
         
         public function editar_actividad2(){
             if (!file_exists('images')) {
@@ -240,50 +181,6 @@
                 } 
             }
                     
-
-        // public function editar_actividad2(){
-        //     if(!file_exists('images')){
-        //         mkdir('images');
-        //     }
-        //     // Funcion encargada de crear los productos, he usado metodos de la clase utils para validar los datos.
-        //     if($_SERVER['REQUEST_METHOD'] == 'POST'){
-        //         if(isset($_POST['editar_categoria'])){
-        //             $catego_elegida = $_POST['data']['categoria'];
-        //             $id_categoria = $this -> catservice -> buscarIdCategoria($catego_elegida);
-        //             $actividades = $this -> service -> listarXcategorias($id_categoria);
-        //             if(count($actividades) > 0){
-        //                 $this -> pages -> render('actividades/editar_actividad2', ["actividades" => $actividades]);
-    
-        //             }else{
-        //                 $this -> pages -> render('layout/mensaje', ["mensaje" => "No hay actividades en esta categoria"]);
-        //                 $categorias = $this -> categoria -> listar_categorias();
-        //                 $this -> pages -> render('actividades/editar_actividad', ["categorias" => $categorias]);
-        //             }
-        //         }elseif(isset($_POST['editar_nombre'])){
-        //             $id_actividad = $_POST['data']['id_actividad'];
-        //             $this -> pages -> render('actividades/editar_actividad3', ["id_actividad" => $id_actividad ]);
-
-        //         }elseif(isset($_POST['editar_actividad'])){
-        //             $nombre = $_POST['data']['nombre'];
-        //             $id_acti = $_POST['data']['id_actividad'];
-        //             $actividad_existe = $this -> service -> comprobarNombreActividad($nombre);
-        //             if($actividad_existe){
-        //                 $this -> pages -> render('layout/mensaje', ["mensaje" => "El nombre de la actividad ya existe en la Base de Datos"]);
-        //                 $this -> pages -> render('actividades/editar_actividad3', ["id_actividad" => $id_acti ]);
-        //             }else{
-        //                 $this -> service -> editarActividad($_POST['data']);
-        //                 header('Location:'.$_ENV['BASE_URL']);
-
-        //             }
-        //         }
-                
-        //       }else{
-        //         $categorias = $this -> categoria -> listar_categorias();
-        //         $actividades = $this -> service -> getAll();
-        //         $this -> pages -> render('actividades/editar_actividad', ["categorias" => $categorias,"actividades" => $actividades]);
-        //     }
-        // }
-
 
         public function sacarListadoAsistentes(){
             // Función para sacar el listado de asistentes

@@ -201,6 +201,35 @@
         }
     }
 
+    public function verificarSancion($idUsuario)
+    {
+        try {
+            $sql = $this->conexion->prepara("SELECT estado FROM sanciones WHERE id_usuario = :id_usuario");
+            $sql->bindParam(':id_usuario', $idUsuario);
+            $sql->execute();
+    
+            // Verificar si se encontraron resultados
+            if ($sql->rowCount() > 0) {
+                // Obtener el resultado
+                $resultado = $sql->fetch(PDO::FETCH_ASSOC);
+                $estado = $resultado['estado'];
+    
+                // Comprobar el estado de la sanción
+                if ($estado == 1) {
+                    return true; // El usuario tiene una sanción
+                } else {
+                    return false; // El usuario no tiene sanción
+                }
+            } else {
+                return false; // No se encontró ninguna sanción para el usuario
+            }
+        } catch (PDOException $e) {
+            // Manejo de la excepción
+            echo "Error al verificar sanción: " . $e->getMessage();
+            return false; // Indicar que hubo un error al verificar la sanción
+        }
+    }
+    
 
         /*
         public function getAll(): ?array{

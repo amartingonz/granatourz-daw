@@ -1,3 +1,4 @@
+
 <div class="main-content flex-grow-1">
 
 <?php
@@ -11,6 +12,7 @@
     use Controllers\ActividadController;
     use Controllers\UsuarioController;
     use Controllers\SancionController;
+    use Controllers\ContactoController;
     use Lib\Router;
     $dotenv = Dotenv::createImmutable(__DIR__);
     $dotenv->safeLoad();
@@ -30,6 +32,10 @@
         require '../views/ayuda/contacto.php';
     });
     
+    Router::add('POST','/enviar_correo',function(){
+        (new ContactoController()) -> enviar_mensaje();
+    });
+
     // REGISTRO
     Router::add('GET','usuarios_registrar',function(){require '../views/usuarios/registro.php';});
     Router::add('POST','usuarios_registrar',function(){
@@ -109,6 +115,11 @@
             exit;
         }
         (new ReservaController()) -> cancelar_reserva();
+    });
+
+
+    Router::add('POST','cancelar_reserva',function(){
+        (new ReservaController()) -> cancelar_reserva_usuario();
     });
     // CATEGORIAS
 

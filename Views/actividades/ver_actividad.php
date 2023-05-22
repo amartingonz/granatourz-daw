@@ -64,20 +64,23 @@
       <div class="card">
         <div class="card-body text-center">
           <h3 class="card-title">Crear comentario:</h3>
-          <form action="crear_comentario" method="post" enctype="multipart/form-data">
+          <form action="crear_comentario" method="post" enctype="multipart/form-data" onsubmit="return validarFormulario_crear_comentario();">
             <input type="hidden" name="data[id_actividad]" value="<?= $actividad['id_actividad'] ?>">
             <input type="hidden" name="data[id_usuario]" value="<?= $id ?>">
             <div class="form-group">
               <p class="card-text"><strong>Imagen:</strong></p>
               <input type="file" class="form-control-file" name="data[url]" id="url">
+              <span class="text-danger" id="url-error"></span>
             </div>
             <div class="form-group">
               <p class="card-text"><strong>Comentario:</strong></p>
               <textarea class="form-control" name="data[texto]" id="texto" rows="5"></textarea>
+              <span class="text-danger" id="texto-error"></span>
             </div>
             <div class="form-group">
               <p class="card-text"><strong>Valoración:</strong></p>
               <input type="number" name="data[valoracion]" id="valoracion">
+              <span class="text-danger" id="valoracion-error"></span>
             </div>
             <button type="submit" class="btn btn-warning btn-success m-3">Enviar</button>
           </form>

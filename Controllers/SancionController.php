@@ -3,23 +3,17 @@
 namespace Controllers;
 use Lib\Pages;
 use Models\Sancion;
-use Models\Actividad;
 use Services\SancionService;
-use Utils\Utils;
 use Services\ActividadService;
 
 
 class SancionController{
     private SancionService $service;
     private Pages $pages;
-    private Utils $utils;
-    private ActividadService $servicep;
 
     public function __construct(){
         $this -> pages = new Pages();
         $this -> service = new SancionService();
-        $this -> utils = new Utils();
-        $this -> servicep = new ActividadService();
     }
 
 

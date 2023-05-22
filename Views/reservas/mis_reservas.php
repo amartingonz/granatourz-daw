@@ -16,7 +16,9 @@
                 <?php if(isset($_SESSION['usuario'])):?>
                   <li class="list-group-item">
                     <form action="cancelar_reserva" method="post">
-                      <input type="hidden" name="id_reserva" value="<?= $reserva['id_reserva'] ?>">
+                      <input type="hidden" name="data[id_reserva]" value="<?= $reserva['id_reserva'] ?>">
+                      <input type="hidden" name="data[id_actividad]" value="<?= $reserva['id_actividad'] ?>">
+                      <input type="hidden" name="data[id_usuario]" value="<?= $_SESSION['id_usuario'] ?>">
                       <button type="submit" class="btn btn-primary bg-danger">Cancelar</button>
                     </form>
                   </li>

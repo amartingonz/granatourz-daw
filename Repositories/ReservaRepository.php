@@ -98,10 +98,38 @@
             }
 
         public function cancelar_reserva($data){
-            // Función para cancelar una reserva según la id_usuario
-            $sql = "DELETE FROM reservas WHERE id_usuario = :id_usuario";
+            // Función para cancelar una reserva según la id_reserva
+            $sql = "DELETE FROM reservas WHERE id_reserva = :id_reserva";
             $consult = $this->conexion->prepara($sql);
-            $consult->bindParam(':id_usuario', $data['id_usuario'], PDO::PARAM_INT);
+            $consult->bindParam(':id_reserva', $data['id_reserva'], PDO::PARAM_INT);
+                    
+            $this->conexion->iniciar_transaccion();
+            $result = $consult->execute();
+            if (!$result) {
+                $this->conexion->rollback();
+                return false;
+            }
+                    
+            $sql = "UPDATE actividades SET capacidad = capacidad + 1 WHERE id_actividad = :id_actividad";
+            $consult = $this->conexion->prepara($sql);
+            $consult->bindParam(':id_actividad', $data['id_actividad'], PDO::PARAM_INT);
+                    
+            $result = $consult->execute();
+            if (!$result) {
+                $this->conexion->rollback();
+                return false;
+            }
+                    
+            $this->conexion->commit();
+            return true;
+        }
+            
+
+        public function cancelar_reserva_usuario($data){
+            // Función para cancelar una reserva según la id_reserva
+            $sql = "DELETE FROM reservas WHERE id_reserva = :id_reserva";
+            $consult = $this->conexion->prepara($sql);
+            $consult->bindParam(':id_reserva', $data['id_reserva'], PDO::PARAM_INT);
                 
             $this->conexion->iniciar_transaccion();
             $result = $consult->execute();
@@ -112,7 +140,7 @@
                 
             $sql = "UPDATE actividades SET capacidad = capacidad + 1 WHERE id_actividad = :id_actividad";
             $consult = $this->conexion->prepara($sql);
-            $consult->bindParam(':id_actividad', $data['id_actividad'], PDO::PARAM_STR);
+            $consult->bindParam(':id_actividad', $data['id_actividad'], PDO::PARAM_INT);
                 
             $result = $consult->execute();
             if (!$result) {
@@ -123,7 +151,7 @@
             $this->conexion->commit();
             return true;
         }
-            
+        
 
         public function ultimoPedidoInsertado(){
             //Funcion para sacar el ultimo pedido insertado
@@ -134,7 +162,7 @@
 
         public function obtener_reservas_usuario_conectado($id_usuario) {
             try {
-                $sql = "SELECT r.id_reserva, a.nombre,a.duracion,a.descripcion,a.localizacion,a.hora,a.fecha,a.capacidad,a.url, r.fecha_reserva
+                $sql = "SELECT r.id_reserva, a.id_actividad, a.nombre,a.duracion,a.descripcion,a.localizacion,a.hora,a.fecha,a.capacidad,a.url, r.fecha_reserva
                         FROM reservas r
                         JOIN actividades a ON r.id_actividad = a.id_actividad
                         WHERE r.id_usuario = :id_usuario";

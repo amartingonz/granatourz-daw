@@ -54,6 +54,11 @@
             public function verificarConfirmacion($email) {
                 return $this -> repository -> verificarConfirmacion($email);
             }
+
+            public function verificarSancion($idUsuario){
+                return $this -> repository -> verificarSancion($idUsuario);
+            }
+
         }
 
     

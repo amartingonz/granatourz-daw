@@ -26,6 +26,10 @@
                 // Función que llama al metodo del repositorio para cancelar la reserva
                 $this -> repository -> cancelar_reserva($data);
             }
+            public function cancelar_reserva_usuario(array $data){
+                // Función para cancelar las reservas desde un usuario propio en la vista de mis_reservas
+                $this -> repository -> cancelar_reserva_usuario($data);
+            }
 
             public function ultimoPedidoInsertado(){
                 // funcion que llama al metodo del repositorio ultimopedidoinsertado devuelve el id del ultimo pedido
