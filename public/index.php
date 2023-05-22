@@ -10,6 +10,7 @@
     use Controllers\ReservaController;
     use Controllers\ActividadController;
     use Controllers\UsuarioController;
+    use Controllers\SancionController;
     use Lib\Router;
     $dotenv = Dotenv::createImmutable(__DIR__);
     $dotenv->safeLoad();
@@ -49,28 +50,31 @@
          (new ActividadController()) -> listarXcategorias($id);
     });
 
-    // AÑADIR AL CARRITO
+    // SANCIONES
+
+    Router::add('POST','proponer_sancion',function(){
+        if (!isset($_SESSION['organizador']) && !isset($_SESSION['admin'])) {
+            header('Location: ' . $_ENV['BASE_URL']. 'usuarios_loguear');
+            exit;
+        }
+        (new SancionController()) -> proponer_sancion();
+    });
+
+    Router::add('GET','sancionar_usuario',function(){
+        if (!isset($_SESSION['organizador']) && !isset($_SESSION['admin'])) {
+            header('Location: ' . $_ENV['BASE_URL']. 'usuarios_loguear');
+            exit;
+        }
+        (new SancionController()) -> confirmar_sancion();
+    });
     
-//     Router::add('POST','comprobarPedido',function(){
-//         (new PedidoController()) -> comprobarPedido();
-//     });
-
-
-//     Router::add('GET','anadir_carrito',function(){
-//         (new CarritoController()) -> anadir_carrito();
-//     });
-    
-//    Router::add('POST','anadir_carrito',function(){
-//     (new CarritoController()) -> anadir_carrito();
-//     });
-
-//     Router::add('GET','borrar_elementos',function(){
-//         require '../views/productos/carrito.php';
-//     });
-
-//     Router::add('POST','borrar_elementos',function(){
-//         (new CarritoController()) -> borrar_elementos();
-//     });
+    Router::add('POST','confirmar_sancion',function(){
+        if (!isset($_SESSION['organizador']) && !isset($_SESSION['admin'])) {
+            header('Location: ' . $_ENV['BASE_URL']. 'usuarios_loguear');
+            exit;
+        }
+        (new SancionController()) -> confirmar_sancion();
+    });
 
     // RESERVAS
     
