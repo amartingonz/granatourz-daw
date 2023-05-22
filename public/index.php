@@ -22,6 +22,14 @@
         (new ActividadController()) -> listar_actividades();
     });
 
+    Router::add('GET','/normas',function(){
+        require '../views/ayuda/normas.php';
+    });
+
+    Router::add('GET','/contacto',function(){
+        require '../views/ayuda/contacto.php';
+    });
+    
     // REGISTRO
     Router::add('GET','usuarios_registrar',function(){require '../views/usuarios/registro.php';});
     Router::add('POST','usuarios_registrar',function(){

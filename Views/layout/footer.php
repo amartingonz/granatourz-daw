@@ -1,15 +1,15 @@
   <!-- <link rel="stylesheet" href="css/footer.css">
   <link rel="stylesheet" href="../css/footer.css"> -->
    <!-- Pie de página -->
-<footer class="bg-primary text-light py-1">
+<footer class="bg-dark text-light py-1">
   <div class="container">
     <div class="row">
       <div class="col-md-4">
         <h4>Ayuda y contacto</h4>
         <ul class="list-unstyled">
           <li><a href="#" class="text-light">Preguntas frecuentes</a></li>
-          <li><a href="#" class="text-light">Soporte técnico</a></li>
-          <li><a href="#" class="text-light">Contacto</a></li>
+          <li><a href="<?= $_ENV['BASE_URL']?>normas" class="text-light">Normas</a></li>
+          <li><a href="<?= $_ENV['BASE_URL']?>contacto" class="text-light">Contacto</a></li>
         </ul>
       </div>
       <div class="col-md-4">

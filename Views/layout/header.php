@@ -55,7 +55,6 @@
             <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>crear_actividad">Agregar Actividad</a>
             <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>editar_actividad">Editar Actividad</a>
             <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>sancionar_usuario">Sancionar Usuario</a>
-            <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>editar_comentario">Editar Comentario</a>
             <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>editar_datos">Editar Datos</a>
           </div>
         </li>
