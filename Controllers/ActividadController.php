@@ -46,50 +46,43 @@
         }
 
        
-        public function crear_actividad(){
+        public function crear_actividad()
+        {
             if (!file_exists('images')) {
                 mkdir('images');
             }
-
+        
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $nombre = $_POST['data']['nombre'];
                 $archivo = $_FILES['data']['name']['url'];
-
+        
                 $existe = $this->service->comprobarActividad($nombre); // Verificar si la actividad ya existe en la base de datos
-
+        
                 if (!$existe) {
                     if (isset($archivo) && $archivo != "") {
                         $tipo = $_FILES['data']['type']['url'];
                         $tamano = $_FILES['data']['size']['url'];
                         $temp = $_FILES['data']['tmp_name']['url'];
-
+        
                         $extension = pathinfo($archivo, PATHINFO_EXTENSION);
                         $formatosPermitidos = ['jpg', 'jpeg', 'png', 'gif'];
-
-                        if (in_array($extension, $formatosPermitidos) && $tamano < 200000000) {
+        
+                        if (in_array($extension, $formatosPermitidos) && $tamano < 2000000000) {
                             if (move_uploaded_file($temp, 'images/' . $archivo)) {
                                 chmod('images/' . $archivo, 0777);
-                                if (is_uploaded_file('images/' . $archivo)) {
-                                    $mensajeError = '<b>Se ha subido correctamente la imagen.</b>';
-                                    $this->mostrarMensaje($mensajeError);
-                                } else {
-                                    $mensajeError = '<b>Ocurrió algún error al subir el fichero. No pudo guardarse.</b>';
-                                    $this->mostrarMensaje($mensajeError);
-                                    return; // Detener la ejecución si hay errores al subir la imagen
-                                }
+                                $mensajeError = '<b>Se ha subido correctamente la imagen.</b>';
+                                $this->mostrarMensaje($mensajeError);
                             } else {
                                 $mensajeError = '<b>Ocurrió algún error al subir el fichero. No pudo guardarse.</b>';
                                 $this->mostrarMensaje($mensajeError);
-                                return; // Detener la ejecución si hay errores al subir la imagen
                             }
                         } else {
                             $mensajeError = '<b>Error. La extensión o el tamaño de los archivos no es correcta.<br/>
                                 - Se permiten archivos .jpg, .jpeg, .png y .gif, y un tamaño máximo de 200 kb.</b>';
                             $this->mostrarMensaje($mensajeError);
-                            return; // Detener la ejecución si hay errores de formato o tamaño de la imagen
                         }
                     }
-
+        
                     $this->service->crear_actividad($_POST['data']); // Crear la actividad en la base de datos
                     $this->mostrarMensaje("Actividad creada con éxito");
                 } else {
@@ -100,6 +93,7 @@
                 $this->pages->render('actividades/crear_actividad', ["categorias" => $categorias]);
             }
         }
+        
 
     private function mostrarMensaje($mensaje)
     {
@@ -186,7 +180,7 @@
             // Función para sacar el listado de asistentes
             
             $id_usuario = $_SESSION['id_organizador'];
-            $actividades = $this -> service -> sacarListadoActividades($id_usuario);            
+            $actividades = $this -> service -> sacarListadoActividades($id_usuario);           
             $this -> pages -> render('organizadores/ver_listado', ["actividades" => $actividades]);
             
         }

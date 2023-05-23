@@ -77,7 +77,7 @@ class ReservaController{
                
             } else {
                 $this->pages->render('layout/mensaje', ["mensaje" => "No hay usuarios inscritos."]);
-                header("Location: " . $_ENV['BASE_URL']);
+                //header("Location: " . $_ENV['BASE_URL']);
                 
             }
         }

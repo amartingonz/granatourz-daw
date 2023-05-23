@@ -58,6 +58,18 @@ function validarFormulario_crear_actividad() {
     return false;
   }
 
+  // Validación de la descripción
+  var descripcion = document.getElementById('descripcion').value;
+  if (descripcion.length > 255) {
+    document.getElementById('descripcion-error').textContent = 'La descripción debe tener como máximo 255 caracteres';
+    return false;
+  } else {
+    document.getElementById('descripcion-error').textContent = '';
+  }
+
+  // Conteo de letras en la descripción
+  document.getElementById('contador-caracteres').textContent = descripcion.length + '/255';
+
   // Control de las imágenes
   var archivo = document.getElementById('url').value;
   if (archivo !== '') {
@@ -68,13 +80,17 @@ function validarFormulario_crear_actividad() {
       return false;
     }
     var tamano = document.getElementById('url').files[0].size;
-    var tamanoMaximo = 200000000; // 200KB
+    var tamanoMaximo = 200000; // 200KB
     if (tamano > tamanoMaximo) {
-      document.getElementById('url-error').textContent = 'Error. Tamaño de imagen excede el límite (200KB)';
-      return false;
+    document.getElementById('url-error').textContent = 'Error. Tamaño de imagen excede el límite (200KB)';
+    return false;
     }
-  }
-
+    }
+    
   return true;
 }
 
+function contarCaracteres() {
+  var descripcion = document.getElementById('descripcion').value;
+  document.getElementById('contador-caracteres').textContent = descripcion.length + '/255';
+}

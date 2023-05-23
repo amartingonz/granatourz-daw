@@ -245,10 +245,26 @@
         
 
 
+        // public function sacarListadoActividades($id_usuario) {
+        //     //Funcion para listar los usuarios que estan apuntados a una actividad, y sacar el id de reserva.
+        //     try {
+        //         $sql = "SELECT a.*, r.id_reserva FROM actividades a INNER JOIN reservas r ON r.id_actividad = a.id_actividad WHERE a.id_usuario = :id_usuario";
+        //         $stmt = $this->conexion->prepara($sql);
+        //         $stmt->bindParam(':id_usuario', $id_usuario, PDO::PARAM_INT);
+        //         $stmt->execute();
+        
+        //         $actividades = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        //         return $actividades;
+        //     } catch(PDOException $e) {
+        //         echo "Error: " . $e->getMessage();
+        //         return false;
+        //     }
+        // }
+        
         public function sacarListadoActividades($id_usuario) {
-            //Funcion para listar los usuarios que estan apuntados a una actividad, y sacar el id de reserva.
             try {
-                $sql = "SELECT a.*, r.id_reserva FROM actividades a INNER JOIN reservas r ON r.id_actividad = a.id_actividad WHERE a.id_usuario = :id_usuario";
+                $sql = "SELECT * FROM actividades WHERE id_usuario = :id_usuario";
                 $stmt = $this->conexion->prepara($sql);
                 $stmt->bindParam(':id_usuario', $id_usuario, PDO::PARAM_INT);
                 $stmt->execute();

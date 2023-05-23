@@ -13,8 +13,7 @@
         <title>Document</title>
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="../css/bootstrap.min.css">
-        <!-- <link rel="stylesheet" href="css/footer.css">
-        <link rel="stylesheet" href="../css/footer.css"> -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
         <script src="js/bootstrap.min.js" defer></script>
         <script src="../js/bootstrap.min.js" defer></script>
         <script src="jquery-3.6.3.min.js" defer></script>
@@ -30,6 +29,7 @@
         <script src="js-script/formularios/formulario_comentario.js" defer></script>
         <script src="js-script/formularios/formulario_crear_actividad.js" defer></script>
         <script src="js-script/formularios/formulario_editar_actividad3.js" defer></script>
+        <script src="js-script/formularios/formulario_contacto.js" defer></script>
 
     </head>
     <body>    

@@ -41,8 +41,11 @@
 
         <div class="form-group">
           <label for="descripcion">Descripción:</label>
-          <textarea name="data[descripcion]" id="descripcion" cols="30" rows="10" class="form-control"></textarea>
+          <textarea name="data[descripcion]" id="descripcion" cols="30" rows="10" class="form-control" maxlength="255" oninput="contarCaracteres(this)"></textarea>
+          <div class="invalid-feedback" id="descripcion-error"></div>
+          <small id="contador-caracteres" class="form-text text-muted">0/255 caracteres</small>
         </div>
+
 
         <div class="form-group">
           <label for="localizacion">Localización:</label>

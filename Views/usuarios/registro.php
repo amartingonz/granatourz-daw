@@ -20,7 +20,7 @@
         </div>
 
         <div class="form-group">
-          <label for="apellidos">Apellidos:</label>
+          <label for="apellidos">Apellido:</label>
           <input type="text" class="form-control" name="data[apellidos]" required>
           <span class="text-danger" id="apellidos-error"></span>
         </div>
