@@ -14,7 +14,7 @@
     use Controllers\SancionController;
     use Controllers\ContactoController;
     use Lib\Router;
-    $dotenv = Dotenv::createImmutable(__DIR__);
+    $dotenv = Dotenv::createImmutable(__DIR__.'../../');
     $dotenv->safeLoad();
     require_once '../views/layout/header.php';
 
