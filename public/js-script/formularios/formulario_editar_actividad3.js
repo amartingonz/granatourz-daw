@@ -25,8 +25,8 @@ function validarFormulario_editar_actividad3() {
     document.getElementById('nombre-error').textContent = 'Este campo es obligatorio';
     return false;
   }
-  if (!/^[a-zA-Z\s]+$/.test(nombre)) {
-    document.getElementById('nombre-error').textContent = 'Ingrese un nombre válido (solo letras y espacios)';
+  if (!/^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\s]+$/.test(nombre)) {
+    document.getElementById('nombre-error').textContent = 'Ingrese un nombre válido (solo letras, espacios y tildes)';
     return false;
   }
 

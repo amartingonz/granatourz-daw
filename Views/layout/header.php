@@ -109,19 +109,26 @@
     </header>
     <body class="d-flex flex-column min-vh-100">
     <?php $categorias=CategoriaRepository::obtenerCategorias();?>
-    <nav class="categorias">
-    <div class="container">
-      <ul class="nav nav-justified">
-        <?php foreach($categorias as $cat) { ?>
-          <li class="nav-item">
-            <a class="nav-link" href="<?php echo $_ENV['BASE_URL']."listarXcategorias/".$cat->getId(); ?>">
-              <?php echo $cat->getNombre(); ?>
-            </a>
-          </li>
-        <?php }; ?>
-      </ul>
+    <nav class="categorias navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#categoriasMenu" aria-controls="categoriasMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="categoriasMenu">
+        <ul class="navbar-nav nav-justified w-100">
+          <?php foreach($categorias as $cat) { ?>
+            <li class="nav-item">
+              <a class="nav-link" href="<?php echo $_ENV['BASE_URL']."listarXcategorias/".$cat->getId(); ?>">
+                <?php echo $cat->getNombre(); ?>
+              </a>
+            </li>
+          <?php }; ?>
+        </ul>
+      </div>
     </div>
-</nav>
+  </nav>
+
 
 
         </form>

@@ -9,7 +9,7 @@ function validarFormulario_editar_datos() {
   var password = formulario.elements['data[password]'].value;
 
   // Validar el campo nombre (solo letras)
-  var nombreRegex = /^[a-zA-Z\s]+$/;
+  var nombreRegex = /^[a-zA-Z\sáéíóúÁÉÍÓÚüÜñÑ]+$/;
   if (!nombreRegex.test(nombre)) {
     formulario.elements['data[nombre]'].nextElementSibling.textContent = "El campo de nombre solo puede contener letras.";
     return false;

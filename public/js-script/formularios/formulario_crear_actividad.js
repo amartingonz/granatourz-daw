@@ -5,8 +5,8 @@ function validarFormulario_crear_actividad() {
     document.getElementById('nombre-error').textContent = 'Este campo es obligatorio';
     return false;
   }
-  if (!/^[a-zA-Z\s]+$/.test(nombre)) {
-    document.getElementById('nombre-error').textContent = 'Ingrese un nombre válido (solo letras y espacios)';
+  if (!/^[a-zA-Z\sáéíóúÁÉÍÓÚüÜñÑ]+$/.test(nombre)) {
+    document.getElementById('nombre-error').textContent = 'Ingrese un nombre válido (solo letras, espacios y tildes)';
     return false;
   }
 
@@ -27,8 +27,8 @@ function validarFormulario_crear_actividad() {
     document.getElementById('localizacion-error').textContent = 'Este campo es obligatorio';
     return false;
   }
-  if (!/^[a-zA-Z\s]+$/.test(localizacion)) {
-    document.getElementById('localizacion-error').textContent = 'Ingrese una localización válida (solo letras y espacios)';
+  if (!/^[a-zA-Z\sáéíóúÁÉÍÓÚüÜñÑ]+$/.test(localizacion)) {
+    document.getElementById('localizacion-error').textContent = 'Ingrese una localización válida (solo letras, espacios y tildes)';
     return false;
   }
 
@@ -82,11 +82,11 @@ function validarFormulario_crear_actividad() {
     var tamano = document.getElementById('url').files[0].size;
     var tamanoMaximo = 200000; // 200KB
     if (tamano > tamanoMaximo) {
-    document.getElementById('url-error').textContent = 'Error. Tamaño de imagen excede el límite (200KB)';
-    return false;
+      document.getElementById('url-error').textContent = 'Error. Tamaño de imagen excede el límite (200KB)';
+      return false;
     }
-    }
-    
+  }
+  
   return true;
 }
 

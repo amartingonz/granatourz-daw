@@ -25,11 +25,11 @@
                 <h5 class="card-title"><?= $actividad['nombre']?></h5>
                 <p class="card-text flex-grow-1"><?= $actividad['descripcion']?></p>
                 <ul class="list-group list-group-flush text-center">
-                  <li class="list-group-item"><strong>Duración:</strong> <?= $actividad['duracion']?></li>
+                  <li class="list-group-item"><strong>Duración:</strong> <?= $actividad['duracion']?> minutos</li>
                   <li class="list-group-item"><strong>Localización:</strong> <?= $actividad['localizacion']?></li>
                   <li class="list-group-item"><strong>Hora:</strong> <?= $actividad['hora']?></li>
                   <li class="list-group-item"><strong>Fecha:</strong> <?= $actividad['fecha']?></li>
-                  <li class="list-group-item"><strong>Capacidad:</strong> <?= $actividad['capacidad']?></li>
+                  <li class="list-group-item"><strong>Capacidad:</strong> <?= $actividad['capacidad']?> plazas</li>
                   <li class="list-group-item">
                     <form action="ver_actividad" method="post">
                       <input type="hidden" name="id_actividad" value="<?= $actividad['id_actividad'] ?>">

@@ -19,7 +19,7 @@
 
 ?>
 
-<div class="container mt-5">
+<div class="container mt-5 mb-5">
   <div class="row justify-content-center">
     <?php if(isset($actividades)):?>
       <?php foreach($actividades as $actividad):?>
@@ -30,11 +30,11 @@
               <div class="card-body">
                 <h5 class="card-title"><?= $actividad['nombre']?></h5>
                 <p class="card-text"><?= $actividad['descripcion']?></p>
-                <p class="card-text"><strong>Duración:</strong> <?= $actividad['duracion']?></p>
+                <p class="card-text"><strong>Duración:</strong> <?= $actividad['duracion']?> minutos</p>
                 <p class="card-text"><strong>Localización:</strong> <?= $actividad['localizacion']?></p>
                 <p class="card-text"><strong>Hora:</strong> <?= $actividad['hora']?></p>
                 <p class="card-text"><strong>Fecha:</strong> <?= $actividad['fecha']?></p>
-                <p class="card-text"><strong>Capacidad:</strong> <?= $actividad['capacidad']?></p>
+                <p class="card-text"><strong>Capacidad:</strong> <?= $actividad['capacidad']?> plazas</p>
                 <?php if(isset($_SESSION['admin'])):?>
                   <form action="eliminar_actividad" method="post">
                     <input type="hidden" name="id_actividad" value="<?= $actividad['id_actividad'] ?>">

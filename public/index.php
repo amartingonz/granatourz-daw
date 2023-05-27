@@ -93,7 +93,7 @@
     // RESERVAS
     
     Router::add('GET','consultar_reservas',function(){
-        if (!isset($_SESSION['organizador']) && !isset($_SESSION['admin'])) {
+        if (!isset($_SESSION['usuario']) && !isset($_SESSION['admin'])) {
             header('Location: ' . $_ENV['BASE_URL']. 'usuarios_loguear');
             exit;
         }
