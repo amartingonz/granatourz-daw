@@ -45,15 +45,12 @@ class Router {
 
         if($fn){
             $callback = self::$routes[$method][$action];
-
             echo call_user_func($callback, $param);
-        }else {
-
-           //header('Location: /404');
-            //header("HTTP/1.1 404 Not Found");
-            echo ResponseHttp::statusMessage(404,'Pagina no encontrada');
-          
+        } else {
+            header('Location: ' . $_ENV['BASE_URL'].'404'); // Redirigir a la página 404.php
+            exit();
         }
+        
 
 
 

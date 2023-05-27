@@ -24,6 +24,13 @@
         (new ActividadController()) -> listar_actividades();
     });
 
+    //ERROR 404 
+
+    Router::add('GET','/404',function(){
+        require '../views/layout/404.php';
+    });
+
+
     Router::add('GET','/normas',function(){
         require '../views/ayuda/normas.php';
     });
