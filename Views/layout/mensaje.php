@@ -1,9 +1,9 @@
-<div class="container">
+<div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <?php
                 if (isset($mensaje)) {
-                    echo '<div class="card border-warning mb-3">
+                    echo '<div class="card border-warning mb-3 mt-5">
                             <div class="card-header bg-warning text-white">Aviso</div>
                             <div class="card-body">
                                 <p class="card-text">' . $mensaje . '</p>

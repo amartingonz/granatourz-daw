@@ -123,37 +123,47 @@
                 } elseif (isset($_POST['editar_actividad'])) {
                     $nombre = $_POST['data']['nombre'];
                     $id_acti = $_POST['data']['id_actividad'];
-                    $archivo = $_FILES['data']['name']['url'];
-                    if (empty($archivo)) {
-                        $this->service->editarActividad($_POST['data']);
-                        header('Location:' . $_ENV['BASE_URL']);
-                        exit;
+                    $actividad_existe = $this->service->comprobarNombreActividad($nombre);
+        
+                    if ($actividad_existe) {
+                        $this->pages->render('layout/mensaje', ["mensaje" => "El nombre de la actividad ya existe en la Base de Datos"]);
+                        $this->pages->render('actividades/editar_actividad3', ["id_actividad" => $id_acti]);
                     } else {
-                        $extension = pathinfo($archivo, PATHINFO_EXTENSION);
-                        $formatosPermitidos = ['jpg', 'jpeg', 'png', 'gif'];
-                        $tamanoMaximo = 200000000;
-
-                        if (in_array($extension, $formatosPermitidos) && $_FILES['data']['size']['url'] <= $tamanoMaximo) {
-                            $tipo = $_FILES['data']['type']['url'];
-                            $tamano = $_FILES['data']['size']['url'];
-                            $temp = $_FILES['data']['tmp_name']['url'];
-
-                            if (move_uploaded_file($temp, 'images/' . $archivo)) {
-                                chmod('images/' . $archivo, 0777);
-                                $_POST['data']['url'] = 'images/' . $archivo;
-                                $this->service->editarActividad($_POST['data']);
-                                header('Location:' . $_ENV['BASE_URL']);
-                                exit;
-                            } else {
-                                $mensajeError = '<b>Ocurrió algún error al subir el fichero. No pudo guardarse.</b>';
-                                $this->pages->render('layout/mensaje', ["mensaje" => $mensajeError]);
-                            }
+                        $archivo = $_FILES['data']['name']['url'];
+        
+                        if (empty($archivo)) {
+                            $this->service->editarActividad($_POST['data']);
+                            header('Location:' . $_ENV['BASE_URL']);
+                            exit;
                         } else {
-                            $mensajeError = '<b>Error. La extensión o el tamaño de los archivos no es correcta.<br/> - Se permiten archivos .jpg, .jpeg, .png y .gif, y un tamaño máximo de 200 KB.</b>';
-                            $this->pages->render('layout/mensaje', ["mensaje" => $mensajeError]);
+                            $extension = pathinfo($archivo, PATHINFO_EXTENSION);
+                            $formatosPermitidos = ['jpg', 'jpeg', 'png', 'gif'];
+                            $tamanoMaximo = 200000000;
+        
+                            if (in_array($extension, $formatosPermitidos) && $_FILES['data']['size']['url'] <= $tamanoMaximo) {
+                                $tipo = $_FILES['data']['type']['url'];
+                                $tamano = $_FILES['data']['size']['url'];
+                                $temp = $_FILES['data']['tmp_name']['url'];
+        
+                                if (move_uploaded_file($temp, 'images/' . $archivo)) {
+                                    chmod('images/' . $archivo, 0777);
+                                    $_POST['data']['url'] = 'images/' . $archivo;
+                                    $this->service->editarActividad($_POST['data']);
+                                    header('Location:' . $_ENV['BASE_URL']);
+                                    exit;
+                                } else {
+                                    $mensajeError = '<b>Ocurrió algún error al subir el fichero. No pudo guardarse.</b>';
+                                    $this->pages->render('layout/mensaje', ["mensaje" => $mensajeError]);
+
+                                }
+                            } else {
+                                $mensajeError = '<b>Error. La extensión o el tamaño de los archivos no es correcta.<br/> - Se permiten archivos .jpg, .jpeg, .png y .gif, y un tamaño máximo de 200 KB.</b>';
+                                $this->pages->render('layout/mensaje', ["mensaje" => $mensajeError]);
+
+                                }
+                            }
                         }
                     }
-                }
                 }else{
                     // Agregar los renders faltantes
                     $categorias = $this -> categoria -> listar_categorias();
@@ -161,7 +171,7 @@
                     $this -> pages -> render('actividades/editar_actividad', ["categorias" => $categorias,"actividades" => $actividades]);
                 } 
             }
-               
+                    
 
         public function sacarListadoAsistentes(){
             // Función para sacar el listado de asistentes
