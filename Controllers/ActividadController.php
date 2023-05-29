@@ -70,8 +70,8 @@
                         if (in_array($extension, $formatosPermitidos) && $tamano < 2000000000) {
                             if (move_uploaded_file($temp, 'images/' . $archivo)) {
                                 chmod('images/' . $archivo, 0777);
-                                $mensajeError = '<b>Se ha subido correctamente la imagen.</b>';
-                                $this->mostrarMensaje($mensajeError);
+                                $this->service->crear_actividad($_POST['data']); // Crear la actividad en la base de datos
+                                $this->mostrarMensaje("Actividad creada con éxito");
                             } else {
                                 $mensajeError = '<b>Ocurrió algún error al subir el fichero. No pudo guardarse.</b>';
                                 $this->mostrarMensaje($mensajeError);
@@ -81,10 +81,7 @@
                                 - Se permiten archivos .jpg, .jpeg, .png y .gif, y un tamaño máximo de 200 kb.</b>';
                             $this->mostrarMensaje($mensajeError);
                         }
-                    }
-        
-                    $this->service->crear_actividad($_POST['data']); // Crear la actividad en la base de datos
-                    $this->mostrarMensaje("Actividad creada con éxito");
+                    } 
                 } else {
                     $this->mostrarMensaje("Actividad ya existente");
                 }

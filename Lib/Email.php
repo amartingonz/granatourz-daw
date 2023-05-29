@@ -46,7 +46,6 @@
         
             // Enviar el correo.
             if ($mail->send()) {
-                echo "El correo de confirmación se ha enviado correctamente.";
             } else {
                 echo "Error al enviar el correo de confirmación: " . $mail->ErrorInfo;
             }
@@ -84,7 +83,6 @@
         
             // Enviar el correo.
             if ($mail->send()) {
-                echo "El correo de confirmación se ha enviado correctamente.";
             } else {
                 echo "Error al enviar el correo de confirmación: " . $mail->ErrorInfo;
             }

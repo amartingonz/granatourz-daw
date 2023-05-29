@@ -38,7 +38,7 @@
                     $this->service->guardarToken($id, $code);
                     $email_obj = new Email($email, $code);
                     $email_obj->enviarConfirmacion();
-                    $this->pages->render("usuarios/login");
+                    $this -> pages -> render('layout/mensaje',["mensaje" => "Se ha enviado el correo de confirmación."]);
                 } else {
                     $this->pages->render("layout/mensaje", ["mensaje" => "El email o DNI ya existe"]);
                 }

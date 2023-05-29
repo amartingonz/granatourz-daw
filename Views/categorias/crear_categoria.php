@@ -8,7 +8,7 @@
 
             <div class="form-group">
                 <label for="nombre">Nombre de la categoría:</label>
-                <input type="text" name="nombre" id="nombre" class="form-control" pattern="[a-zA-Z]+" title="No se permiten caracteres raros ni etiquetas" required>
+                <input type="text" name="nombre" id="nombre" class="form-control" required>
                 <span id="error-nombre" class="text-danger"></span>
             </div>
 
