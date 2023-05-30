@@ -119,6 +119,7 @@
 
 
         public static function obtenerUsuarioPorId($id) {
+            // Función que obtiene el nombre del usuario por el id de usuario
             $usuario = new UsuarioRepository();
             $consulta = "SELECT nombre FROM usuarios WHERE id_usuario = :id_usuario";
             $statement = $usuario->conexion->prepara($consulta);
@@ -135,7 +136,7 @@
         
 
         public function max_id($email){
-            //Funcion para sacar el ultimo pedido insertado
+            // Función para sacar el ultimo pedido insertado
                 $sql = $this -> conexion -> prepara("SELECT id_usuario FROM usuarios WHERE email = :email");
                 $sql->bindParam(':email',$email);
                 try{
@@ -148,7 +149,7 @@
         }
 
         public function guardarToken($id,$token){
-            // Funcion para guardar el token(codigo generado al registrarse)
+            // Función para guardar el token(codigo generado al registrarse)
             $sql = $this -> conexion -> prepara("UPDATE usuarios SET token = :token WHERE id_usuario = :id");
             $sql->bindParam(':id',$id);
             $sql->bindParam(':token',$token);
@@ -159,7 +160,9 @@
                 return false;
             }
     }
+
     public function confirmarEmail($token){
+        // Función para confirmar el email 
         $cons = $this->conexion -> prepara ("UPDATE usuarios SET confirmado = 1 WHERE id_usuario = (SELECT id_usuario FROM usuarios WHERE token = :token)");
         $cons->bindParam(':token', $token);
         try{
@@ -173,6 +176,7 @@
     }
 
     public function borrar_token($token){
+        // Función para borrar el token una vez confirmada la cuenta
         $cons = $this -> conexion -> prepara ("UPDATE usuarios SET token = '' WHERE id_usuario = (SELECT id_usuario FROM usuarios WHERE token = :token)");
         $cons->bindParam(':token', $token);
         try{
@@ -188,6 +192,7 @@
 
 
     public function verificarConfirmacion($email) {
+        // Función para verificar el email
         $sql = $this->conexion->prepara("SELECT confirmado FROM usuarios WHERE email = :email");
         $sql->bindParam(':email', $email);
     
@@ -201,8 +206,8 @@
         }
     }
 
-    public function verificarSancion($idUsuario)
-    {
+    public function verificarSancion($idUsuario){
+        // Función para verificar la sanción
         try {
             $sql = $this->conexion->prepara("SELECT estado FROM sanciones WHERE id_usuario = :id_usuario");
             $sql->bindParam(':id_usuario', $idUsuario);
@@ -229,14 +234,4 @@
             return false; // Indicar que hubo un error al verificar la sanción
         }
     }
-    
-
-        /*
-        public function getAll(): ?array{
-            $this -> conexion -> consulta('SELECT * FROM usuarios');
-            return $this -> extraer_todos();
-        }
-        */
-
-
     }

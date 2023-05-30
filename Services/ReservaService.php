@@ -14,11 +14,12 @@
             }
 
             public function comprobar_reserva($id_usuario,$id_actividad,$fecha_reserva){
+                // Función que llama al metodo del repositorio comprobar reserva
                 return $this -> repository -> comprobar_reserva($id_usuario,$id_actividad,$fecha_reserva);
             }
 
             public function realizar_reserva(array $data){
-                //funcion que llama al metodo del repositorio realizar_reserva
+                // Función que llama al metodo del repositorio realizar_reserva
                 $this -> repository -> realizar_reserva($data);
             }
         
@@ -32,17 +33,17 @@
             }
 
             public function ultimoPedidoInsertado(){
-                // funcion que llama al metodo del repositorio ultimopedidoinsertado devuelve el id del ultimo pedido
+                // Función que llama al metodo del repositorio ultimopedidoinsertado devuelve el id del ultimo pedido
                 return $this -> repository -> ultimoPedidoInsertado();
             }
            
             public function consultar_reservas($id):?array{
-                // funcion que llama al metodo del repositorio consultar_pedidos
+                // Función que llama al metodo del repositorio consultar_pedidos
                 return $this -> repository -> obtener_reservas_usuario_conectado($id);
             }
 
             public function sacarListadoAsistentes($id_actividad){
-                //Funcion para llamar al metodo del repositorio sacarListadoAsistentes
+                // Función para llamar al metodo del repositorio sacarListadoAsistentes
                 return $this -> repository -> sacarListadoAsistentes($id_actividad);
             }
 

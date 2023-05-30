@@ -17,12 +17,14 @@
         }
         
         public function inicio(){
+            // Función para listar las categorias
             $categorias = $this -> categoria -> listar_categorias();
             $this -> pages -> render('layout/header', ["categorias" => $categorias]);
         }
 
 
         public function registrar(): void{
+            // Función para registrarse en la aplicación
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $email = $_POST['data']['email'];
                 $datos = $_POST['data'];

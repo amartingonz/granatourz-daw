@@ -13,24 +13,9 @@
         }
 
 
-        // public function comprobar_reserva($data){
-        //     // COMPRUEBA SI UN USUARIO TIENE YA UNA RESERVA EN ESA ACTIVIDAD
-        //     $sql = "SELECT COUNT(*) AS num_reservas FROM reservas WHERE id_usuario = :id_usuario AND id_actividad = :id_actividad";
-        //     $consulta = $this -> conexion -> prepara($sql);
-        //     $consulta -> bindParam(':id_usuario', $data['id_usuario'], PDO::PARAM_INT);
-        //     $consulta -> bindParam(':id_actividad', $data['id_actividad'], PDO::PARAM_STR);
-        //     $consulta -> execute();
-        //     $resultado = $consulta -> fetch(PDO::FETCH_ASSOC);
-        //     $num_reservas = $resultado['num_reservas'];
-        //     if ($num_reservas > 0) {
-        //         return true; // Si el usuario tiene al menos una reserva para la actividad especificada, devuelve true
-        //     } else {
-        //         return false; // Si el usuario no tiene ninguna reserva para la actividad especificada, devuelve false
-        //     }
-        // }
-        
 
         public function comprobar_fecha_reserva($data){
+            // Función que compueba la fecha de la reserva para ver si es válida
             try {
                 $sql = "SELECT fecha_reserva FROM reservas WHERE id_usuario = :id_usuario AND id_actividad = :id_actividad";
                 $stmt = $this->conexion->prepara($sql);
@@ -54,7 +39,7 @@
 
 
         public function comprobar_reserva($id_usuario,$id_actividad,$fecha_reserva){
-            // COMPRUEBA SI UN USUARIO TIENE YA UNA RESERVA EN ESA ACTIVIDAD
+            // Función que comprueba si un usuario tiene ya una reserva en esa actividad
             $sql = "SELECT COUNT(*) AS num_reservas FROM reservas WHERE id_usuario = :id_usuario AND id_actividad = :id_actividad AND fecha_reserva = :fecha_reserva";
             $consulta = $this->conexion->prepara($sql);
             $consulta->bindParam(':id_usuario', $id_usuario, PDO::PARAM_INT);
@@ -72,7 +57,7 @@
         
 
         public function realizar_reserva(array $data){
-                //Funcion para crear el pedido se le pasa los datos mediante un array recogido del formulario
+                // Función para crear el pedido se le pasa los datos mediante un array recogido del formulario
                 $sql = ("INSERT INTO reservas (id_usuario,id_actividad,fecha_reserva) VALUES (:id_usuario,:id_actividad,:fecha_reserva)");
                 $fecha = date("Y-m-d");
                 $consult = $this -> conexion -> prepara($sql);
@@ -153,14 +138,8 @@
         }
         
 
-        public function ultimoPedidoInsertado(){
-            //Funcion para sacar el ultimo pedido insertado
-            $sql = ("SELECT MAX(id) FROM pedidos");
-            $this -> conexion -> consulta($sql);
-            return $this -> conexion -> extraer_registro();
-        }
-
         public function obtener_reservas_usuario_conectado($id_usuario) {
+            // Función para obtener las reservas del usuario que esta conectado por el id
             try {
                 $sql = "SELECT r.id_reserva, a.id_actividad, a.nombre,a.duracion,a.descripcion,a.localizacion,a.hora,a.fecha,a.capacidad,a.url, r.fecha_reserva
                         FROM reservas r
@@ -197,7 +176,7 @@
         
 
         public function comprobarReservas($id_actividad){
-            // Funcion para comprobar que hay reservas para dicha actividad pasandole la id de la actividad
+            // Función para comprobar que hay reservas para dicha actividad pasandole la id de la actividad
             try {
                 $sql = "SELECT COUNT(*) as total_reservas FROM reservas WHERE id_actividad = :id_actividad";
                 $stmt = $this->conexion->prepara($sql);

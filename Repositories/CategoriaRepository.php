@@ -14,7 +14,7 @@
 
         
         public function crear_categoria(string $data):void{
-            // Funcion para crear categorias con la consulta INSERT
+            // Función para crear categorias con la consulta INSERT
             $sql = ("INSERT INTO categorias (nombre) VALUES (:nombre)");
             $consult = $this -> conexion -> prepara($sql);
             $consult -> bindParam(':nombre',$data,PDO::PARAM_STR);
@@ -26,13 +26,13 @@
         }
 
         public function getAll():? array{
-            // Funcion para conseguir un array de todos los campos de la tabla categorias
+            // Función para conseguir un array de todos los campos de la tabla categorias
             $this -> conexion -> consulta('SELECT * FROM categorias');
             return $this -> conexion -> extraer_todos();
         }
 
         public function comprobarCategoria($categoria):bool{
-            // Funcion para comprobar si existe una categoria
+            // Función para comprobar si existe una categoria
             $result = false;
             $cons = $this->conexion->prepara("SELECT * FROM categorias WHERE nombre = :nombre");
             $cons->bindParam(':nombre', $categoria);
@@ -49,6 +49,7 @@
         
 
         public function buscarIdCategoria($nombre){
+            // Función para buscar el id de las categorias por nombre
             try {
                 $sql = "SELECT id_categoria FROM categorias WHERE nombre = :nombre";
                 $stmt = $this->conexion->prepara($sql);
@@ -62,6 +63,7 @@
         
 
         public static function obtenerCategorias(){
+            // Función para obtener las categorias
             $categoria=new CategoriaRepository();
             $categoria->conexion->consulta("SELECT * FROM categorias ORDER BY id_categoria");
             return $categoria->extraer_todos(); 

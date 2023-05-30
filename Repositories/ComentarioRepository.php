@@ -50,6 +50,7 @@ use Lib\BaseDatos;
         }
 
         public function eliminar_comentario($id_comentario){
+            // Función para eliminar los comentarios
             try {
                 $sql = "DELETE FROM comentarios WHERE id_comentario = :id_comentario";
                 $stmt = $this->conexion->prepara($sql);
@@ -68,12 +69,13 @@ use Lib\BaseDatos;
         
         
         public function getAll():? array{
-            // Funcion para conseguir un array de todos los campos de la tabla categorias
+            // Función para conseguir un array de todos los campos de la tabla categorias
             $this -> conexion -> consulta('SELECT * FROM comentarios');
             return $this -> conexion -> extraer_todos();
         }
 
         public static function obtenerComentarios(){
+            // Función para obtener los comentarios
             $comentario=new ComentarioRepository();
             $comentario-> conexion -> consulta("SELECT * FROM comentarios ORDER BY id_comentario");
             return $comentario->extraer_todos(); 

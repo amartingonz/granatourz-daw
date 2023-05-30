@@ -24,6 +24,7 @@
             }
 
             public function buscarIdCategoria($nombre){
+                // Función que llama al metodo del repositorio buscarIdCategoria
                 return $this -> repository -> buscarIdCategoria($nombre);
             }
         }

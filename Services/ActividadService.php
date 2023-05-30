@@ -10,15 +10,17 @@
             }
         
             public function crear_actividad(array $data):void {
-                // Funcion para crear actividad que usa el metodo del repositorio crear_actividad, se le pasa un array de datos
+                // Función para crear actividad que usa el metodo del repositorio crear_actividad, se le pasa un array de datos
                 $this -> repository -> crear_actividad($data);
             }
 
             public function ver_actividad($id_actividad){
+                // Función que llama al metodo del repositorio ver_actividad
                 return $this -> repository -> ver_actividad($id_actividad);
             }
             
             public function sacarListadoActividades($id_usuario){
+                // Función que llama al metodo del repositorio sacarListadoActividades
                 return $this -> repository -> sacarListadoActividades($id_usuario);
             }
 
@@ -42,25 +44,23 @@
             }
 
             public function listarXcategorias($data):? array{
-                // Funcion para listar actividades que usa el metodo del repositorio listarXcategorias, devuelve un array
+                // Función para listar actividades que usa el metodo del repositorio listarXcategorias, devuelve un array
                 return $this -> repository -> listarXcategorias($data);
 
             }
 
-            public function ver_carrito($cod):?array{
-                
-                return $this -> repository -> buscarActividad($cod);
-            }
-
             public function sacarNombre($id):?array{
+                // Función para llamar al metodo del repositorio sacarNombre
                 return $this -> repository -> sacarNombre($id);
             }
 
             public function comprobarNombreActividad($nombre){
+                // Función para comprobar el nombre de la actividad
                 return $this -> repository -> comprobarNombreActividad($nombre);
             }
             
             public function obtenerCapacidad($id){
+                // Función que llama al metodo del repositorio obtenerCapacidad
                 return $this -> repository -> obtenerCapacidad($id);
             }
             public function borrar_actividad($id):void{

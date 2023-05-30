@@ -9,7 +9,7 @@ function validarFormulario_editar_datos() {
   var password = formulario.elements['data[password]'].value;
 
   // Validar el campo nombre (solo letras)
-  var nombreRegex = /^[a-zA-Z\sáéíóúÁÉÍÓÚüÜñÑ]+$/;
+  var nombreRegex = /^[a-zA-Z\sáéíóúÁÉÍÓÚüÜñÑ\s]+$/;
   if (!nombreRegex.test(nombre)) {
     formulario.elements['data[nombre]'].nextElementSibling.textContent = "El campo de nombre solo puede contener letras.";
     return false;
@@ -18,7 +18,7 @@ function validarFormulario_editar_datos() {
   }
 
   // Validar el campo apellidos (letras, espacios y tildes)
-  var apellidosRegex = /^[a-zA-Z\sáéíóúÁÉÍÓÚüÜñÑ]+$/;
+  var apellidosRegex = /^[a-zA-Z\sáéíóúÁÉÍÓÚüÜñÑ\s]+$/;
   if (!apellidosRegex.test(apellidos)) {
     formulario.elements['data[apellidos]'].nextElementSibling.textContent = "El campo de apellidos solo puede contener letras, espacios y tildes.";
     return false;

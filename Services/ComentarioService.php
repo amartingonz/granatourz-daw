@@ -10,10 +10,12 @@
             }
         
             public function crear_comentario($data){
+                // Función que llama al metodo del repositorio crear_comentario
                 return $this -> repository -> crear_comentario($data);
             }
 
             public function eliminar_comentario($id_comentario){
+                // Función que llama al metodo del repositorio eliminar_comentario
                 return $this -> repository -> eliminar_comentario($id_comentario);
             }
 

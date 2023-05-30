@@ -40,22 +40,27 @@
             }
 
             public function guardarToken($id,$token):bool{
+                // Función que llama al metodo del repositorio guardarToken
                 return $this -> repository -> guardarToken($id,$token);
             }
 
             public function confirmarEmail($token):bool{
+                // Función que llama al metodo del repositorio confirmarEmail
                 return $this -> repository -> confirmarEmail($token);
             }
 
             public function borrar_token($token):bool{
+                // Función que llama al metodo del repositorio borrar_token
                 return $this -> repository -> borrar_token($token);
             }
 
             public function verificarConfirmacion($email) {
+                // Función que llama al metodo del repositorio verificarConfirmacion
                 return $this -> repository -> verificarConfirmacion($email);
             }
 
             public function verificarSancion($idUsuario){
+                // Función que llama al metodo del repositorio verificarSancion
                 return $this -> repository -> verificarSancion($idUsuario);
             }
 

@@ -25,6 +25,7 @@
         }
 
         public function ver_actividad(){
+            // Función para mostrar los datos de la actividad
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $id = $_POST['id_actividad'];
                 $actividades = $this -> service -> ver_actividad($id);
@@ -46,8 +47,9 @@
         }
 
        
-        public function crear_actividad()
-        {
+        public function crear_actividad(){
+            // Función para crear una actividad
+
             if (!file_exists('images')) {
                 mkdir('images');
             }
@@ -92,14 +94,15 @@
         }
         
 
-    private function mostrarMensaje($mensaje)
-    {
-        $this->pages->render('layout/mensaje', ["mensaje" => $mensaje]);
-    }
+        private function mostrarMensaje($mensaje){
+            // Función para mostrar el mensaje
+            $this->pages->render('layout/mensaje', ["mensaje" => $mensaje]);
+        }
 
         
         
         public function editar_actividad2(){
+            // Función para editar actividades
             if (!file_exists('images')) {
                 mkdir('images');
             }
@@ -165,7 +168,6 @@
 
         public function sacarListadoAsistentes(){
             // Función para sacar el listado de asistentes
-            
             $id_usuario = $_SESSION['id_organizador'];
             $actividades = $this -> service -> sacarListadoActividades($id_usuario);           
             $this -> pages -> render('organizadores/ver_listado', ["actividades" => $actividades]);

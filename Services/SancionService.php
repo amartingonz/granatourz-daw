@@ -10,6 +10,7 @@
             }
 
             public function proponer_sancion($data) {
+                // Función que llama al metodo del repositorio proponer_sancion
                 return $this -> repository -> proponer_sancion($data);
             }
 
@@ -17,6 +18,7 @@
                 return $this-> repository -> getAll();
             }
             public function confirmar_sancion($data) {
+                // Función que llama al metodo del repositorio confirmar_sancion
                 return $this -> repository -> confirmar_sancion($data);
             }
     }

@@ -21,15 +21,21 @@ class ReservaController{
 
 
     public function consultar_reservas(){
-        // Funcion que llama al servicio para consutar las actividades de cada usuario pasandole la sesion del usuario actual, y con el render muestra la vista con las actividades
+        // Función que llama al servicio para consultar las actividades de cada usuario pasándole la sesión del usuario actual,
+        // y con el render muestra la vista con las actividades
         if (isset($_SESSION['id'])) {
             $reservas = $this->service->consultar_reservas($_SESSION['id']);
-            $this -> pages -> render('reservas/mis_reservas',['reservas' => $reservas]);
-        }else{
-            $this -> pages -> render('layout/mensaje',["mensaje" => "No hay actividades reservadas."]);
+    
+            if (empty($reservas)) {
+                $this->pages->render('layout/mensaje', ["mensaje" => "No hay actividades reservadas."]);
+            } else {
+                $this->pages->render('reservas/mis_reservas', ['reservas' => $reservas]);
+            }
+        } else {
+            $this->pages->render('layout/mensaje', ["mensaje" => "No hay actividades reservadas."]);
         }
     }
-
+    
 
     public function realizar_reserva(){
         // Funcion que realiza la reserva, comprueba si hay plazas disponibles y si no tienes otra actividad el mismo dia.
@@ -51,6 +57,7 @@ class ReservaController{
     }
 
     public function cancelar_reserva(){
+        // Funcion encargada de anular la reserva desde la vista listado de los organizadores
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $datos = $_POST['data'];
             $this -> service -> cancelar_reserva($datos);
@@ -59,6 +66,7 @@ class ReservaController{
     }
 
     public function cancelar_reserva_usuario(){
+        // Funcion para anular la reserva desde la vista del propio usuario
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $datos = $_POST['data'];
             $this -> service -> cancelar_reserva_usuario($datos);

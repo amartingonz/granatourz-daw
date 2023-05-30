@@ -46,8 +46,6 @@
                         $mensaje = '<b>Se ha subido correctamente la imagen.</b>';
                         $this->pages->render('layout/mensaje', ["mensaje" => $mensaje]);
                         header('Location:' . $_ENV['BASE_URL']);
-                        // Mostramos la imagen subida
-                        // echo '<p><img src="../images/' . $archivo . '"></p>';
                     } else {
                         // Si no se ha podido subir la imagen, mostramos un mensaje de error
                         $mensajeError = '<b>Ocurrió algún error al subir el fichero. No pudo guardarse.</b>';
@@ -65,7 +63,7 @@
         
 
         public function eliminar_comentario(){
-            // Funcion para eliminar los comentarios
+            // Función para eliminar los comentarios
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $id_comentario = $_POST['id_comentario'];
                 $this -> service -> eliminar_comentario($id_comentario);
@@ -76,7 +74,7 @@
         }
 
         public function listar_comentarios():?array{
-            // Funcion para listar comentarios.
+            // Función para listar comentarios.
             $comentarios = $this-> service -> getAll();
             return $comentarios;
         }

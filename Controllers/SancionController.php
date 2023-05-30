@@ -39,7 +39,6 @@ class SancionController{
                 $this -> pages -> render('layout/mensaje',["mensaje" => "No se ha podido completar la sanción"]);
             }
         }else{
-             // Agregar los renders faltantes
              $sanciones = $this -> service -> getAll();
              $this -> pages -> render('sanciones/ver_propuestas', ["sanciones" => $sanciones]);
         }

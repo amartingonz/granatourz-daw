@@ -19,19 +19,19 @@ function validarFormularioRegistro() {
     return false;
   }
 
-  // Validar Nombre
-  var nombrePattern = /^[a-zA-Z]+$/;
+  // Validar Nombre y Apellidos
+  var nombreApellidosRegex = /^[a-zA-Z\sáéíóúÁÉÍÓÚüÜñÑ',.-]+$/; // Expresión regular actualizada
 
-  if (!nombrePattern.test(formulario['data[nombre]'].value)) {
-    document.getElementById('nombre-error').textContent = 'El nombre solo debe contener letras.';
+  var nombre = formulario.elements.nombre.value;
+  var apellidos = formulario.elements.apellidos.value;
+
+  if (!nombreApellidosRegex.test(nombre)) {
+    document.getElementById('nombre-error').textContent = 'El nombre solo debe contener letras y espacios.';
     return false;
   }
 
-  // Validar Apellidos (opcional)
-  var apellidosPattern = /^[a-zA-Z\sáéíóúÁÉÍÓÚ]+$/;
-
-  if (formulario['data[apellidos]'].value && !apellidosPattern.test(formulario['data[apellidos]'].value)) {
-    document.getElementById('apellidos-error').textContent = 'Los apellidos solo deben contener letras.';
+  if (apellidos && !nombreApellidosRegex.test(apellidos)) {
+    document.getElementById('apellidos-error').textContent = 'Los apellidos solo deben contener letras y espacios.';
     return false;
   }
 

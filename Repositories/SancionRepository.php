@@ -41,7 +41,7 @@
         }
         
         public function getAll():? array{
-            // Funcion para conseguir un array de todos los campos de la tabla categorias
+            // Función para conseguir un array de todos los campos de la tabla categorias
             $this -> conexion -> consulta('SELECT * FROM sanciones');
             return $this -> conexion -> extraer_todos();
         }
