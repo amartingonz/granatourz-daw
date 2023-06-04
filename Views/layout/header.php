@@ -33,81 +33,80 @@
         <script src="js-script/formularios/formulario_crear_actividad.js" defer></script>
         <script src="js-script/formularios/formulario_editar_actividad3.js" defer></script>
         <script src="js-script/formularios/formulario_contacto.js" defer></script>
-
     </head>
     <body>    
-   <header>
-   <nav class="navbar navbar-expand-md navbar-dark bg-primary p-4">
-  <a class="navbar-brand" href="<?= $_ENV['BASE_URL']?>">GranaTourz</a>
+    <header>
+      <nav class="navbar navbar-expand-md navbar-dark bg-primary p-4">
+        <a class="navbar-brand" href="<?= $_ENV['BASE_URL']?>">GranaTourz</a>
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-label="Abrir menú de navegación">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-  <div class="collapse navbar-collapse" id="navbarContent">
-    <ul class="navbar-nav mr-auto">
-      <?php if(!isset($_SESSION['usuario']) && !isset($_SESSION['admin'])  && !isset($_SESSION['organizador'])){?>
-        <li class="nav-item">
-          <a class="nav-link" href="<?= $_ENV['BASE_URL']?>usuarios_registrar">Registrar</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<?= $_ENV['BASE_URL']?>usuarios_loguear">Login</a>
-        </li>
-      <?php }?>
-      
-      <?php if(isset($_SESSION['admin'])):?>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Admin
-          </a>
-          <div class="dropdown-menu" aria-labelledby="adminDropdown">
-            <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>crear_categoria">Crear Categorias</a>
-            <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>crear_actividad">Agregar Actividad</a>
-            <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>editar_actividad">Editar Actividad</a>
-            <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>sancionar_usuario">Sancionar Usuario</a>
-            <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>editar_datos">Editar Datos</a>
-          </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<?= $_ENV['BASE_URL']?>cerrar_sesion">Cerrar Sesion</a>
-        </li>
-      <?php endif;?>
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav mr-auto">
+          <?php if(!isset($_SESSION['usuario']) && !isset($_SESSION['admin'])  && !isset($_SESSION['organizador'])){?>
+            <li class="nav-item">
+              <a class="nav-link" href="<?= $_ENV['BASE_URL']?>usuarios_registrar">Registrar</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="<?= $_ENV['BASE_URL']?>usuarios_loguear">Login</a>
+            </li>
+          <?php }?>
+          
+          <?php if(isset($_SESSION['admin'])):?>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Admin
+              </a>
+              <div class="dropdown-menu" aria-labelledby="adminDropdown">
+                <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>crear_categoria">Crear Categorias</a>
+                <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>crear_actividad">Agregar Actividad</a>
+                <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>editar_actividad">Editar Actividad</a>
+                <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>sancionar_usuario">Sancionar Usuario</a>
+                <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>editar_datos">Editar Datos</a>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="<?= $_ENV['BASE_URL']?>cerrar_sesion">Cerrar Sesion</a>
+            </li>
+          <?php endif;?>
 
-      <?php if(isset($_SESSION['organizador'])): ?>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="organizadorDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Organizador
-          </a>
-          <div class="dropdown-menu" aria-labelledby="organizadorDropdown">
-            <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>crear_actividad">Agregar Actividad</a>
-            <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>editar_actividad">Editar Actividad</a>
-            <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>ver_listado">Ver listado</a>
-            <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>editar_datos">Editar Datos</a>
-          </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<?= $_ENV['BASE_URL']?>cerrar_sesion">Cerrar Sesión</a>
-        </li>
-      <?php endif; ?>
+          <?php if(isset($_SESSION['organizador'])): ?>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="organizadorDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Organizador
+              </a>
+              <div class="dropdown-menu" aria-labelledby="organizadorDropdown">
+                <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>crear_actividad">Agregar Actividad</a>
+                <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>editar_actividad">Editar Actividad</a>
+                <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>ver_listado">Ver listado</a>
+                <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>editar_datos">Editar Datos</a>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="<?= $_ENV['BASE_URL']?>cerrar_sesion">Cerrar Sesión</a>
+            </li>
+          <?php endif; ?>
 
 
-      <?php if(isset($_SESSION['usuario'])):?>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="usuarioDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Usuario
-          </a>
-          <div class="dropdown-menu" aria-labelledby="usuarioDropdown">
-            <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>consultar_reservas">Ver reservas</a>
-            <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>editar_datos">Editar Datos</a>
-          </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<?= $_ENV['BASE_URL']?>cerrar_sesion">Cerrar Sesion</a>
-        </li>
-        <?php endif;?>
-    </ul>
-  </div>
-</nav>
+          <?php if(isset($_SESSION['usuario'])):?>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="usuarioDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Usuario
+              </a>
+              <div class="dropdown-menu" aria-labelledby="usuarioDropdown">
+                <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>consultar_reservas">Ver reservas</a>
+                <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>editar_datos">Editar Datos</a>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="<?= $_ENV['BASE_URL']?>cerrar_sesion">Cerrar Sesion</a>
+            </li>
+            <?php endif;?>
+        </ul>
+      </div>
+    </nav>
 
     </header>
     <body class="d-flex flex-column min-vh-100">
@@ -134,7 +133,7 @@
 
 
 
-        </form>
-        </ul>
+  </form>
+  </ul>
   
 

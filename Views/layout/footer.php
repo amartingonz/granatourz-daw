@@ -10,9 +10,9 @@
       </div>
       <div class="col-md-6 d-flex align-items-center justify-content-center justify-content-md-end">
         <ul class="list-inline ml-3">
-          <li class="list-inline-item"><a href="#" class="text-light"><i class="fab fa-facebook"></i></a></li>
-          <li class="list-inline-item"><a href="#" class="text-light"><i class="fab fa-twitter"></i></a></li>
-          <li class="list-inline-item"><a href="#" class="text-light"><i class="fab fa-instagram"></i></a></li>
+          <li class="list-inline-item"><a href="#" class="text-light" aria-label="Enlace a Facebook"><i class="fab fa-facebook"></i></a></li>
+          <li class="list-inline-item"><a href="#" class="text-light" aria-label="Enlace a Twitter"><i class="fab fa-twitter"></i></a></li>
+          <li class="list-inline-item"><a href="#" class="text-light" aria-label="Enlace a Instagram"><i class="fab fa-instagram"></i></a></li>
         </ul>
       </div>
     </div>

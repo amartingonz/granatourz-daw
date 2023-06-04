@@ -233,8 +233,8 @@
     Router::dispatch();
 ?>
 </div>
-<button onclick="scrollToTop()" id="btnToTop" class="btn btn-primary" style="position: fixed; bottom: 20px; right: 20px; display: none;">
-  <i class="fas fa-arrow-up"></i>
+<button onclick="scrollToTop()" id="btnToTop" class="btn btn-primary" style="position: fixed; bottom: 20px; right: 20px; display: none;" aria-label="Volver arriba">
+    <span class="fas fa-arrow-up" aria-hidden="true"></span>
 </button>
 <?php
     require_once '../views/layout/footer.php';
