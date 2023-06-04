@@ -14,11 +14,11 @@ use Lib\BaseDatos;
             $this-> conexion = new BaseDatos();
         }
 
-        public function crear_comentario($data){
+        public function crear_comentario($data) {
             // Función para crear un comentario
             $archivo = $_FILES['data']['name'];
             $fecha = date("Y-m-d");
-
+        
             try {
                 $sql = "INSERT INTO comentarios (id_usuario, id_actividad, url, fecha, texto, valoracion) VALUES (:id_usuario, :id_actividad, :url, :fecha, :texto, :valoracion)";
         
@@ -32,14 +32,21 @@ use Lib\BaseDatos;
                 $stmt->bindParam(':fecha', $fecha);
                 $stmt->bindParam(':texto', $data['texto']);
                 $stmt->bindParam(':valoracion', $data['valoracion']);
-
         
                 // Ejecutar la consulta
                 if ($stmt->execute()) {
                     // Comentario creado exitosamente
+        
+                    // Cerrar la consulta
+                    $stmt->closeCursor();
+        
                     return true;
                 } else {
                     // Error al crear el comentario
+        
+                    // Cerrar la consulta
+                    $stmt->closeCursor();
+        
                     return false;
                 }
             } catch (PDOException $e) {
@@ -48,6 +55,7 @@ use Lib\BaseDatos;
                 return false;
             }
         }
+        
 
         public function eliminar_comentario($id_comentario){
             // Función para eliminar los comentarios

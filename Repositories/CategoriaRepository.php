@@ -12,18 +12,21 @@
             $this-> conexion = new BaseDatos();
         }
 
-        
-        public function crear_categoria(string $data):void{
+        public function crear_categoria(string $data): void {
             // Función para crear categorias con la consulta INSERT
-            $sql = ("INSERT INTO categorias (nombre) VALUES (:nombre)");
-            $consult = $this -> conexion -> prepara($sql);
-            $consult -> bindParam(':nombre',$data,PDO::PARAM_STR);
-            try{
-                $consult -> execute();
-            }catch(PDOException $err){
-                echo "Error".$err -> getMessage();
+            $sql = "INSERT INTO categorias (nombre) VALUES (:nombre)";
+            $consult = $this->conexion->prepara($sql);
+            $consult->bindParam(':nombre', $data, PDO::PARAM_STR);
+            try {
+                $consult->execute();
+        
+                // Cerrar la consulta
+                $consult->closeCursor();
+            } catch (PDOException $err) {
+                echo "Error" . $err->getMessage();
             }
         }
+        
 
         public function getAll():? array{
             // Función para conseguir un array de todos los campos de la tabla categorias
@@ -31,35 +34,45 @@
             return $this -> conexion -> extraer_todos();
         }
 
-        public function comprobarCategoria($categoria):bool{
+        public function comprobarCategoria($categoria): bool {
             // Función para comprobar si existe una categoria
             $result = false;
             $cons = $this->conexion->prepara("SELECT * FROM categorias WHERE nombre = :nombre");
             $cons->bindParam(':nombre', $categoria);
-            try{
+            try {
                 $cons->execute();
-                if($cons && $cons->rowCount() == 1){
+                if ($cons && $cons->rowCount() == 1) {
                     $result = true;
                 }
-            } catch(PDOException $err){
+        
+                // Cerrar la consulta
+                $cons->closeCursor();
+            } catch (PDOException $err) {
                 $result = false;
             }
             return $result;
         }
         
+        
 
-        public function buscarIdCategoria($nombre){
+        public function buscarIdCategoria($nombre) {
             // Función para buscar el id de las categorias por nombre
             try {
                 $sql = "SELECT id_categoria FROM categorias WHERE nombre = :nombre";
                 $stmt = $this->conexion->prepara($sql);
                 $stmt->bindParam(':nombre', $nombre);
                 $stmt->execute();
-                return $stmt->fetchColumn(); // devuelve el primer valor de la primera fila
+                $id_categoria = $stmt->fetchColumn();
+        
+                // Cerrar la consulta
+                $stmt->closeCursor();
+        
+                return $id_categoria;
             } catch (PDOException $e) {
                 echo "Error al buscar ID de categoría: " . $e->getMessage();
             }
         }
+        
         
 
         public static function obtenerCategorias(){

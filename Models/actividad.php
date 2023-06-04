@@ -37,23 +37,6 @@ class Actividad{
                 );
             }
 
-            // public function getAll(): ?array{
-            //     // DEVUELVE UN ARRAY DE PRODUCTOS
-            //     $productos = [];
-            //     $productos_datos = $this -> conexion -> extraer_todos();
-            //     foreach($productos_datos as $datos){
-            //         $productos[] = Productos::fromArray($datos);
-            //     }
-            //     return $productos;
-            // }
-
-       
-
-
-
-
-
-
 
         /**
          * Get the value of id_actividad

@@ -29,6 +29,9 @@
                 // Ejecutar la consulta
                 $success = $consult->execute();
         
+                // Cerrar la consulta
+                $consult->closeCursor();
+        
                 // Devolver true si la consulta se ejecutó correctamente
                 return $success;
             } catch (PDOException $e) {
@@ -39,6 +42,7 @@
                 return false;
             }
         }
+        
         
         public function getAll():? array{
             // Función para conseguir un array de todos los campos de la tabla categorias
@@ -47,15 +51,19 @@
         }
         
         public function confirmar_sancion($data) {
-            // Esta función sirve para que los administradores puedan confirmar las propuestas de sanción        
+            // Esta función sirve para que los administradores puedan confirmar las propuestas de sanción
             // Preparar la consulta
-            $sql = "UPDATE sanciones SET estado = 1 WHERE id_sancion=:id_sancion";
+            $sql = "UPDATE sanciones SET estado = 1 WHERE id_sancion = :id_sancion";
             $consult = $this->conexion->prepara($sql);
-            $consult->bindParam(':id_sancion',$data['id_sancion'], PDO::PARAM_INT);
+            $consult->bindParam(':id_sancion', $data['id_sancion'], PDO::PARAM_INT);
         
             try {
                 // Ejecutar la consulta
                 $success = $consult->execute();
+        
+                // Cerrar la consulta
+                $consult->closeCursor();
+        
                 // Devolver true si la consulta se ejecutó correctamente
                 return $success;
             } catch (PDOException $e) {
@@ -66,6 +74,7 @@
                 return false;
             }
         }
+        
         
 
         

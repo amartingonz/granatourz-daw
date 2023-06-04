@@ -31,14 +31,9 @@
                 // Función para cancelar las reservas desde un usuario propio en la vista de mis_reservas
                 $this -> repository -> cancelar_reserva_usuario($data);
             }
-
-            public function ultimoPedidoInsertado(){
-                // Función que llama al metodo del repositorio ultimopedidoinsertado devuelve el id del ultimo pedido
-                return $this -> repository -> ultimoPedidoInsertado();
-            }
            
             public function consultar_reservas($id):?array{
-                // Función que llama al metodo del repositorio consultar_pedidos
+                // Función que llama al metodo del repositorio consultar_reservas
                 return $this -> repository -> obtener_reservas_usuario_conectado($id);
             }
 

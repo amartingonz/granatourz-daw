@@ -1,14 +1,16 @@
 function validarFormulario_crear_actividad() {
   // Validación del nombre de la actividad
-  var nombre = document.getElementById('nombre').value;
-  if (nombre.trim() === '') {
-    document.getElementById('nombre-error').textContent = 'Este campo es obligatorio';
-    return false;
-  }
-  if (!/^[a-zA-Z\sáéíóúÁÉÍÓÚüÜñÑ]+$/.test(nombre)) {
-    document.getElementById('nombre-error').textContent = 'Ingrese un nombre válido (solo letras, espacios y tildes)';
-    return false;
-  }
+    var nombre = document.getElementById('nombre').value;
+    if (nombre.trim() === '') {
+      document.getElementById('nombre-error').textContent = 'Este campo es obligatorio';
+      return false;
+    }
+    if (!/^[\w\sáéíóúÁÉÍÓÚüÜñÑ'-]*$/u.test(nombre)) {
+      document.getElementById('nombre-error').textContent = 'Ingrese un nombre válido (solo letras, espacios, tildes, guiones y comillas)';
+      return false;
+    }
+
+
 
   // Validación de la duración
   var duracion = document.getElementById('duracion').value;
@@ -21,16 +23,18 @@ function validarFormulario_crear_actividad() {
     return false;
   }
 
-  // Validación de la localización
-  var localizacion = document.getElementById('localizacion').value;
-  if (localizacion.trim() === '') {
-    document.getElementById('localizacion-error').textContent = 'Este campo es obligatorio';
-    return false;
-  }
-  if (!/^[a-zA-Z\sáéíóúÁÉÍÓÚüÜñÑ]+$/.test(localizacion)) {
-    document.getElementById('localizacion-error').textContent = 'Ingrese una localización válida (solo letras, espacios y tildes)';
-    return false;
-  }
+    // Validación de la localización
+    var localizacion = document.getElementById('localizacion').value;
+    if (localizacion.trim() === '') {
+      document.getElementById('localizacion-error').textContent = 'Este campo es obligatorio';
+      return false;
+    }
+    if (!/^[\w\sáéíóúÁÉÍÓÚüÜñÑ-]+$/.test(localizacion)) {
+      document.getElementById('localizacion-error').textContent = 'Ingrese una localización válida (solo letras, espacios, guiones y tildes)';
+      return false;
+    }
+
+
 
   // Validación de la hora
   var hora = document.getElementById('hora').value;

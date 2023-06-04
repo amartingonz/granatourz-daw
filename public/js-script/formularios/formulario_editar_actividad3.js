@@ -25,8 +25,8 @@ function validarFormulario_editar_actividad3() {
     document.getElementById('nombre-error').textContent = 'Este campo es obligatorio';
     return false;
   }
-  if (!/^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\s]+$/.test(nombre)) {
-    document.getElementById('nombre-error').textContent = 'Ingrese un nombre válido (solo letras, espacios y tildes)';
+  if (!/^[\w\sáéíóúÁÉÍÓÚüÜñÑ'-]*$/u.test(nombre)) {
+    document.getElementById('nombre-error').textContent = 'Ingrese un nombre válido (solo letras, espacios, tildes, guiones y comillas)';
     return false;
   }
 
@@ -63,12 +63,16 @@ function validarFormulario_editar_actividad3() {
   var contadorElement = document.getElementById('contador-caracteres');
   contadorElement.textContent = contadorCaracteres + '/' + caracteresMaximos + ' caracteres';
 
-  // Validación de la localización
-  var localizacion = document.getElementById('localizacion').value;
-  if (localizacion.trim() === '') {
-    document.getElementById('localizacion-error').textContent = 'Este campo es obligatorio';
-    return false;
-  }
+   // Validación de la localización
+   var localizacion = document.getElementById('localizacion').value;
+   if (localizacion.trim() === '') {
+     document.getElementById('localizacion-error').textContent = 'Este campo es obligatorio';
+     return false;
+   }
+   if (!/^[\w\sáéíóúÁÉÍÓÚüÜñÑ-]+$/.test(localizacion)) {
+     document.getElementById('localizacion-error').textContent = 'Ingrese una localización válida (solo letras, espacios, guiones y tildes)';
+     return false;
+   }
 
   // Validación de la hora
   var hora = document.getElementById('hora').value;

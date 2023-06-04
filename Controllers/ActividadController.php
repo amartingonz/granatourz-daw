@@ -35,7 +35,7 @@
             }
         }
 
-        public function borrar_producto(){
+        public function borrar_actividad(){
             // FUNCIÓN QUE LLAMA AL SERVICIO PARA ACTUALIZAR LA ACTIVIDAD A 0 DE CAPACIDAD ES DECIR SE ANULA.
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $id = $_POST['id_actividad'];
@@ -107,7 +107,7 @@
                 mkdir('images');
             }
         
-            // Función encargada de crear los productos, he usado métodos de la clase utils para validar los datos.
+            // Función encargada de crear los actividades, he usado métodos de la clase utils para validar los datos.
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 if (isset($_POST['editar_categoria'])) {
                     $catego_elegida = $_POST['data']['categoria'];

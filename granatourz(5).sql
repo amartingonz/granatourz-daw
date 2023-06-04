@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-05-2023 a las 12:11:30
+-- Tiempo de generación: 25-05-2023 a las 18:45:35
 -- Versión del servidor: 10.4.25-MariaDB
 -- Versión de PHP: 8.1.10
 
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `granatourz`
 --
-CREATE DATABASE IF NOT EXISTS `granatourz` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `granatourz`;
 
 -- --------------------------------------------------------
 
@@ -29,19 +27,18 @@ USE `granatourz`;
 -- Estructura de tabla para la tabla `actividades`
 --
 
-DROP TABLE IF EXISTS `actividades`;
-CREATE TABLE IF NOT EXISTS `actividades` (
-  `id_actividad` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `actividades` (
+  `id_actividad` int(11) NOT NULL,
   `id_categoria` int(11) NOT NULL,
-  `url` varchar(255) NOT NULL,
-  `duracion` time NOT NULL,
+  `id_usuario` int(11) NOT NULL,
   `nombre` varchar(255) NOT NULL,
+  `duracion` int(11) NOT NULL,
   `descripcion` varchar(255) NOT NULL,
   `localizacion` varchar(255) NOT NULL,
+  `hora` varchar(255) NOT NULL,
   `fecha` date NOT NULL,
   `capacidad` varchar(255) NOT NULL,
-  PRIMARY KEY (`id_actividad`),
-  KEY `fk_actividades_categorias` (`id_categoria`)
+  `url` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -50,11 +47,9 @@ CREATE TABLE IF NOT EXISTS `actividades` (
 -- Estructura de tabla para la tabla `categorias`
 --
 
-DROP TABLE IF EXISTS `categorias`;
-CREATE TABLE IF NOT EXISTS `categorias` (
-  `id_categoria` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(255) NOT NULL,
-  PRIMARY KEY (`id_categoria`)
+CREATE TABLE `categorias` (
+  `id_categoria` int(11) NOT NULL,
+  `nombre` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -63,17 +58,14 @@ CREATE TABLE IF NOT EXISTS `categorias` (
 -- Estructura de tabla para la tabla `comentarios`
 --
 
-DROP TABLE IF EXISTS `comentarios`;
-CREATE TABLE IF NOT EXISTS `comentarios` (
-  `id_comentario` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `comentarios` (
+  `id_comentario` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL,
   `id_actividad` int(11) NOT NULL,
   `url` varchar(255) DEFAULT NULL,
   `fecha` date NOT NULL,
   `texto` varchar(255) NOT NULL,
-  PRIMARY KEY (`id_comentario`),
-  KEY `fk_comentarios_usuarios` (`id_usuario`),
-  KEY `fk_comentarios_actividades` (`id_actividad`)
+  `valoracion` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -82,15 +74,12 @@ CREATE TABLE IF NOT EXISTS `comentarios` (
 -- Estructura de tabla para la tabla `reservas`
 --
 
-DROP TABLE IF EXISTS `reservas`;
-CREATE TABLE IF NOT EXISTS `reservas` (
-  `id_reserva` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `reservas` (
+  `id_reserva` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL,
   `id_actividad` int(11) NOT NULL,
   `fecha_reserva` date NOT NULL,
-  PRIMARY KEY (`id_reserva`),
-  KEY `fk_reservas_usuarios` (`id_usuario`),
-  KEY `fk_reservas_actividades` (`id_actividad`)
+  `estado` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -99,16 +88,13 @@ CREATE TABLE IF NOT EXISTS `reservas` (
 -- Estructura de tabla para la tabla `sanciones`
 --
 
-DROP TABLE IF EXISTS `sanciones`;
-CREATE TABLE IF NOT EXISTS `sanciones` (
-  `id_sancion` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `sanciones` (
+  `id_sancion` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL,
   `id_actividad` int(11) NOT NULL,
+  `motivo` varchar(255) NOT NULL,
   `fecha` date NOT NULL,
-  `duracion` varchar(255) NOT NULL,
-  PRIMARY KEY (`id_sancion`),
-  KEY `fk_sanciones_usuarios` (`id_usuario`),
-  KEY `fk_sanciones_actividades` (`id_actividad`)
+  `estado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -117,9 +103,8 @@ CREATE TABLE IF NOT EXISTS `sanciones` (
 -- Estructura de tabla para la tabla `usuarios`
 --
 
-DROP TABLE IF EXISTS `usuarios`;
-CREATE TABLE IF NOT EXISTS `usuarios` (
-  `id_usuario` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `usuarios` (
+  `id_usuario` int(11) NOT NULL,
   `dni` varchar(255) NOT NULL,
   `nombre` varchar(255) NOT NULL,
   `apellidos` varchar(255) NOT NULL,
@@ -127,10 +112,99 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `telefono` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `rol` varchar(255) NOT NULL,
-  PRIMARY KEY (`id_usuario`),
-  UNIQUE KEY `dni` (`dni`),
-  UNIQUE KEY `email` (`email`)
+  `confirmado` tinyint(4) NOT NULL,
+  `token` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `actividades`
+--
+ALTER TABLE `actividades`
+  ADD PRIMARY KEY (`id_actividad`),
+  ADD KEY `fk_actividades_categorias` (`id_categoria`),
+  ADD KEY `fk_actividades_usuarios` (`id_usuario`);
+
+--
+-- Indices de la tabla `categorias`
+--
+ALTER TABLE `categorias`
+  ADD PRIMARY KEY (`id_categoria`);
+
+--
+-- Indices de la tabla `comentarios`
+--
+ALTER TABLE `comentarios`
+  ADD PRIMARY KEY (`id_comentario`),
+  ADD KEY `fk_comentarios_usuarios` (`id_usuario`),
+  ADD KEY `fk_comentarios_actividades` (`id_actividad`);
+
+--
+-- Indices de la tabla `reservas`
+--
+ALTER TABLE `reservas`
+  ADD PRIMARY KEY (`id_reserva`),
+  ADD KEY `fk_reservas_usuarios` (`id_usuario`),
+  ADD KEY `fk_reservas_actividades` (`id_actividad`);
+
+--
+-- Indices de la tabla `sanciones`
+--
+ALTER TABLE `sanciones`
+  ADD PRIMARY KEY (`id_sancion`),
+  ADD KEY `fk_sanciones_usuarios` (`id_usuario`),
+  ADD KEY `fk_sanciones_actividades` (`id_actividad`);
+
+--
+-- Indices de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`id_usuario`),
+  ADD UNIQUE KEY `dni` (`dni`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `actividades`
+--
+ALTER TABLE `actividades`
+  MODIFY `id_actividad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
+
+--
+-- AUTO_INCREMENT de la tabla `categorias`
+--
+ALTER TABLE `categorias`
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
+
+--
+-- AUTO_INCREMENT de la tabla `comentarios`
+--
+ALTER TABLE `comentarios`
+  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
+
+--
+-- AUTO_INCREMENT de la tabla `reservas`
+--
+ALTER TABLE `reservas`
+  MODIFY `id_reserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
+
+--
+-- AUTO_INCREMENT de la tabla `sanciones`
+--
+ALTER TABLE `sanciones`
+  MODIFY `id_sancion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
+
+--
+-- AUTO_INCREMENT de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
 
 --
 -- Restricciones para tablas volcadas
@@ -140,7 +214,8 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 -- Filtros para la tabla `actividades`
 --
 ALTER TABLE `actividades`
-  ADD CONSTRAINT `fk_actividades_categorias` FOREIGN KEY (`id_categoria`) REFERENCES `categorias` (`id_categoria`);
+  ADD CONSTRAINT `fk_actividades_categorias` FOREIGN KEY (`id_categoria`) REFERENCES `categorias` (`id_categoria`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_actividades_usuarios` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `comentarios`
