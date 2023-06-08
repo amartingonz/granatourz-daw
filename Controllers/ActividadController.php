@@ -67,9 +67,9 @@
                         $temp = $_FILES['data']['tmp_name']['url'];
         
                         $extension = pathinfo($archivo, PATHINFO_EXTENSION);
-                        $formatosPermitidos = ['jpg', 'jpeg', 'png', 'gif'];
+                        $formatosPermitidos = ['jpg', 'jpeg', 'png', 'webp'];
         
-                        if (in_array($extension, $formatosPermitidos) && $tamano < 2000000000) {
+                        if (in_array($extension, $formatosPermitidos) && $tamano < 200000) {
                             if (move_uploaded_file($temp, 'images/' . $archivo)) {
                                 chmod('images/' . $archivo, 0777);
                                 $this->service->crear_actividad($_POST['data']); // Crear la actividad en la base de datos
@@ -80,7 +80,7 @@
                             }
                         } else {
                             $mensajeError = '<b>Error. La extensión o el tamaño de los archivos no es correcta.<br/>
-                                - Se permiten archivos .jpg, .jpeg, .png y .gif, y un tamaño máximo de 200 kb.</b>';
+                                - Se permiten archivos .jpg, .jpeg, .png y .webp, y un tamaño máximo de 200 kb.</b>';
                             $this->mostrarMensaje($mensajeError);
                         }
                     } 
@@ -107,7 +107,7 @@
                 mkdir('images');
             }
         
-            // Función encargada de crear los actividades, he usado métodos de la clase utils para validar los datos.
+            // Función encargada de crear las actividadess.
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 if (isset($_POST['editar_categoria'])) {
                     $catego_elegida = $_POST['data']['categoria'];
@@ -133,8 +133,8 @@
                         exit;
                     } else {
                         $extension = pathinfo($archivo, PATHINFO_EXTENSION);
-                        $formatosPermitidos = ['jpg', 'jpeg', 'png', 'gif'];
-                        $tamanoMaximo = 200000000;
+                        $formatosPermitidos = ['jpg', 'jpeg', 'png', 'webp'];
+                        $tamanoMaximo = 200000;
 
                         if (in_array($extension, $formatosPermitidos) && $_FILES['data']['size']['url'] <= $tamanoMaximo) {
                             $tipo = $_FILES['data']['type']['url'];
@@ -152,7 +152,7 @@
                                 $this->pages->render('layout/mensaje', ["mensaje" => $mensajeError]);
                             }
                         } else {
-                            $mensajeError = '<b>Error. La extensión o el tamaño de los archivos no es correcta.<br/> - Se permiten archivos .jpg, .jpeg, .png y .gif, y un tamaño máximo de 200 KB.</b>';
+                            $mensajeError = '<b>Error. La extensión o el tamaño de los archivos no es correcta.<br/> - Se permiten archivos .jpg, .jpeg, .png y .webp, y un tamaño máximo de 200 KB.</b>';
                             $this->pages->render('layout/mensaje', ["mensaje" => $mensajeError]);
                         }
                     }
@@ -198,4 +198,4 @@
 
 
 
-    ?>
+?>

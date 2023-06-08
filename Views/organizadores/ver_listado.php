@@ -24,7 +24,7 @@
     <?php if(isset($actividades)):?>
       <?php foreach($actividades as $actividad):?>
         <?php if($actividad['capacidad'] != 0):?>
-          <div class="col-md-6">
+          <div class="col-md-6 mb-4">
             <div class="card text-center">
               <img src="<?="./images/".$actividad['url']?>" class="card-img-top" alt="Actividad">
               <div class="card-body">

@@ -1,10 +1,15 @@
-<!-- LISTAR ACTIVIDADES POR CATEGORIAS -->
-
 <div class="container mt-3">
   <div class="row row-cols-1 row-cols-md-2 g-4 m-5">
-    <?php if(isset($actividades)):?>
-      <?php foreach($actividades as $actividad):?>
-        <?php if($actividad['capacidad'] != 0):?>
+    <?php if (isset($actividades)): ?>
+      <?php $actividadesMostradas = false; ?>
+      <?php foreach ($actividades as $actividad): ?>
+        <?php 
+          if ($actividad['capacidad'] != 0) {
+            $fechaActividad = $actividad['fecha'];
+            $fechaActual = date('Y-m-d');
+            if ($fechaActividad >= $fechaActual) {
+              $actividadesMostradas = true;
+        ?>
           <div class="col mb-4">
             <div class="card h-100">
               <img src="<?="../images/".$actividad['url']?>" class="card-img-top" alt="Actividad">
@@ -31,8 +36,18 @@
               </div>
             </div>
           </div>
-        <?php endif;?>
+        <?php 
+            }
+          }
+        ?>
       <?php endforeach; ?>
-    <?php endif;?>
+      <?php if (!$actividadesMostradas): ?>
+        <div class="container d-flex justify-content-center align-items-center">
+            <div class="col-12 col-md-6 text-center mt-5">
+                <div class="alert alert-warning" role="alert">No hay actividades disponibles.</div>
+              </div>
+          </div>
+      <?php endif; ?>
+    <?php endif; ?>
   </div>
 </div>

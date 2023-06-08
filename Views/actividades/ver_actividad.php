@@ -69,7 +69,7 @@
             <input type="hidden" name="data[id_usuario]" value="<?= $id ?>">
             <div class="form-group">
               <p class="card-text"><strong>Imagen:</strong></p>
-              <input type="file" class="form-control-file" name="data[url]" id="url">
+              <input type="file" class="form-control-file" name="data[url]" id="url" required>
               <span class="text-danger" id="url-error"></span>
             </div>
             <div class="form-group">

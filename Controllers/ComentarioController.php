@@ -28,11 +28,11 @@
                     $tamano = $_FILES['data']['size']['url'];
                     $temp = $_FILES['data']['tmp_name']['url'];
                     
-                    $formatosPermitidos = array('image/gif', 'image/jpeg', 'image/jpg', 'image/png');
+                    $formatosPermitidos = array('image/webp', 'image/jpeg', 'image/jpg', 'image/png');
                     $pesoMaximo = 200000; // en bytes (200 KB)
                     
                     if (!in_array($tipo, $formatosPermitidos) || $tamano > $pesoMaximo) {
-                        $mensajeError = '<b>Error. La extensión o el tamaño de los archivos no es correcta.<br/> - Se permiten archivos .jpg, .jpeg, .png y .gif, y un tamaño máximo de 200 KB.</b>';
+                        $mensajeError = '<b>Error. La extensión o el tamaño de los archivos no es correcta.<br/> - Se permiten archivos .jpg, .jpeg, .png y .webp, y un tamaño máximo de 200 KB.</b>';
                         $this->pages->render('layout/mensaje', ["mensaje" => $mensajeError]);
                         return;
                     }

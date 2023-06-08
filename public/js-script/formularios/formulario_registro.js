@@ -20,10 +20,10 @@ function validarFormularioRegistro() {
   }
 
   // Validar Nombre y Apellidos
-  var nombreApellidosRegex = /^[a-zA-Z\sáéíóúÁÉÍÓÚüÜñÑ',.-]+$/; // Expresión regular actualizada
+  var nombreApellidosRegex = /^[a-zA-Z\sáéíóúÁÉÍÓÚüÜñÑ',.-]+$/;
 
-  var nombre = formulario.elements.nombre.value;
-  var apellidos = formulario.elements.apellidos.value;
+  var nombre = formulario['data[nombre]'].value;
+  var apellidos = formulario['data[apellidos]'].value;
 
   if (!nombreApellidosRegex.test(nombre)) {
     document.getElementById('nombre-error').textContent = 'El nombre solo debe contener letras y espacios.';
