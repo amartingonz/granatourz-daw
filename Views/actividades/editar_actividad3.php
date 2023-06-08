@@ -10,13 +10,13 @@
 
           <div class="form-group">
             <label for="nombre">Nombre de la actividad:</label>
-            <input type="text" name="data[nombre]" id="nombre" class="form-control">
+            <input type="text" name="data[nombre]" id="nombre" class="form-control" required>
             <span class="text-danger" id="nombre-error"></span>
           </div>
 
           <div class="form-group">
             <label for="duracion">Duración (en minutos):</label>
-            <input type="number" name="data[duracion]" id="duracion" class="form-control">
+            <input type="number" name="data[duracion]" id="duracion" class="form-control" required>
             <span class="text-danger" id="duracion-error"></span>
           </div>
 
@@ -30,31 +30,35 @@
 
           <div class="form-group">
             <label for="localizacion">Localización:</label>
-            <input type="text" name="data[localizacion]" id="localizacion" class="form-control">
+            <input type="text" name="data[localizacion]" id="localizacion" class="form-control" required>
+            <span class="text-danger" id="localizacion-error"></span>
           </div>
 
           <div class="form-group">
             <label for="hora">Hora:</label>
             <br>
-            <input type="time" name="data[hora]" id="hora" class="form-control">
+            <input type="time" name="data[hora]" id="hora" class="form-control" required>
+            <span class="text-danger" id="hora-error"></span>
           </div>
 
           <div class="form-group">
             <label for="fecha">Fecha:</label>
             <br>
-            <input type="date" name="data[fecha]" id="fecha" class="form-control">
+            <input type="date" name="data[fecha]" id="fecha" class="form-control" required>
+            <span class="text-danger" id="fecha-error"></span>
           </div>
 
           <div class="form-group">
             <label for="capacidad">Capacidad:</label>
             <br>
-            <input type="number" name="data[capacidad]" id="capacidad" class="form-control">
+            <input type="number" name="data[capacidad]" id="capacidad" class="form-control" required>
+            <span class="text-danger" id="capacidad-error"></span>
           </div>
 
           <div class="form-group">
-            <label for="url">Imagen:</label>
-            <br>
-            <input type="file" name="data[url]" id="url" class="form-control-file">
+            <label for="imagen">Imagen:</label>
+            <input type="file" name="data[url]" id="url" class="form-control-file" required>
+            <span class="text-danger" id="url-error"></span>
           </div>
 
           <div class="form-group text-center">

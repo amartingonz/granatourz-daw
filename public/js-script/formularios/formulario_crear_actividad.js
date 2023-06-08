@@ -1,16 +1,14 @@
 function validarFormulario_crear_actividad() {
   // Validación del nombre de la actividad
-    var nombre = document.getElementById('nombre').value;
-    if (nombre.trim() === '') {
-      document.getElementById('nombre-error').textContent = 'Este campo es obligatorio';
-      return false;
-    }
-    if (!/^[\w\sáéíóúÁÉÍÓÚüÜñÑ'-]*$/u.test(nombre)) {
-      document.getElementById('nombre-error').textContent = 'Ingrese un nombre válido (solo letras, espacios, tildes, guiones y comillas)';
-      return false;
-    }
-
-
+  var nombre = document.getElementById('nombre').value;
+  if (nombre.trim() === '') {
+    document.getElementById('nombre-error').textContent = 'Este campo es obligatorio';
+    return false;
+  }
+  if (!/^[\w\sáéíóúÁÉÍÓÚüÜñÑ'-]*$/u.test(nombre)) {
+    document.getElementById('nombre-error').textContent = 'Ingrese un nombre válido (solo letras, espacios, tildes, guiones y comillas)';
+    return false;
+  }
 
   // Validación de la duración
   var duracion = document.getElementById('duracion').value;
@@ -23,18 +21,16 @@ function validarFormulario_crear_actividad() {
     return false;
   }
 
-    // Validación de la localización
-    var localizacion = document.getElementById('localizacion').value;
-    if (localizacion.trim() === '') {
-      document.getElementById('localizacion-error').textContent = 'Este campo es obligatorio';
-      return false;
-    }
-    if (!/^[\w\sáéíóúÁÉÍÓÚüÜñÑ-]+$/.test(localizacion)) {
-      document.getElementById('localizacion-error').textContent = 'Ingrese una localización válida (solo letras, espacios, guiones y tildes)';
-      return false;
-    }
-
-
+  // Validación de la localización
+  var localizacion = document.getElementById('localizacion').value;
+  if (localizacion.trim() === '') {
+    document.getElementById('localizacion-error').textContent = 'Este campo es obligatorio';
+    return false;
+  }
+  if (!/^[\w\sáéíóúÁÉÍÓÚüÜñÑ-]+$/.test(localizacion)) {
+    document.getElementById('localizacion-error').textContent = 'Ingrese una localización válida (solo letras, espacios, guiones y tildes)';
+    return false;
+  }
 
   // Validación de la hora
   var hora = document.getElementById('hora').value;
@@ -76,21 +72,25 @@ function validarFormulario_crear_actividad() {
 
   // Control de las imágenes
   var archivo = document.getElementById('url').value;
-  if (archivo !== '') {
-    var extension = archivo.split('.').pop().toLowerCase();
-    var formatosPermitidos = ['jpg', 'jpeg', 'png', 'gif'];
-    if (!formatosPermitidos.includes(extension)) {
-      document.getElementById('url-error').textContent = 'Error. Formato de imagen no válido (jpg, jpeg, png, gif)';
-      return false;
-    }
-    var tamano = document.getElementById('url').files[0].size;
-    var tamanoMaximo = 200000; // 200KB
-    if (tamano > tamanoMaximo) {
-      document.getElementById('url-error').textContent = 'Error. Tamaño de imagen excede el límite (200KB)';
-      return false;
-    }
+  if (archivo === '') {
+    document.getElementById('url-error').textContent = 'Este campo es obligatorio';
+    return false;
   }
-  
+
+  var extension = archivo.split('.').pop().toLowerCase();
+  var formatosPermitidos = ['jpg', 'jpeg', 'png', 'webp'];
+  if (!formatosPermitidos.includes(extension)) {
+    document.getElementById('url-error').textContent = 'Error. Formato de imagen no válido (jpg, jpeg, png, webp)';
+    return false;
+  }
+
+  var tamano = document.getElementById('url').files[0].size;
+  var tamanoMaximo = 200000; // 200KB
+  if (tamano > tamanoMaximo) {
+    document.getElementById('url-error').textContent = 'Error. Tamaño de imagen excede el límite (200KB)';
+    return false;
+  }
+
   return true;
 }
 

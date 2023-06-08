@@ -63,16 +63,16 @@ function validarFormulario_editar_actividad3() {
   var contadorElement = document.getElementById('contador-caracteres');
   contadorElement.textContent = contadorCaracteres + '/' + caracteresMaximos + ' caracteres';
 
-   // Validación de la localización
-   var localizacion = document.getElementById('localizacion').value;
-   if (localizacion.trim() === '') {
-     document.getElementById('localizacion-error').textContent = 'Este campo es obligatorio';
-     return false;
-   }
-   if (!/^[\w\sáéíóúÁÉÍÓÚüÜñÑ-]+$/.test(localizacion)) {
-     document.getElementById('localizacion-error').textContent = 'Ingrese una localización válida (solo letras, espacios, guiones y tildes)';
-     return false;
-   }
+  // Validación de la localización
+  var localizacion = document.getElementById('localizacion').value;
+  if (localizacion.trim() === '') {
+    document.getElementById('localizacion-error').textContent = 'Este campo es obligatorio';
+    return false;
+  }
+  if (!/^[\w\sáéíóúÁÉÍÓÚüÜñÑ-]+$/.test(localizacion)) {
+    document.getElementById('localizacion-error').textContent = 'Ingrese una localización válida (solo letras, espacios, guiones y tildes)';
+    return false;
+  }
 
   // Validación de la hora
   var hora = document.getElementById('hora').value;
@@ -102,20 +102,24 @@ function validarFormulario_editar_actividad3() {
 
   // Control de las imágenes
   var archivo = document.getElementById('url').value;
-  if (archivo !== '') {
-    var extension = archivo.split('.').pop().toLowerCase();
-    var formatosPermitidos = ['jpg', 'jpeg', 'png', 'gif'];
-    if (!formatosPermitidos.includes(extension)) {
-      document.getElementById('url-error').textContent = 'Error. Formato de imagen no válido (jpg, jpeg, png, gif)';
-      return false;
-    }
-    var tamano = document.getElementById('url').files[0].size;
-    var tamanoMaximo = 200000000; // 200KB
-    if (tamano > tamanoMaximo) {
-      document.getElementById('url-error').textContent = 'Error. Tamaño de imagen excede el límite (200KB)';
-      return false;
-    }
+  if (archivo === '') {
+    document.getElementById('url-error').textContent = 'Este campo es obligatorio';
+    return false;
   }
 
+  var extension = archivo.split('.').pop().toLowerCase();
+  var formatosPermitidos = ['jpg', 'jpeg', 'png', 'webp'];
+  if (!formatosPermitidos.includes(extension)) {
+    document.getElementById('url-error').textContent = 'Error. Formato de imagen no válido (jpg, jpeg, png, webp)';
+    return false;
+  }
+
+  var tamano = document.getElementById('url').files[0].size;
+  var tamanoMaximo = 200000; // 200KB
+  if (tamano > tamanoMaximo) {
+    document.getElementById('url-error').textContent = 'Error. Tamaño de imagen excede el límite (200KB)';
+    return false;
+  }
+  
   return true;
 }

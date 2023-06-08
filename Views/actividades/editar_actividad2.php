@@ -1,5 +1,4 @@
 <!-- FORMULARIO DE EDITAR ACTIVIDAD (SELECCIONAR ACTIVIDAD) -->
-
 <div class="container-fluid p-5">
   <div class="row justify-content-center">
     <div class="col-sm-6 col-md-4 p-5">
@@ -9,7 +8,9 @@
           <label for="nombre">Nombre de la actividad:</label>
           <select name="data[id_actividad]" id="nombre" class="form-control">
             <?php foreach($actividades as $actividad) {
-              echo "<option value=".$actividad['id_actividad'].">".$actividad['nombre']."</option>";
+              if ($actividad['capacidad'] > 0) { // Agrega esta condición para no mostrar las nulas
+                echo "<option value=".$actividad['id_actividad'].">".$actividad['nombre']."</option>";
+              }
             }
             ?>
           </select>
@@ -24,7 +25,7 @@
         <div class="form-group text-center">
             <button type="submit" name="editar_nombre" class="btn btn-primary btn-block mt-4">Ir a editar</button>
         </div>
-        </form>
-        </div>
+      </form>
     </div>
+  </div>
 </div>
