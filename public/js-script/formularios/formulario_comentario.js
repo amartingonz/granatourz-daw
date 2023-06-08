@@ -14,10 +14,10 @@ function validarFormulario_crear_comentario() {
       var fileExtension = selectedFile.name.split('.').pop().toLowerCase();
   
       // Validar la extensión del archivo
-      var allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+      var allowedExtensions = ['jpg', 'jpeg', 'png', 'webp'];
       if (!allowedExtensions.includes(fileExtension)) {
         urlInput.classList.add('is-invalid');
-        urlInput.nextElementSibling.textContent = 'Por favor, selecciona un archivo de imagen válido (JPG, JPEG, PNG, GIF).';
+        urlInput.nextElementSibling.textContent = 'Por favor, selecciona un archivo de imagen válido (JPG, JPEG, PNG, WEBP).';
         return false;
       } else {
         urlInput.classList.remove('is-invalid');

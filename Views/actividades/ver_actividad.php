@@ -62,7 +62,7 @@
   <div class="row justify-content-center">
     <div class="col-md-6">
       <div class="card">
-        <div class="card-body text-center">
+        <div class="card-body text-center mt-3">
           <h3 class="card-title">Crear comentario:</h3>
           <form action="crear_comentario" method="post" enctype="multipart/form-data" onsubmit="return validarFormulario_crear_comentario();">
             <input type="hidden" name="data[id_actividad]" value="<?= $actividad['id_actividad'] ?>">
@@ -94,7 +94,7 @@
 <div class="container">
     <?php foreach ($comentarios as $comentario) { ?>
       <?php if ($comentario->getId_actividad() === $actividad['id_actividad']) { ?>
-        <div class="card mb-3">
+        <div class="card mb-3 mt-3">
             <div class="row g-0">
                 <div class="col-md-4">
                     <img src="<?="./images/".$comentario->getUrl();?>" class="img-fluid" alt="Imagen Comentario">
