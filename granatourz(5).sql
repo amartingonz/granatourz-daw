@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 
 --
 -- Base de datos: `granatourz`
---
+-- ESTÁ QUITADA LA FUNCION DE CREAR POR EL HOSTING PARA PODER INSERTAR LAS TABLAS SOLAMENTE
 
 -- --------------------------------------------------------
 
