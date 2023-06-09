@@ -4,7 +4,7 @@
 <div class="container-fluid p-5">
   <div class="row justify-content-center">
     <div class="col-sm-6 col-md-4 p-5">
-      <h2 class="text-center mt-3">Registrate</h2>
+      <h2 class="text-center mt-3">Registro</h2>
       <form action="<?= $_ENV['BASE_URL']?>usuarios_registrar" method="post" class="needs-validation mt-4" novalidate onsubmit="return validarFormularioRegistro();">
 
         <div class="form-group">

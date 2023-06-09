@@ -48,7 +48,7 @@
               <a class="nav-link" href="<?= $_ENV['BASE_URL']?>usuarios_registrar">Registrar</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<?= $_ENV['BASE_URL']?>usuarios_loguear">Login</a>
+              <a class="nav-link" href="<?= $_ENV['BASE_URL']?>usuarios_loguear">Iniciar Sesión</a>
             </li>
           <?php }?>
           
@@ -59,7 +59,7 @@
               </a>
               <div class="dropdown-menu" aria-labelledby="adminDropdown">
                 <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>crear_categoria">Crear Categorias</a>
-                <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>crear_actividad">Agregar Actividad</a>
+                <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>crear_actividad">Crear Actividad</a>
                 <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>editar_actividad">Editar Actividad</a>
                 <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>sancionar_usuario">Sancionar Usuario</a>
                 <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>editar_datos">Editar Datos</a>
@@ -76,7 +76,7 @@
                 Organizador
               </a>
               <div class="dropdown-menu" aria-labelledby="organizadorDropdown">
-                <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>crear_actividad">Agregar Actividad</a>
+                <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>crear_actividad">Crear Actividad</a>
                 <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>editar_actividad">Editar Actividad</a>
                 <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>ver_listado">Ver listado</a>
                 <a class="dropdown-item" href="<?= $_ENV['BASE_URL']?>editar_datos">Editar Datos</a>
