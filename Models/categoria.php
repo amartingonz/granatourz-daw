@@ -2,7 +2,7 @@
 
 namespace Models;
 
-// CREAR LA CLASE USUARIOS
+// CREAR LA CLASE CATEGORIA
 
 class Categoria{
 
