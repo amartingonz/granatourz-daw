@@ -30,13 +30,13 @@
 
           <div class="form-group">
             <label for="nombre">Nombre de la actividad:</label>
-            <input type="text" name="data[nombre]" id="nombre" class="form-control" required>
+            <input type="text" name="data[nombre]" id="nombre" class="form-control" placeholder="Ejemplo: Ruta al centro" required>
             <span class="text-danger" id="nombre-error"></span>
           </div>
 
           <div class="form-group">
             <label for="duracion">Duración (en minutos):</label>
-            <input type="number" name="data[duracion]" id="duracion" class="form-control" required>
+            <input type="number" name="data[duracion]" id="duracion" class="form-control" placeholder="Ejemplo: 20" required>
             <span class="text-danger" id="duracion-error"></span>
           </div>
 
@@ -49,7 +49,7 @@
 
           <div class="form-group">
             <label for="localizacion">Localización:</label>
-            <input type="text" name="data[localizacion]" id="localizacion" class="form-control" required>
+            <input type="text" name="data[localizacion]" id="localizacion" class="form-control" placeholder="Ejemplo: Granada"  required>
             <span class="text-danger" id="localizacion-error"></span>
           </div>
 
@@ -67,7 +67,7 @@
 
           <div class="form-group">
             <label for="capacidad">Capacidad:</label>
-            <input type="number" name="data[capacidad]" id="capacidad" class="form-control" required>
+            <input type="number" name="data[capacidad]" id="capacidad" class="form-control" placeholder="Ejemplo: 20" required>
             <span class="text-danger" id="capacidad-error"></span>
           </div>
 

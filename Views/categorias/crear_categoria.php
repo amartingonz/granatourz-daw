@@ -8,7 +8,7 @@
 
             <div class="form-group">
                 <label for="nombre">Nombre de la categoría:</label>
-                <input type="text" name="nombre" id="nombre" class="form-control" required>
+                <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Ejemplo: Culturales" required>
                 <span id="error-nombre" class="text-danger"></span>
             </div>
 

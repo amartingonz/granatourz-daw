@@ -9,37 +9,37 @@
 
         <div class="form-group">
           <label for="dni">Dni:</label>
-          <input type="text" class="form-control" name="data[dni]" required>
+          <input type="text" class="form-control" name="data[dni]" placeholder="Ingresar dni válido" required>
           <span class="text-danger" id="dni-error"></span>
         </div>
 
         <div class="form-group">
           <label for="nombre">Nombre:</label>
-          <input type="text" class="form-control" name="data[nombre]" required>
+          <input type="text" class="form-control" name="data[nombre]" placeholder="Ejemplo: Alejandro"  required>
           <span class="text-danger" id="nombre-error"></span>
         </div>
 
         <div class="form-group">
           <label for="apellidos">Apellido:</label>
-          <input type="text" class="form-control" name="data[apellidos]" required>
+          <input type="text" class="form-control" name="data[apellidos]" placeholder="Ejemplo: Martín González" required>
           <span class="text-danger" id="apellidos-error"></span>
         </div>
 
         <div class="form-group">
           <label for="email">Email:</label>
-          <input type="email" class="form-control" name="data[email]" required>
+          <input type="email" class="form-control" name="data[email]" placeholder="Ejemplo: informacion@gmail.com" required>
           <span class="text-danger" id="email-error"></span>
         </div>
 
         <div class="form-group">
           <label for="telefono">Teléfono:</label>
-          <input type="tel" class="form-control" name="data[telefono]" required>
+          <input type="tel" class="form-control" name="data[telefono]" placeholder="Ejemplo: 649019740" required>
           <span class="text-danger" id="telefono-error"></span>
         </div>
 
         <div class="form-group">
           <label for="password">Contraseña:</label>
-          <input type="password" class="form-control" name="data[password]" required>
+          <input type="password" class="form-control" name="data[password]" placeholder="Ingrese una contraseña segura" required>
           <span class="text-danger" id="password-error"></span>
         </div>
 

@@ -7,13 +7,13 @@
 
         <div class="mb-3">
           <label for="email" class="form-label">Email</label>
-          <input type="email" class="form-control" id="email" name="data[email]" required>
+          <input type="email" class="form-control" id="email" name="data[email]" placeholder="Ingresa tu email" required>
           <div class="invalid-feedback" id="email-error"></div>
         </div>
 
         <div class="mb-3">
           <label for="password" class="form-label">Contraseña</label>
-          <input type="password" class="form-control" id="password" name="data[password]" required>
+          <input type="password" class="form-control" id="password" name="data[password]" placeholder="Ingresa tu contraseña" required>
           <div class="invalid-feedback" id="password-error"></div>
         </div>
 
