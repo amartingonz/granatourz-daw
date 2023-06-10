@@ -8,9 +8,7 @@
           <label for="nombre">Nombre de la actividad:</label>
           <select name="data[id_actividad]" id="nombre" class="form-control">
             <?php foreach($actividades as $actividad) {
-              if ($actividad['capacidad'] > 0) { // Agrega esta condición para no mostrar las nulas
-                echo "<option value=".$actividad['id_actividad'].">".$actividad['nombre']."</option>";
-              }
+              echo "<option value=".$actividad['id_actividad'].">".$actividad['nombre']."</option>";
             }
             ?>
           </select>

@@ -28,11 +28,11 @@ if (isset($_SESSION['usuario'])) {
                                     <h5 class="card-title"><?php echo $actividad['nombre']; ?></h5>
                                     <p class="card-text flex-grow-1"><?php echo $actividad['descripcion']; ?></p>
                                     <ul class="list-group list-group-flush text-center">
-                                        <li class="list-group-item"><strong>Duración:</strong> <?php echo $actividad['duracion']; ?>minutos</li>
+                                        <li class="list-group-item"><strong>Duración:</strong> <?php echo $actividad['duracion']; ?> minutos</li>
                                         <li class="list-group-item"><strong>Localización:</strong> <?php echo $actividad['localizacion']; ?></li>
                                         <li class="list-group-item"><strong>Hora:</strong> <?php echo $actividad['hora']; ?></li>
                                         <li class="list-group-item"><strong>Fecha:</strong> <?php echo $actividad['fecha']; ?></li>
-                                        <li class="list-group-item"><strong>Capacidad:</strong> <?php echo $actividad['capacidad']; ?>plazas</li>
+                                        <li class="list-group-item"><strong>Capacidad:</strong> <?php echo $actividad['capacidad']; ?> plazas</li>
                                         <li class="list-group-item">
                                             <form action="ver_actividad" method="post">
                                                 <input type="hidden" name="id_actividad" value="<?php echo $actividad['id_actividad']; ?>">

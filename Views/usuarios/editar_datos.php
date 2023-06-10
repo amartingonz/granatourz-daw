@@ -1,5 +1,3 @@
-<link rel="stylesheet" href="./css/style.css">
-
 <?php
 if(isset($_SESSION['admin'])){
 
@@ -32,12 +30,6 @@ if(isset($_SESSION['admin'])){
           <label for="apellidos">Apellido:</label>
           <input type="text" class="form-control" name="data[apellidos]" placeholder="Ejemplo: Martín González" required>
           <span class="text-danger" id="apellidos-error"></span>
-        </div>
-
-        <div class="form-group">
-          <label for="email">Correo:</label>
-          <input type="email" class="form-control" name="data[email]" placeholder="Ejemplo: informacion@gmail.com" required>
-          <span class="text-danger" id="email-error"></span>
         </div>
 
         <div class="form-group">

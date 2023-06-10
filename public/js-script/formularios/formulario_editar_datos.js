@@ -26,15 +26,6 @@ function validarFormulario_editar_datos() {
     formulario.elements['data[apellidos]'].nextElementSibling.textContent = "";
   }
 
-  // Validar el campo email (formato válido)
-  var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(email)) {
-    formulario.elements['data[email]'].nextElementSibling.textContent = "Por favor, introduce un correo electrónico válido.";
-    return false;
-  } else {
-    formulario.elements['data[email]'].nextElementSibling.textContent = "";
-  }
-
   // Validar el campo teléfono (número de teléfono móvil)
   var telefonoRegex = /^[6-9]\d{8}$/;
   if (!telefonoRegex.test(telefono)) {
