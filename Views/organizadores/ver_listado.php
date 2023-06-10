@@ -6,7 +6,7 @@
 
             ob_start();
 ?>
-
+<!-- He usado el elemento card de boostrap para mostrar más organizada la información esto se mostrara si la capacidad es mayor a 0 es decir que hay plazas -->
 <?php 
 
     if(isset($_SESSION['admin'])){

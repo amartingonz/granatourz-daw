@@ -1,3 +1,4 @@
+<!-- Esto es una página con un formulario de contacto -->
 <div class="container-fluid">
     <h1 class="text-center mt-5">Contacto</h1>
     <div class="row justify-content-center">

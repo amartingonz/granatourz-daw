@@ -1,3 +1,4 @@
+<!-- He usado un una tabla responsive con los siguientes datos extraidos de sanciones -->
 <div class="container mt-5 p-5">
   <div class="table-responsive">
     <table class="table table-striped">

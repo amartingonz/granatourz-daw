@@ -1,3 +1,4 @@
+<!-- He usado una tabla responsive para mostrar los datos de los usuarios inscritos -->
 <div class="container mt-5 p-5">
   <div class="table-responsive">
     <table class="table table-striped">

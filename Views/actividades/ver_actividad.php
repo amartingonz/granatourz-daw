@@ -1,3 +1,4 @@
+<!-- PÁGINA PARA VER UNA ACTIVIDAD -->
 <?php
             use Repositories\ComentarioRepository;
             use Repositories\UsuarioRepository;

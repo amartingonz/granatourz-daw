@@ -1,3 +1,4 @@
+<!-- He usado un list group para mostrar los siguientes datos extraidos de la base de datos -->
 <div class="container mt-3">
     <div class="row row-cols-1 row-cols-md-2 g-4 m-5">
         <?php if (isset($reservas)): ?>

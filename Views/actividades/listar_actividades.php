@@ -1,3 +1,4 @@
+<!-- LISTADO DE ACTIVIDADES HE USADO CARD PARA MOSTRAR LAS ACTIVIDADES -->
 <?php
 if (isset($_SESSION['admin'])) {
     $id = $_SESSION['id_admin'];
@@ -31,21 +32,17 @@ if (isset($_SESSION['usuario'])) {
                                         <li class="list-group-item"><strong>Localización:</strong> <?php echo $actividad['localizacion']; ?></li>
                                         <li class="list-group-item"><strong>Hora:</strong> <?php echo $actividad['hora']; ?></li>
                                         <li class="list-group-item"><strong>Fecha:</strong> <?php echo $actividad['fecha']; ?></li>
-                                        <li class="list-group-item"><strong>Capacidad:</strong> <?php echo $actividad['capacidad']; ?>
-                                            plazas
-                                        </li>
+                                        <li class="list-group-item"><strong>Capacidad:</strong> <?php echo $actividad['capacidad']; ?>plazas</li>
                                         <li class="list-group-item">
                                             <form action="ver_actividad" method="post">
-                                                <input type="hidden" name="id_actividad"
-                                                       value="<?php echo $actividad['id_actividad']; ?>">
+                                                <input type="hidden" name="id_actividad" value="<?php echo $actividad['id_actividad']; ?>">
                                                 <button type="submit" class="btn btn-primary">Ver más</button>
                                             </form>
                                         </li>
                                         <?php if (isset($_SESSION['admin'])): ?>
                                             <li class="list-group-item">
                                                 <form action="eliminar_actividad" method="post">
-                                                    <input type="hidden" name="id_actividad"
-                                                           value="<?php echo $actividad['id_actividad']; ?>">
+                                                    <input type="hidden" name="id_actividad" value="<?php echo $actividad['id_actividad']; ?>">
                                                     <button type="submit" class="btn btn-primary bg-danger">Eliminar</button>
                                                 </form>
                                             </li>
@@ -53,12 +50,9 @@ if (isset($_SESSION['usuario'])) {
                                         <?php if (isset($_SESSION['usuario'])): ?>
                                             <li class="list-group-item">
                                                 <form action="realizar_reserva" method="post">
-                                                    <input type="hidden" name="data[id_actividad]"
-                                                           value="<?php echo $actividad['id_actividad']; ?>">
-                                                    <input type="hidden" name="data[fecha]"
-                                                           value="<?php echo $actividad['fecha']; ?>">
-                                                    <input type="hidden" name="data[id_usuario]"
-                                                           value="<?php echo $id; ?>">
+                                                    <input type="hidden" name="data[id_actividad]" value="<?php echo $actividad['id_actividad']; ?>">
+                                                    <input type="hidden" name="data[fecha]" value="<?php echo $actividad['fecha']; ?>">
+                                                    <input type="hidden" name="data[id_usuario]" value="<?php echo $id; ?>">
                                                     <button type="submit" class="btn btn-primary btn-success">Reservar</button>
                                                 </form>
                                             </li>

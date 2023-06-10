@@ -1,3 +1,4 @@
+<!-- Página con una serie de normas  -->
 <div class="container-fluid">
   <div class="text-center mb-2">
     <div class="card p-4">
