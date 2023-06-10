@@ -87,7 +87,7 @@
     });
 
     Router::add('GET','sancionar_usuario',function() use ($sancionController){
-        if (!isset($_SESSION['organizador']) && !isset($_SESSION['admin'])) {
+        if (!isset($_SESSION['admin'])) {
             header('Location: ' . $_ENV['BASE_URL']. 'usuarios_loguear');
             exit;
         }
@@ -195,7 +195,7 @@
     });
 
     Router::add('GET','ver_listado',function() use ($actividadController){
-        if (!isset($_SESSION['organizador']) && !isset($_SESSION['admin'])) {
+        if (!isset($_SESSION['organizador'])) {
             header('Location: ' . $_ENV['BASE_URL']. 'usuarios_loguear');
             exit;
         }
