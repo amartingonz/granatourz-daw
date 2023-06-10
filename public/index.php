@@ -1,10 +1,6 @@
-
-<div class="main-content flex-grow-1">
-
 <?php
     session_start();
     require_once __DIR__.'../../vendor/autoload.php';
-    
     use Dotenv\Dotenv;
     use Controllers\CategoriaController;
     use Controllers\ComentarioController;
@@ -24,6 +20,9 @@
     $reservaController = new ReservaController();
     $sancionController = new SancionController();
     $categoriaController = new CategoriaController();
+?>
+<div class="main-content flex-grow-1">
+<?php
 
     // INDEX
     Router::add('GET','/',function() use ($actividadController){
