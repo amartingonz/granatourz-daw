@@ -175,6 +175,26 @@
         }
         
 
+        public function listarActividadesUsuario($id_usuario, $id_categoria){
+            //Para mostrar las actividades de un usuario por id y categoria
+            try {
+                $query = "SELECT * FROM actividades WHERE id_usuario = :id_usuario AND id_categoria = :id_categoria";
+                $stmt = $this->conexion->prepara($query);
+                $stmt->bindParam(':id_usuario', $id_usuario);
+                $stmt->bindParam(':id_categoria', $id_categoria);
+                $stmt->execute();
+                // Obtener los resultados de la consulta
+                $actividades = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                return $actividades;
+            } catch (PDOException $e) {
+                // Manejar la excepción en caso de error de la base de datos
+                echo "Error al obtener las actividades del usuario por categoría: " . $e->getMessage();
+                return [];
+            }
+        }
+
+
+
 
         public function listarXcategorias($data): ?array {
             // Función para sacar las actividades por el id de las categorias

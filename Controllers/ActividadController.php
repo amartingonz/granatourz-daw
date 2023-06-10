@@ -112,11 +112,11 @@
                 if (isset($_POST['editar_categoria'])) {
                     $catego_elegida = $_POST['data']['categoria'];
                     $id_categoria = $this->catservice->buscarIdCategoria($catego_elegida);
-                    $actividades = $this->service->listarXcategorias($id_categoria);
+                    $actividades = $this->service->listarActividadesUsuario($_SESSION['id'],$id_categoria);
                     if (count($actividades) > 0) {
                         $this->pages->render('actividades/editar_actividad2', ["actividades" => $actividades]);
                     } else {
-                        $this->pages->render('layout/mensaje', ["mensaje" => "No hay actividades en esta categoría"]);
+                        $this->pages->render('layout/mensaje', ["mensaje" => "No tienes actividades para editar"]);
                         $categorias = $this->categoria->listar_categorias();
                         $this->pages->render('actividades/editar_actividad', ["categorias" => $categorias]);
                     }

@@ -24,6 +24,11 @@
                 return $this -> repository -> sacarListadoActividades($id_usuario);
             }
 
+            public function listarActividadesUsuario($id_usuario, $id_categoria){
+                // Función que llama al metodo del repositorio listarActividadesUsuario
+                return $this -> repository -> listarActividadesUsuario($id_usuario,$id_categoria);
+            }
+
             public function getAll(): ?array{
                 return $this-> repository -> getAll();
             }
