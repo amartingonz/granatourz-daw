@@ -1,7 +1,6 @@
 <?php
 namespace Lib;
 
-// para almacenar las rutas que configuremos desde el archivo indexold.php
 
 
 class Router {
@@ -23,7 +22,6 @@ class Router {
     public static function dispatch():void {
         $method = $_SERVER['REQUEST_METHOD']; 
 
-        //$action = preg_replace("/\/proyectocursos\//",'',$_SERVER['REQUEST_URI']); //Desde el index raiz
         $action = preg_replace("/\/granatourz-daw\/public\//",'',$_SERVER['REQUEST_URI']);//desde el public
        //$_SERVER['REQUEST_URI'] almacena la cadena de texto que hay después del nombre del host en la URL
         $action = trim($action, '/');
@@ -36,8 +34,6 @@ class Router {
             $param = $match[0];
             $param =preg_replace("/\//",'',$param);
             $action=preg_replace('/'.$param.'/',':id',$action);
-            // $action=preg_replace('/'.$param.'/',':token',$action);
-            // $action=preg_replace('/'.$match[0].'/',':id',$action);
 
        }
 
