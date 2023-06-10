@@ -53,8 +53,8 @@
         public function confirmar_email($token){
             // Funcion para confirmar el usuario al registrar mediante correo
             $tokens = $this -> service -> confirmarEmail($token);
-            $this -> service -> borrar_token($token);
-            if(!empty($tokens)){
+            if($tokens){
+                $this -> service -> borrar_token($token);
                 $this -> pages -> render('layout/mensaje',["mensaje" => "Confirmado con éxito"]);
             }else{
                 $this -> pages -> render('layout/mensaje',["mensaje" => "Error al confirmar tu cuenta"]);

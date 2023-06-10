@@ -1,4 +1,4 @@
-    <?php
+<?php
             use Repositories\CategoriaRepository;
             use Models\Categoria;
             ob_start();

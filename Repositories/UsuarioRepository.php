@@ -214,11 +214,14 @@
                 $cons->closeCursor(); // Cerrar la consulta
                 if($cons && $cons->rowCount() == 1){
                     return true;
+                } else {
+                    return false; // Si no se cumple la condición, devolver false
                 }
             } catch(PDOException $e){
                 return false;
             }
         }
+        
         
 
         public function borrar_token($token){
@@ -231,6 +234,8 @@
                 $cons->closeCursor(); // Cerrar la consulta
                 if($cons && $cons->rowCount() == 1){
                     return true;
+                }else{
+                    return false;
                 }
             } catch(PDOException $e){
                 return false;
