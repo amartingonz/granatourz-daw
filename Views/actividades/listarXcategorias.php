@@ -12,7 +12,7 @@
         ?>
           <div class="col mb-4">
             <div class="card h-100">
-              <img src="<?="../images/".$actividad['url']?>" class="card-img-top" alt="Actividad">
+              <img src="<?="../images/".$actividad['url']?>" class="card-img-top img-fluid fixed-size-image" alt="Actividad">
               <div class="card-body d-flex flex-column">
                 <h5 class="card-title"><?= $actividad['nombre']?></h5>
                 <p class="card-text flex-grow-1"><?= $actividad['descripcion']?></p>
@@ -43,3 +43,8 @@
     <?php endif; ?>
   </div>
 </div>
+<style>
+    .fixed-size-image {
+        aspect-ratio: 16/9;
+    }
+</style>

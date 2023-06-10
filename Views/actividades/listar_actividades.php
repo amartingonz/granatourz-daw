@@ -27,9 +27,7 @@ if (isset($_SESSION['usuario'])) {
                                     <h5 class="card-title"><?php echo $actividad['nombre']; ?></h5>
                                     <p class="card-text flex-grow-1"><?php echo $actividad['descripcion']; ?></p>
                                     <ul class="list-group list-group-flush text-center">
-                                        <li class="list-group-item"><strong>Duración:</strong> <?php echo $actividad['duracion']; ?>
-                                            minutos
-                                        </li>
+                                        <li class="list-group-item"><strong>Duración:</strong> <?php echo $actividad['duracion']; ?>minutos</li>
                                         <li class="list-group-item"><strong>Localización:</strong> <?php echo $actividad['localizacion']; ?></li>
                                         <li class="list-group-item"><strong>Hora:</strong> <?php echo $actividad['hora']; ?></li>
                                         <li class="list-group-item"><strong>Fecha:</strong> <?php echo $actividad['fecha']; ?></li>
@@ -48,8 +46,7 @@ if (isset($_SESSION['usuario'])) {
                                                 <form action="eliminar_actividad" method="post">
                                                     <input type="hidden" name="id_actividad"
                                                            value="<?php echo $actividad['id_actividad']; ?>">
-                                                    <button type="submit" class="btn btn-primary bg-danger">Eliminar
-                                                    </button>
+                                                    <button type="submit" class="btn btn-primary bg-danger">Eliminar</button>
                                                 </form>
                                             </li>
                                         <?php endif; ?>
@@ -62,8 +59,7 @@ if (isset($_SESSION['usuario'])) {
                                                            value="<?php echo $actividad['fecha']; ?>">
                                                     <input type="hidden" name="data[id_usuario]"
                                                            value="<?php echo $id; ?>">
-                                                    <button type="submit" class="btn btn-primary btn-success">Reservar
-                                                    </button>
+                                                    <button type="submit" class="btn btn-primary btn-success">Reservar</button>
                                                 </form>
                                             </li>
                                         <?php endif; ?>
