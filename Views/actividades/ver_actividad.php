@@ -92,7 +92,8 @@
 </div>
 <?php endif;?>
 <?php $comentarios = ComentarioRepository::obtenerComentarios(); ?>
-<div class="container">
+<div class="container mt-5 mb-5">
+  <h2 class="mb-3 text-center">Comentarios</h2>
     <?php foreach ($comentarios as $comentario) { ?>
       <?php if ($comentario->getId_actividad() === $actividad['id_actividad']) { ?>
         <div class="card mb-3 mt-3">
@@ -104,7 +105,6 @@
                     <div class="card-body">
                         <?php $nombreUsuario = UsuarioRepository::obtenerUsuarioPorId($comentario->getId_usuario()); ?>
                         <h5 class="card-title">Usuario: <?php echo $nombreUsuario !== null ? $nombreUsuario : 'Desconocido'; ?></h5>
-                        <p class="card-text">Actividad: <?php echo $comentario->getId_actividad(); ?></p>
                         <p class="card-text">Fecha: <?php echo $comentario->getFecha(); ?></p>
                         <p class="card-text">Texto: <?php echo $comentario->getTexto(); ?></p>
                         <p class="card-text">Valoración: <?php echo $comentario->getValoracion(); ?>/10</p>
