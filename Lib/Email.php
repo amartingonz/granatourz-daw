@@ -26,8 +26,8 @@
             $mail->SMTPAuth = true;
             $mail->SMTPSecure = 'tls'; // O usa 'ssl' si tu servidor lo requiere
             $mail->Port = 587; // Puerto para TLS (o 465 para SSL)
-            $mail->Username = 'granatourz@gmail.com'; // Tu dirección de correo electrónico de Gmail
-            $mail->Password = 'mevjwhtqgxfwzzon'; // Tu contraseña de Gmail
+            $mail->Username = ''; // Tu dirección de correo electrónico de Gmail
+            $mail->Password = ''; // Tu contraseña de Gmail
         
             $mail->setFrom('granatourz@gmail.com');
             $mail->addAddress($this->email); // Aquí va la dirección de correo del destinatario
