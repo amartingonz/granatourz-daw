@@ -35,7 +35,7 @@
                 <p class="card-text"><strong>Hora:</strong> <?= $actividad['hora']?></p>
                 <p class="card-text"><strong>Fecha:</strong> <?= $actividad['fecha']?></p>
                 <p class="card-text"><strong>Capacidad:</strong> <?= $actividad['capacidad']?></p>
-                <?php if(isset($_SESSION['admin'])):?>
+                <?php if(isset($_SESSION['admin']) || isset($_SESSION['organizador'])):?>
                   <form action="eliminar_actividad" method="post">
                     <input type="hidden" name="id_actividad" value="<?= $actividad['id_actividad'] ?>">
                     <button type="submit" class="btn btn-danger">Eliminar</button>
@@ -44,7 +44,7 @@
                 <form action="listado_asistentes" method="post">
                     <input type="hidden" name="data[id_actividad]" value="<?= $actividad['id_actividad'] ?>">
                     <input type="hidden" name="data[id_usuario]" value="<?= $id ?>">
-                    <button type="submit" class="btn btn-success">Ver lista</button>
+                    <button type="submit" class="btn btn-success mt-4">Ver lista</button>
                   </form>
                 <?php endif;?>
               </div>
